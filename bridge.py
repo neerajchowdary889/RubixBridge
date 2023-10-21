@@ -4,11 +4,12 @@ import requests
 api_url = 'http://localhost:20000/api/createdid'  # Replace with the actual API URL
 
 # Define the form data as a dictionary
-form_data = {'did_config': {'type':0, 'dir':'', 'config':'', 'master_did':'', 'secret':'My DID Secret', 'priv_pwd':'mypassword', 'quorum_pwd':'mypassword','img_file':'', '', 'priv_img_file':'',  'pub_key_file':'', 'priv_key_file':'', 'quorum_pub_key_file':'', 'quorum_priv_key_file':''}}
+# form_data = {'did_config': {'type':0, 'dir':'', 'config':'', 'master_did':'', 'secret':'My DID Secret', 'priv_pwd':'mypassword', 'quorum_pwd':'mypassword','img_file':r"C:\Users\saishibu\Documents\GitHub\RubixBridge\image.png", 'priv_img_file':'',  'pub_key_file':'', 'priv_key_file':'', 'quorum_pub_key_file':'', 'quorum_priv_key_file':''}}
 
 # Send a POST request with the form data
 try:
-    response = requests.post(api_url, data=form_data)
+    # response = requests.post(api_url, data=form_data)
+    response = requests.post(api_url)
 
     # Check the response status code
     if response.status_code == 200:
