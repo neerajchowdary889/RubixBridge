@@ -1,12 +1,13 @@
 from flask import Flask, request, jsonify, Response
-import requests, time
-import json
+import requests,json
+
 
 
 app = Flask(__name__)
 
 @app.route('/createdid')
 def createDID():
+    print("createDID API")
     # Define the API endpoint URL
     url = 'http://localhost:20000/api/createdid'
 
@@ -23,10 +24,13 @@ def createDID():
     # Check the response status code
         if response.status_code == 200:
         # Request was successful
-            message = response.text
+            message = json.loads(response.text)
+            print(message)
+            print(type(message))
             print("POST request was successful.")
             print("Response content:", message)
-            if message['status'] == true:
+            print(message['status'])
+            if message['status'] == True:
                 print(message['result']['did'])
                 print(message['result']['peer_id'])
                 didpeerid={'did':message['result']['did'],'peerid':message['result']['peer_id']}
