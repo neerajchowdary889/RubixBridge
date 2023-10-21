@@ -1,13 +1,16 @@
 from flask import Flask, request, jsonify, Response
-import requests,json
+import requests,json, time
 
 
 
 app = Flask(__name__)
 
-@app.route('/createdid')
+
+#CreateDID API
+@app.route('/api/createdid')
 def createDID():
     print("createDID API")
+    start_time = time.time()
     # Define the API endpoint URL
     url = 'http://localhost:20000/api/createdid'
 
@@ -20,20 +23,17 @@ def createDID():
 # Send a POST request with multipart/form-data
     try:
         response = requests.post(url, data=form_data, files=files)
-    
+        end_time = time.time()
+        elapsed_time = end_time - start_time
+        print(elapsed_time)
     # Check the response status code
         if response.status_code == 200:
         # Request was successful
             message = json.loads(response.text)
-            print(message)
-            print(type(message))
-            print("POST request was successful.")
-            print("Response content:", message)
-            print(message['status'])
             if message['status'] == True:
                 print(message['result']['did'])
                 print(message['result']['peer_id'])
-                didpeerid={'did':message['result']['did'],'peerid':message['result']['peer_id']}
+                didpeerid={'status':True, 'did':message['result']['did'],'peerid':message['result']['peer_id'],'timeTaken':elapsed_time}
                 return didpeerid
             else:
                 print(message)
@@ -45,6 +45,28 @@ def createDID():
 
     except requests.exceptions.RequestException as e:
         print(f"An error occurred: {e}")
+        end_time = time.time()
+        elapsed_time = end_time - start_time
+        return (str(e))
+    
+#Get all DIDs
+@app.route('/api/getalldid')
+def getalldid():
+    print("GetallDID API")
+
+    url='http://localhost:20000/api/getalldid'
+
+    try:
+        response = requests.get(url)
+
+    # Check the response status code
+        if response.status_code == 200:
+        # Request was successful
+            return json.loads(response.text)
+        else:
+            return json.loads(response.text)
+
+    except requests.exceptions.RequestException as e:
         return (str(e))
 
 if __name__ == '__main__':
