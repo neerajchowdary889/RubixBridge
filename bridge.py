@@ -18,7 +18,7 @@ def createDID():
     form_data = {'did_config': (None, '{"type":0,"dir":"","config":"","master_did":"","secret":"My DID Secret","priv_pwd":"mypassword","quorum_pwd":"mypassword"}'),}
 
     # Specify the file to upload
-    files = {'img_file': ('image.png', open('image.png', 'rb'), 'image/png')}
+    files = {'img_file': ('image.png', open('/home/ubuntu/rubix/RubixBridge/image.png', 'rb'), 'image/png')}
 
 # Send a POST request with multipart/form-data
     try:
