@@ -50,7 +50,7 @@ def createParentDID():
         return (str(e))
     
 #CreateDID Child API
-@app.route('/api/createchilddid/<parentDID>')
+@app.route('/api/createchilddid')
 def createchildDID(parentDID):
     print("createDID API")
     alldid = requests.get('http://localhost:20000/api/getalldid')
