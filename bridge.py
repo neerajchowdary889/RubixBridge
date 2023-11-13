@@ -123,19 +123,30 @@ def getalldid():
 @app.route('/api/createdt')
 def createdt():
     print("createDT")
-    url = 'http://localhost:20000/api/create-data-token'
+    url = 'http://localhost:20000/api/create-data-token?did=bafybmig4gr5574glsa7vwnwqyc7mt2u3okmw2emlmzk6addj336scxcjri'
     form_data = {'UserID': '1','UserInfo': 'abc','CommitterDID': 'bafybmiapskapvyjxa4zaa3hvzuqiu6sti7h6aofam6eu7vxjef3ad4lg7m','BacthID': '1','FileInfo': '{}'}
-    files = {'FileContent': ('quirumlist.json', open('quirumlist.json', 'rb'), 'application/json')}
+    files = {'FileContent': ('quorumlist.json', open('quorumlist.json', 'rb'), 'application/json')}
 
     try:
         response = requests.post(url, data=form_data, files=files)
         print(response.text)
+        
         return response.text
     except requests.exceptions.RequestException as e:
         return (str(e))
 
+@app.route('/api/commitdt')
+def commitdt():
+    print('commitDT')
+    url = 'http://localhost:20000/api/commit-data-token?did=bafybmiapskapvyjxa4zaa3hvzuqiu6sti7h6aofam6eu7vxjef3ad4lg7m&batchID=1'
+    response = requests.post(url)
+    print(response.text)
+    return response.text
 
 
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5050, debug=True)
+
+
+b'{ "data":{ "imei":"869523057983679","uid":1,"dtm":"20231113091405","seq":6621,"sig":24,"msg":"log","modbus": [{ "sid":1,"stat":21,"indx":1,"rcnt":  0 }] }}\r\n'
