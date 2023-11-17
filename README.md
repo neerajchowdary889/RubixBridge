@@ -1,13 +1,5 @@
 # Setting Up rubixgoplatform and Running the Quorum
 
-## Prerequisites
-
-Before you begin, make sure you have the following prerequisites in place:
-- Compiled Rubixgoplatform libraries - For instructions check here <a> https://github.com/rubixchain/rubixgoplatform </a>
-
-- **Operating System**: These instructions are provided for Windows, macOS, and Linux.
-- **`rubixgoplatform` Installation**: Ensure you have `rubixgoplatform` installed on your system.
-- **Directory Path**: Know the directory path where `rubixgoplatform` is located.
 
 ## Windows Installation
 
