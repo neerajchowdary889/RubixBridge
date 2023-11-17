@@ -16,7 +16,8 @@ base_grpc_port=10500
 cd "$rubix_dir" || exit 1  # Exit the script if cd fails
 
 #Primary Node in Port 20000/10500
-screen -dmS node0 ./rubixgoplatform run -p node0 -n 0 -s -port 20000 -testNet -grpcPort 10500
+screen -dmS node0 ./rubixgoplatform run -p node0 -n 0 -s -port $base_port -testNet -grpcPort $base_grpc_port
+echo "Starting for no on $base_port"
 
 #Validator Nodes
 for ((i=1; i<=6; i++)); do
