@@ -83,7 +83,7 @@ Before you begin, make sure you have the following prerequisites in place:
      source ~/.zshrc  # For Zsh
      ```
 
-## Running 7 Nodes
+## Running 7 Nodes Quorum
 
 Now that you have `rubixgoplatform` set up systemwide, you can run 7 nodes using the following script:
 
