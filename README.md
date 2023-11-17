@@ -4,7 +4,7 @@
 
 Before you begin, make sure you have the following prerequisites in place:
 
-- **Operating System**: These instructions are provided for Windows and macOS.
+- **Operating System**: These instructions are provided for Linux, Windows and macOS.
 - **`rubixgoplatform` Installation**: Ensure you have `rubixgoplatform` installed on your system.
 - **Directory Path**: Know the directory path where `rubixgoplatform` is located.
 
