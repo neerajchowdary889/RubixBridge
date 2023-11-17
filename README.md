@@ -1,4 +1,4 @@
-# Setting Up rubixgoplatform and Running 7 Nodes
+# Setting Up rubixgoplatform and Running the Quorum
 
 ## Prerequisites
 
