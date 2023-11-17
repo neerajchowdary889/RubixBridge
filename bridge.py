@@ -7,12 +7,34 @@ app = Flask(__name__)
 
 
 #CreateDID Parent API
-@app.route('/api/createparentdid')
+@app.route('/api/createparentdid', methods=['GET'])
 def createParentDID():
     print("createDID API")
     start_time = time.time()
+
+    # Get the user input for the field (e.g., "AM" or "ISK")
+    user_input = request.args.get('app', '')
+
+    # Define a dictionary to map field values to ports
+    field_to_port = {
+        'AM': 20000,
+        'ISK': 20001,
+        'V1': 20002,
+        'V2': 20003,
+        'V3': 20004,
+        'V4': 20005,
+        'V5': 20006,
+        # Add more field-to-port mappings as needed
+    }
+
+    # Default port (if the user input is not recognized)
+    default_port = 20000
+
+    # Get the port based on user input; use the default if not found in the dictionary
+    port = field_to_port.get(user_input, default_port)
+    
     # Define the API endpoint URL
-    url = 'http://localhost:20000/api/createdid'
+    url = f'http://localhost:{port}/api/createdid'
 
     # Create a dictionary for form data
     form_data = {'did_config': (None, '{"type":0,"dir":"","config":"","master_did":"","secret":"My DID Secret","priv_pwd":"mypassword","quorum_pwd":"mypassword"}'),}
@@ -50,16 +72,38 @@ def createParentDID():
         return (str(e))
     
 #CreateDID Child API
-@app.route('/api/createchilddid')
+@app.route('/api/createchilddid', methods=['GET'])
 def createchildDID():
     print("createDID API")
-    alldid = requests.get('http://localhost:20000/api/getalldid')
+
+    # Get the user input for the field (e.g., "AM" or "ISK")
+    user_input = request.args.get('app', '')
+
+    # Define a dictionary to map field values to ports
+    field_to_port = {
+        'AM': 20000,
+        'ISK': 20001,
+        # Add more field-to-port mappings as needed
+    }
+
+    # Default port (if the user input is not recognized)
+    default_port = 20000
+
+    # Get the port based on user input; use the default if not found in the dictionary
+    port = field_to_port.get(user_input, default_port)
+    
+    # Define the API endpoint URL
+    alldidurl = f'http://localhost:{port}/api/getalldid'
+
+    
+    
+    alldid = requests.get(alldidurl)
     alldid = json.loads(alldid.text)
     parentDID = alldid['account_info'][0]['did']
     print(parentDID)
     start_time = time.time()
     # Define the API endpoint URL
-    url = 'http://localhost:20000/api/createdid'
+    url = f'http://localhost:{port}/api/createdid'
 
     # Create a dictionary for form data
     formstring = '{"type":3,"dir":"","config":"","master_did":"","secret":"My DID Secret","priv_pwd":"mypassword","quorum_pwd":"mypassword"}'
@@ -101,14 +145,31 @@ def createchildDID():
         return (str(e))
     
 #Get all DIDs
-@app.route('/api/getalldid')
+@app.route('/api/getalldid', methods=['GET'])
 def getalldid():
     print("GetallDID API")
 
-    url='http://localhost:20000/api/getalldid'
+     # Get the user input for the field (e.g., "AM" or "ISK")
+    user_input = request.args.get('app', '')
+
+    # Define a dictionary to map field values to ports
+    field_to_port = {
+        'AM': 20000,
+        'ISK': 20001,
+        # Add more field-to-port mappings as needed
+    }
+
+    # Default port (if the user input is not recognized)
+    default_port = 20000
+
+    # Get the port based on user input; use the default if not found in the dictionary
+    port = field_to_port.get(user_input, default_port)
+    
+    # Define the API endpoint URL
+    alldidurl = f'http://localhost:{port}/api/getalldid'
 
     try:
-        response = requests.get(url)
+        response = requests.get(alldidurl)
 
     # Check the response status code
         if response.status_code == 200:
@@ -143,10 +204,9 @@ def commitdt():
     print(response.text)
     return response.text
 
+app.route(
+
 
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5050, debug=True)
-
-
-b'{ "data":{ "imei":"869523057983679","uid":1,"dtm":"20231113091405","seq":6621,"sig":24,"msg":"log","modbus": [{ "sid":1,"stat":21,"indx":1,"rcnt":  0 }] }}\r\n'
