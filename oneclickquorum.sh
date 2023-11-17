@@ -6,7 +6,7 @@ base_port=20000
 base_grpc_port=10500
 
 #Primary Node in Port 20000/10500
-screen -dmS "node0" rubixgoplatform run -p "node0" -n "$i" -s -port 20000 -testNet -grpcPort 10500
+screen -dmS node0 rubixgoplatform run -p node0 -n 0 -s -port 20000 -testNet -grpcPort 10500
 
 #Validator Nodes
 for ((i=1; i<=6; i++)); do
