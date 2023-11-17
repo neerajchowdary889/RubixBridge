@@ -80,12 +80,17 @@ def createchildDID():
     user_input = request.args.get('app', '')
 
     # Define a dictionary to map field values to ports
+    # Define a dictionary to map field values to ports
     field_to_port = {
         'AM': 20000,
         'ISK': 20001,
+        'V1': 20002,
+        'V2': 20003,
+        'V3': 20004,
+        'V4': 20005,
+        'V5': 20006,
         # Add more field-to-port mappings as needed
     }
-
     # Default port (if the user input is not recognized)
     default_port = 20000
 
@@ -153,9 +158,15 @@ def getalldid():
     user_input = request.args.get('app', '')
 
     # Define a dictionary to map field values to ports
+    # Define a dictionary to map field values to ports
     field_to_port = {
         'AM': 20000,
         'ISK': 20001,
+        'V1': 20002,
+        'V2': 20003,
+        'V3': 20004,
+        'V4': 20005,
+        'V5': 20006,
         # Add more field-to-port mappings as needed
     }
 
