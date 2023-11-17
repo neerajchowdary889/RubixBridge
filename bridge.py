@@ -196,7 +196,7 @@ def createdt():
     except requests.exceptions.RequestException as e:
         return (str(e))
 
-@app.route('/api/commitdt')
+@app.route('/api/commitdt', methods=['GET'])
 def commitdt():
     print('commitDT')
     url = 'http://localhost:20000/api/commit-data-token?did=bafybmiapskapvyjxa4zaa3hvzuqiu6sti7h6aofam6eu7vxjef3ad4lg7m&batchID=1'
@@ -204,7 +204,10 @@ def commitdt():
     print(response.text)
     return response.text
 
-app.route(
+app.route('/api/checkallnodes')
+def checkallnodes():
+    # TODO
+    return ("all node fine")
 
 
 
