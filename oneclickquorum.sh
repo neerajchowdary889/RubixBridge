@@ -22,6 +22,7 @@ screen -dmS node0 ./rubixgoplatform run -p node0 -n 0 -s -port 20000 -testNet -g
 for ((i=1; i<=6; i++)); do
   port=$((base_port + i))
   grpc_port=$((base_grpc_port + i))
+  echo "Starting for node$i on $port"
   screen -dmS "node$i" ./rubixgoplatform run -p "node$i" -n "$i" -s -port "$port" -testNet -grpcPort "$grpc_port"
   add_timestamp "Started session for node$i, port: $port, grpcPort: $grpc_port" >> $logfile
 done
