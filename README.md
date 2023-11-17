@@ -103,3 +103,64 @@ for ((i=1; i<=7; i++)); do
 done
 
 echo "All sessions started" >> $logfile
+
+# Running oneclickquorum.sh Script
+
+## Prerequisites
+
+Before running the "oneclickquorum.sh" script, make sure you have the following prerequisites in place:
+
+- **Operating System**: These instructions are provided for Windows, macOS, and Linux.
+- **`rubixgoplatform` Installation**: Ensure you have `rubixgoplatform` installed on your system.
+- **Directory Path**: Navigate to the directory where the "oneclickquorum.sh" script is located.
+
+## Windows
+
+1. **Open Command Prompt**:
+   - Press `Win + R`, type `cmd`, and press Enter to open the Command Prompt.
+
+2. **Navigate to the Script Directory**:
+   - Use the `cd` command to navigate to the directory where the "oneclickquorum.sh" script is located.
+
+3. **Run the Script**:
+   - To run the script, use the following command:
+     ```bash
+     bash oneclickquorum.sh
+     ```
+
+## macOS (formerly OS X)
+
+1. **Open Terminal**:
+   - Open the Terminal application.
+
+2. **Navigate to the Script Directory**:
+   - Use the `cd` command to navigate to the directory where the "oneclickquorum.sh" script is located.
+
+3. **Run the Script**:
+   - To run the script, use the following command:
+     ```bash
+     bash oneclickquorum.sh
+     ```
+
+## Linux
+
+1. **Open Terminal**:
+   - Open a terminal.
+
+2. **Navigate to the Script Directory**:
+   - Use the `cd` command to navigate to the directory where the "oneclickquorum.sh" script is located.
+
+3. **Make the Script Executable (if not already)**:
+   - If the script is not already executable, you can make it executable by running:
+     ```bash
+     chmod +x oneclickquorum.sh
+     ```
+
+4. **Run the Script**:
+   - To run the script, use the following command:
+     ```bash
+     ./oneclickquorum.sh
+     ```
+
+These steps will execute the "oneclickquorum.sh" script on Windows, macOS, and Linux, provided that you have set up `rubixgoplatform` and configured the script correctly for your environment.
+
