@@ -19,6 +19,9 @@ cd "$rubix_dir" || exit 1  # Exit the script if cd fails
 screen -dmS node0 ./rubixgoplatform run -p node0 -n 0 -s -port $base_port -testNet -grpcPort $base_grpc_port
 echo "Starting for node on $base_port"
 
+#wait 30sec for primary node to start
+sleep 30
+
 #Validator Nodes
 for ((i=1; i<=6; i++)); do
   port=$((base_port + i))
