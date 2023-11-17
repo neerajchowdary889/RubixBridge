@@ -4,7 +4,7 @@
 
 Before you begin, make sure you have the following prerequisites in place:
 
-- **Operating System**: These instructions are provided for Linux, Windows and macOS.
+- **Operating System**: These instructions are provided for Windows, macOS, and Linux.
 - **`rubixgoplatform` Installation**: Ensure you have `rubixgoplatform` installed on your system.
 - **Directory Path**: Know the directory path where `rubixgoplatform` is located.
 
@@ -49,6 +49,38 @@ Before you begin, make sure you have the following prerequisites in place:
      source ~/.bash_profile  # For Bash
      # OR
      source ~/.zshrc         # For Zsh
+     ```
+
+## Linux Installation
+
+1. **Edit Shell Profile**:
+   - Open a terminal.
+
+2. **Edit Shell Profile**:
+   - For Bash:
+     ```bash
+     nano ~/.bashrc
+     ```
+   - For Zsh:
+     ```bash
+     nano ~/.zshrc
+     ```
+
+3. **Add the Directory to PATH**:
+   - Add the following line to the file, replacing `/path/to/rubixgoplatform/directory` with the actual path to the directory:
+     ```bash
+     export PATH="/path/to/rubixgoplatform/directory:$PATH"
+     ```
+
+4. **Save and Exit**:
+   - In Nano, press `Ctrl + O` to save the file and `Ctrl + X` to exit.
+
+5. **Apply the Changes**:
+   - In the terminal, run the following command to apply the changes to your current session:
+     ```bash
+     source ~/.bashrc  # For Bash
+     # OR
+     source ~/.zshrc  # For Zsh
      ```
 
 ## Running 7 Nodes
