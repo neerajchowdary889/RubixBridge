@@ -28,14 +28,18 @@ def createParentDID():
     }
 
     # Default port (if the user input is not recognized)
-    default_port = 20000
+    default_port = 2
 
     # Get the port based on user input; use the default if not found in the dictionary
     port = field_to_port.get(user_input, default_port)
+    # Check if the user input is not recognized
+    if port == default_port:
+        error_message = f"Invalid field: {user_input}. Port number not in the list."
+        return jsonify({'error': error_message}), 400  # Return a JSON error response with a 400 status code
     
     # Define the API endpoint URL
     url = f'http://localhost:{port}/api/createdid'
-
+    
     # Create a dictionary for form data
     form_data = {'did_config': (None, '{"type":0,"dir":"","config":"","master_did":"","secret":"My DID Secret","priv_pwd":"mypassword","quorum_pwd":"mypassword"}'),}
 
@@ -91,11 +95,15 @@ def createchildDID():
         'V5': 20006,
         # Add more field-to-port mappings as needed
     }
-    # Default port (if the user input is not recognized)
-    default_port = 20000
+     Default port (if the user input is not recognized)
+    default_port = 2
 
     # Get the port based on user input; use the default if not found in the dictionary
     port = field_to_port.get(user_input, default_port)
+    # Check if the user input is not recognized
+    if port == default_port:
+        error_message = f"Invalid field: {user_input}. Port number not in the list."
+        return jsonify({'error': error_message}), 400  # Return a JSON error response with a 400 status code
     
     # Define the API endpoint URL
     alldidurl = f'http://localhost:{port}/api/getalldid'
@@ -171,10 +179,15 @@ def getalldid():
     }
 
     # Default port (if the user input is not recognized)
-    default_port = 20000
+     Default port (if the user input is not recognized)
+    default_port = 2
 
     # Get the port based on user input; use the default if not found in the dictionary
     port = field_to_port.get(user_input, default_port)
+    # Check if the user input is not recognized
+    if port == default_port:
+        error_message = f"Invalid field: {user_input}. Port number not in the list."
+        return jsonify({'error': error_message}), 400  # Return a JSON error response with a 400 status code
     
     # Define the API endpoint URL
     alldidurl = f'http://localhost:{port}/api/getalldid'
