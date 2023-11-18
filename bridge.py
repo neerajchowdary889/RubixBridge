@@ -235,7 +235,7 @@ def checkallnodes():
 
 @app.route('/api/shutdownall')
 def shutdownall():
-    node0 = request.get("http://localhost:20000/api/shutdown")
+    node0 = requests.get("http://localhost:20000/api/shutdown")
     data = {"node0":node0.text}
     print(data)
     return json.loads(data)
