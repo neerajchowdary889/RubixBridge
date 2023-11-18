@@ -239,7 +239,34 @@ def shutdownall():
     data = {"node0":node0.text}
     print(data)
     return json.loads(data)
-    
+
+@app.route('/api/testallnodes', methods=['GET'])
+def testAllNodes():
+    node_statuses = {}
+
+    node_to_port = {
+        "node0": 20000,
+        "node1": 20001,
+        "node2": 20002,
+        "node3": 20003,
+        "node4": 20004,
+        "node5": 20005,
+        "node6": 20006,
+    }
+
+    for node_name, port in node_to_port.items():
+        url = f'http://localhost:{port}/api/shutdown'
+        
+        try:
+            response = requests.get(url)
+            if response.status_code == 200:
+                node_statuses[node_name] = "Node is fine"
+            else:
+                node_statuses[node_name] = "Unable to connect (Node may be down)"
+        except requests.exceptions.RequestException as e:
+            node_statuses[node_name] = f"Unable to connect (Error: {str(e)})"
+
+    return jsonify(node_statuses)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5050, debug=True)
