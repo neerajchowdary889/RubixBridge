@@ -228,12 +228,12 @@ def commitdt():
     print(response.text)
     return json.loads(response.text)
 
-app.route('/api/checkallnodes')
+@app.route('/api/checkallnodes')
 def checkallnodes():
     # TODO
     return ("all node fine")
 
-app.route('/api/shutdownall')
+@app.route('/api/shutdownall')
 def shutdownall():
     node0 = request.get("http://localhost:20000/api/shutdown")
     data = {"node0":node0.text}
