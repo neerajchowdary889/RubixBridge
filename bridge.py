@@ -259,7 +259,7 @@ def testAllNodes():
         
         try:
             response = requests.get(url)
-            print(port, response.status_code)
+            # print(port, response.status_code)
             if response.status_code == 200:
                 node_statuses[node_name] = "Node is fine"
             else:
