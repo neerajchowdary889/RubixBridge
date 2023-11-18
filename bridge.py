@@ -22,7 +22,7 @@ def security(fname):
 	MONGO_COLLECTION = "RubixBridgeAPILOG"
 	collection = db[MONGO_COLLECTION]
 	collection.insert_one(APILog)
-    mongo_client.close()
+	mongo_client.close()
 
 #CreateDID Parent API
 @app.route('/api/createparentdid', methods=['GET'])
