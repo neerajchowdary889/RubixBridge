@@ -216,7 +216,7 @@ def createdt():
         response = requests.post(url, data=form_data, files=files)
         print(response.text)
         
-        return response.text
+        return json.loads(response.text)
     except requests.exceptions.RequestException as e:
         return (str(e))
 
@@ -226,14 +226,20 @@ def commitdt():
     url = 'http://localhost:20000/api/commit-data-token?did=bafybmiapskapvyjxa4zaa3hvzuqiu6sti7h6aofam6eu7vxjef3ad4lg7m&batchID=1'
     response = requests.post(url)
     print(response.text)
-    return response.text
+    return json.loads(response.text)
 
 app.route('/api/checkallnodes')
 def checkallnodes():
     # TODO
     return ("all node fine")
 
-
+app.route('/api/shutdownall')
+def shutdownall():
+    node0 = request.get("http://localhost:20000/api/shutdown")
+    data = {"node0":node0.text}
+    print(data)
+    return json.loads(data)
+    
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5050, debug=True)
