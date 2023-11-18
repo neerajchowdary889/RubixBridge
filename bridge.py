@@ -13,7 +13,7 @@ CORS(app)
 
 def security(fname):
 	APILog={'timestamp':int(time.time()),
-		'location': geocoder.ip(str(request.environ['REMOTE_ADDR'])).city,
+		'location': str(geocoder.ip(str(request.environ['REMOTE_ADDR'])).city),
 		'clientAgent':str(request.headers.get('User-Agent')),
 		'clientIP':str(request.environ['REMOTE_ADDR']),
 		'API':fname}
@@ -84,7 +84,7 @@ def createParentDID():
 			if message['status'] == True:
 				print(message['result']['did'])
 				print(message['result']['peer_id'])
-				didpeerid={'status':True,'createTime':end_time,'port':port,'did':str(message['result']['did']),'peerid':str(message['result']['peer_id']),'timeTaken':elapsed_time,'creatorIP':request.environ['REMOTE_ADDR'],'creatorLocation':geocoder.ip(str(request.environ['REMOTE_ADDR'])).city}
+				didpeerid={'status':True,'createTime':end_time,'port':port,'did':str(message['result']['did']),'peerid':str(message['result']['peer_id']),'timeTaken':elapsed_time,'creatorIP':request.environ['REMOTE_ADDR']}
 				print(didpeerid)
 				collection.insert_one(didpeerid)
 				mongo_client.close()
