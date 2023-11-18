@@ -34,7 +34,7 @@ def createParentDID():
     port = field_to_port.get(user_input, default_port)
     # Check if the user input is not recognized
     if port == default_port:
-        error_message = f"Invalid field: {user_input}. Port number not in the list."
+        error_message = f"Invalid Application: {user_input}."
         return jsonify({'error': error_message}), 400  # Return a JSON error response with a 400 status code
     
     # Define the API endpoint URL
@@ -102,7 +102,7 @@ def createchildDID():
     port = field_to_port.get(user_input, default_port)
     # Check if the user input is not recognized
     if port == default_port:
-        error_message = f"Invalid field: {user_input}. Port number not in the list."
+        error_message = f"Invalid Application: {user_input}."
         return jsonify({'error': error_message}), 400  # Return a JSON error response with a 400 status code
     
     # Define the API endpoint URL
@@ -186,7 +186,7 @@ def getalldid():
     port = field_to_port.get(user_input, default_port)
     # Check if the user input is not recognized
     if port == default_port:
-        error_message = f"Invalid field: {user_input}. Port number not in the list."
+        error_message = f"Invalid Application: {user_input}."
         return jsonify({'error': error_message}), 400  # Return a JSON error response with a 400 status code
     
     # Define the API endpoint URL
