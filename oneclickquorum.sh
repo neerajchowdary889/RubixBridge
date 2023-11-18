@@ -20,6 +20,7 @@ screen -dmS node0 ./rubixgoplatform run -p node0 -n 0 -s -port $base_port -testN
 echo "Starting for node on $base_port"
 
 #wait 30sec for primary node to start
+echo "Will wait for 30s to start the primary node"
 sleep 30
 
 #Validator Nodes
@@ -29,6 +30,7 @@ for ((i=1; i<=6; i++)); do
   echo "Starting for node$i on $port"
   screen -dmS "node$i" ./rubixgoplatform run -p "node$i" -n "$i" -s -port "$port" -testNet -grpcPort "$grpc_port"
   add_timestamp "Started session for node$i, port: $port, grpcPort: $grpc_port" >> $logfile
+  sleep 10
 done
 
 add_timestamp "All sessions started" >> $logfile
