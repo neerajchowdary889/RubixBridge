@@ -16,15 +16,15 @@ base_grpc_port=10500
 cd "$rubix_dir" || exit 1  # Exit the script if cd fails
 
 #Primary Node in Port 20000/10500
-screen -dmS node0 ./rubixgoplatform run -p node0 -n 0 -s -port $base_port -testNet -grpcPort $base_grpc_port
-echo "Starting for node on $base_port"
+# screen -dmS node0 ./rubixgoplatform run -p node0 -n 0 -s -port $base_port -testNet -grpcPort $base_grpc_port
+# echo "Starting for node0 on $base_port"
 
-#wait 30sec for primary node to start
-echo "Will wait for 30s to start the primary node"
-sleep 30
+# #wait 30sec for primary node to start
+# echo "Will wait for 30s to start the primary node"
+# sleep 30
 
 #Validator Nodes
-for ((i=1; i<=6; i++)); do
+for ((i=0; i<=6; i++)); do
   port=$((base_port + i))
   grpc_port=$((base_grpc_port + i))
   echo "Starting for node$i on $port"
