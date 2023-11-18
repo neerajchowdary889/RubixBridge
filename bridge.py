@@ -228,17 +228,34 @@ def commitdt():
     print(response.text)
     return json.loads(response.text)
 
-@app.route('/api/checkallnodes')
-def checkallnodes():
-    # TODO
-    return ("all node fine")
-
 @app.route('/api/shutdownall')
 def shutdownall():
-    node0 = requests.get("http://localhost:20000/api/shutdown")
-    data = {"node0":node0.text}
-    print(data)
-    return json.loads(data)
+    node_statuses = {}
+
+    node_to_port = {
+        'AM': 20000,
+        'ISK': 20001,
+        'V1': 20002,
+        'V2': 20003,
+        'V3': 20004,
+        'V4': 20005,
+        'V5': 20006,
+    }
+
+    for node_name, port in node_to_port.items():
+        url = f'http://localhost:{port}/api/shutdown'
+        
+        try:
+            response = requests.get(url)
+            # print(port, response.status_code)
+            if response.status_code == 200:
+                node_statuses[node_name] = "Shutdown complete"
+            else:
+                node_statuses[node_name] = "Unable to connect (Node may be down)"
+        except requests.exceptions.RequestException as e:
+            node_statuses[node_name] = f"Unable to connect (Error: {str(e)})"
+
+    return jsonify(node_statuses)
 
 @app.route('/api/testallnodes', methods=['GET'])
 def testAllNodes():
