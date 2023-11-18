@@ -93,7 +93,7 @@ def createchildDID():
         'V3': 20004,
         'V4': 20005,
         'V5': 20006,
-        # Add more field-to-port mappings as needed
+        
     }
     #Default port (if the user input is not recognized)
     default_port = 2
@@ -245,13 +245,13 @@ def testAllNodes():
     node_statuses = {}
 
     node_to_port = {
-        "node0": 20000,
-        "node1": 20001,
-        "node2": 20002,
-        "node3": 20003,
-        "node4": 20004,
-        "node5": 20005,
-        "node6": 20006,
+        'AM': 20000,
+        'ISK': 20001,
+        'V1': 20002,
+        'V2': 20003,
+        'V3': 20004,
+        'V4': 20005,
+        'V5': 20006,
     }
 
     for node_name, port in node_to_port.items():
