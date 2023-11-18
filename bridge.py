@@ -255,10 +255,11 @@ def testAllNodes():
     }
 
     for node_name, port in node_to_port.items():
-        url = f'http://localhost:{port}/api/shutdown'
+        url = f'http://localhost:{port}/api/getalldid'
         
         try:
             response = requests.get(url)
+            print(port, response.status_code)
             if response.status_code == 200:
                 node_statuses[node_name] = "Node is fine"
             else:
