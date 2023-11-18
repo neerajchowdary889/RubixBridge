@@ -89,7 +89,7 @@ def createParentDID():
 				collection.insert_one(didpeerid)
 				mongo_client.close()
 				
-				return didpeerid
+				return jsonify(didpeerid)
 			else:
 				print(message)
 				return message
