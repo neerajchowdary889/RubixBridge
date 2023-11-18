@@ -33,8 +33,7 @@ def createParentDID():
 	db = mongo_client[MONGO_DB]
 	MONGO_COLLECTION = "parentdid"
 	collection = db[MONGO_COLLECTION]
-	collection.insert_one(mqttData)
-	mongo_client.close()
+	
 	start_time = time.time()
 
     # Get the user input for the field (e.g., "AM" or "ISK")
