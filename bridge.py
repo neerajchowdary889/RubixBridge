@@ -1,10 +1,7 @@
 from flask import Flask, request, jsonify, Response
 import requests,json, time
 
-
-
 app = Flask(__name__)
-
 
 #CreateDID Parent API
 @app.route('/api/createparentdid', methods=['GET'])
