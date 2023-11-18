@@ -1,12 +1,41 @@
 from flask import Flask, request, jsonify, Response
-import requests,json, time
+import requests,json, time, geocoder
+from flask_cors import CORS
+from pymongo import MongoClient
+
+# Define MongoDB connection information
+MONGO_HOST = "localhost"
+MONGO_PORT = 27017
+MONGO_DB = "jm"
 
 app = Flask(__name__)
+CORS(app)
+
+def security(fname):
+	APILog={'timestamp':int(time.time()),
+		'location': geocoder.ip(str(request.environ['REMOTE_ADDR'])).city,
+		'clientAgent':str(request.headers.get('User-Agent')),
+		'clientIP':str(request.environ['REMOTE_ADDR']),
+		'API':fname}
+    
+    mongo_client = MongoClient(MONGO_HOST, MONGO_PORT)
+    db = mongo_client[MONGO_DB]
+	MONGO_COLLECTION = "RubixBridgeAPILOG"
+	collection = db[MONGO_COLLECTION]
+	collection.insert_one(APILog)
+    mongo_client.close()
 
 #CreateDID Parent API
 @app.route('/api/createparentdid', methods=['GET'])
 def createParentDID():
+    security(str(sys._getframe().f_code.co_name))
     print("createDID API")
+    mongo_client = MongoClient(MONGO_HOST, MONGO_PORT)
+	db = mongo_client[MONGO_DB]
+	MONGO_COLLECTION = "parentdid"
+	collection = db[MONGO_COLLECTION]
+	collection.insert_one(mqttData)
+	mongo_client.close()
     start_time = time.time()
 
     # Get the user input for the field (e.g., "AM" or "ISK")
@@ -56,7 +85,18 @@ def createParentDID():
             if message['status'] == True:
                 print(message['result']['did'])
                 print(message['result']['peer_id'])
-                didpeerid={'status':True, 'did':message['result']['did'],'peerid':message['result']['peer_id'],'timeTaken':elapsed_time}
+                didpeerid={'status':True,
+                           'createTime':end_time,
+                           'port':port,
+                           'did':message['result']['did'],
+                           'peerid':message['result']['peer_id'],
+                           'timeTaken':elapsed_time,
+                           'creatorIP':request.environ['REMOTE_ADDR'],
+                           'creatorLocation':geocoder.ip(str(request.environ['REMOTE_ADDR'])).city
+                          }
+                collection.insert_one(didpeerid)
+                mongo_client.close()
+                
                 return didpeerid
             else:
                 print(message)
