@@ -1,4 +1,4 @@
-# Distributed Identifier (DID) and Data Token API
+# Rubix Bridge - Create Distributed Identifier (DID) and Data Token APIs
 
 This Flask-based API server provides endpoints for managing Distributed Identifiers (DIDs) and Data Tokens. It interacts with multiple backend nodes, each associated with a specific application or service.
 
