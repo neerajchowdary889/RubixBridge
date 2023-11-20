@@ -90,7 +90,9 @@ def createParentDID():
                            'did':did,
                            'peerid':peerid,
                            'timeTaken':elapsed_time,
-                           'creatorIP':str(request.environ['REMOTE_ADDR'])
+                           'creatorIP':str(request.environ['REMOTE_ADDR']),
+                           'location': str(geocoder.ip(str(request.environ['REMOTE_ADDR'])).city),
+                           'clientAgent':str(request.headers.get('User-Agent')),
                            }
                 print(didpeerid)
                 momgodid=didpeerid
@@ -187,7 +189,10 @@ def createchildDID():
                            'parentdid': parentDID,
                            'did':message['result']['did'],
                            'peerid':message['result']['peer_id'],
-                           'timeTaken':elapsed_time}
+                           'timeTaken':elapsed_time,
+                           'creatorIP':str(request.environ['REMOTE_ADDR']),
+                           'location': str(geocoder.ip(str(request.environ['REMOTE_ADDR'])).city),
+                           'clientAgent':str(request.headers.get('User-Agent')),}
                 collection.insert_one(didpeerid)
                 mongo_client.close()
                 # Remove the _id field if it exists
