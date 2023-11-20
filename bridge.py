@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify, Response
 import requests,json, time, geocoder, sys
 from flask_cors import CORS
 from pymongo import MongoClient
+import json
 
 # Define MongoDB connection information
 MONGO_HOST = "localhost"
@@ -22,25 +23,24 @@ def security(fname):
 	MONGO_COLLECTION = "RubixBridgeAPILOG"
 	collection = db[MONGO_COLLECTION]
 	collection.insert_one(APILog)
-	mongo_client.close()
+	# mongo_client.close()
 
 #CreateDID Parent API
 @app.route('/api/createparentdid', methods=['GET'])
 def createParentDID():
-	security(str(sys._getframe().f_code.co_name))
-	print("createDID API")
-	mongo_client = MongoClient(MONGO_HOST, MONGO_PORT)
-	db = mongo_client[MONGO_DB]
-	MONGO_COLLECTION = "parentdid"
-	collection = db[MONGO_COLLECTION]
-	
-	start_time = time.time()
+    security(str(sys._getframe().f_code.co_name))
+    print("create ParentDID API")
+    mongo_client = MongoClient(MONGO_HOST, MONGO_PORT)
+    db = mongo_client[MONGO_DB]
+    MONGO_COLLECTION = "parentdid"
+    collection = db[MONGO_COLLECTION]
+    start_time = time.time()
 
     # Get the user input for the field (e.g., "AM" or "ISK")
-	user_input = request.args.get('app', '')
+    user_input = request.args.get('app', '')
 
     # Define a dictionary to map field values to ports
-	field_to_port = {
+    field_to_port = {
 		'AM': 20000,
 		'ISK': 20001,
 		'V1': 20002,
@@ -53,67 +53,74 @@ def createParentDID():
 		
 
     # Default port (if the user input is not recognized)
-	default_port = 2
+    default_port = 2
 
     # Get the port based on user input; use the default if not found in the dictionary
-	port = field_to_port.get(user_input, default_port)
+    port = field_to_port.get(user_input, default_port)
     # Check if the user input is not recognized
-	if port == default_port:
-		error_message = f"Invalid Application: {user_input}."
-		return jsonify({'error': error_message}), 400  # Return a JSON error response with a 400 status code
+    if port == default_port:
+        error_message = f"Invalid Application: {user_input}."
+        return jsonify({'error': error_message}), 400  # Return a JSON error response with a 400 status code
     
     # Define the API endpoint URL
-	url = f'http://localhost:{port}/api/createdid'
+    url = f'http://localhost:{port}/api/createdid'
     
     # Create a dictionary for form data
-	form_data = {'did_config': (None, '{"type":0,"dir":"","config":"","master_did":"","secret":"My DID Secret","priv_pwd":"mypassword","quorum_pwd":"mypassword"}'),}
+    form_data = {'did_config': (None, '{"type":0,"dir":"","config":"","master_did":"","secret":"My DID Secret","priv_pwd":"mypassword","quorum_pwd":"mypassword"}'),}
 
     # Specify the file to upload
-	files = {'img_file': ('image.png', open(r'image.png', 'rb'), 'image/png')}
+    files = {'img_file': ('image.png', open(r'image.png', 'rb'), 'image/png')}
 
 # Send a POST request with multipart/form-data
-	try:
-		response = requests.post(url, data=form_data, files=files)
-		end_time = time.time()
-		elapsed_time = end_time - start_time
-		print(elapsed_time)
+    try:
+        response = requests.post(url, data=form_data, files=files)
+        end_time = time.time()
+        elapsed_time = end_time - start_time
+        print(elapsed_time)
     # Check the response status code
-		if response.status_code == 200:
-        # Request was successful
-			message = json.loads(response.text)
-			if message['status'] == True:
-				print(message['result']['did'])
-				print(message['result']['peer_id'])
-				didpeerid={'status':True,
-					   'createTime':end_time,
-					   'port':port,
-					   'did':str(message['result']['did']),
-					   'peerid':str(message['result']['peer_id']),
-					   'timeTaken':elapsed_time,
-					   'creatorIP':str(request.environ['REMOTE_ADDR'])
-					  }
-				print(didpeerid)
-				collection.insert_one(didpeerid)
-				mongo_client.close()
-				
-				return jsonify(didpeerid)
-			else:
-				print(message)
-				return message
-		else:
-			print(f"POST request failed with status code {response.status_code}")
-			print("Response content:", response.text)
-			return response.text
-	except requests.exceptions.RequestException as e:
-		print(f"An error occurred: {e}")
-		end_time = time.time()
-		elapsed_time = end_time - start_time
-		return (str(e))
+        if response.status_code == 200:
+             message = json.loads(response.text)
+             if message['status'] == True:
+                did = message['result']['did']
+                peerid = message['result']['peer_id']
+                print(str(request.environ['REMOTE_ADDR']))
+                didpeerid={'status':True,
+                           'createTime':end_time,
+                           'port':port,
+                           'did':did,
+                           'peerid':peerid,
+                           'timeTaken':elapsed_time,
+                           'creatorIP':str(request.environ['REMOTE_ADDR'])
+                           }
+                print(didpeerid)
+                momgodid=didpeerid
+                collection.insert_one(momgodid)
+                mongo_client.close()
+                # Remove the _id field if it exists
+                if '_id' in didpeerid:
+                    didpeerid.pop('_id')
+                return jsonify(didpeerid)
+             else:
+                print(message)
+                return message
+    #     else:
+    #  print(f"POST request failed with status code {response.status_code}")
+	# 		print("Response content:", response.text)
+	# 		return response.text
+    except requests.exceptions.RequestException as e:
+        print(f"An error occurred: {e}")
+        end_time = time.time()
+        elapsed_time = end_time - start_time
+        return (str(e))
     
 #CreateDID Child API
 @app.route('/api/createchilddid', methods=['GET'])
 def createchildDID():
-    print("createDID API")
+    print("create childDID API")
+    mongo_client = MongoClient(MONGO_HOST, MONGO_PORT)
+    db = mongo_client[MONGO_DB]
+    MONGO_COLLECTION = "childdid"
+    collection = db[MONGO_COLLECTION]
 
     # Get the user input for the field (e.g., "AM" or "ISK")
     user_input = request.args.get('app', '')
@@ -176,8 +183,17 @@ def createchildDID():
             if message['status'] == True:
                 print(message['result']['did'])
                 print(message['result']['peer_id'])
-                didpeerid={'status':True, 'did':message['result']['did'],'peerid':message['result']['peer_id'],'timeTaken':elapsed_time}
-                return didpeerid
+                didpeerid={'status':True,
+                           'parentdid': parentDID,
+                           'did':message['result']['did'],
+                           'peerid':message['result']['peer_id'],
+                           'timeTaken':elapsed_time}
+                collection.insert_one(didpeerid)
+                mongo_client.close()
+                # Remove the _id field if it exists
+                if '_id' in didpeerid:
+                    didpeerid.pop('_id')
+                return jsonify(didpeerid)
             else:
                 print(message)
                 return message
