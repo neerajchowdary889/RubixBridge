@@ -3,6 +3,8 @@ import requests,json, time, geocoder, sys
 from flask_cors import CORS
 from pymongo import MongoClient
 import json
+import os
+
 
 # Define MongoDB connection information
 MONGO_HOST = "localhost"
@@ -118,6 +120,7 @@ def createParentDID():
 #CreateDID Child API
 @app.route('/api/createchilddid', methods=['GET'])
 def createchildDID():
+    security(str(sys._getframe().f_code.co_name))
     print("create childDID API")
     mongo_client = MongoClient(MONGO_HOST, MONGO_PORT)
     db = mongo_client[MONGO_DB]
@@ -216,9 +219,10 @@ def createchildDID():
 #Get all DIDs
 @app.route('/api/getalldid', methods=['GET'])
 def getalldid():
+    security(str(sys._getframe().f_code.co_name))
     print("GetallDID API")
 
-     # Get the user input for the field (e.g., "AM" or "ISK")
+    # Get the user input for the field (e.g., "AM" or "ISK")
     user_input = request.args.get('app', '')
 
     # Define a dictionary to map field values to ports
@@ -261,11 +265,44 @@ def getalldid():
     except requests.exceptions.RequestException as e:
         return (str(e))
 
-@app.route('/api/createdt')
+@app.route('/api/createdt', methods=['GET'])
 def createdt():
+    security(str(sys._getframe().f_code.co_name))
     print("createDT")
-    url = 'http://localhost:20000/api/create-data-token?did=bafybmiapskapvyjxa4zaa3hvzuqiu6sti7h6aofam6eu7vxjef3ad4lg7m'
-    form_data = {'UserID': '1','UserInfo': 'abc','CommitterDID': 'bafybmiapskapvyjxa4zaa3hvzuqiu6sti7h6aofam6eu7vxjef3ad4lg7m','BacthID': '1','FileInfo': '{}'}
+
+    # Get the user input for the field (e.g., "AM" or "ISK")
+    # user_input = request.args.get('app', '')
+
+    # # Define a dictionary to map field values to ports
+    # # Define a dictionary to map field values to ports
+    # field_to_port = {
+    #     'AM': 20000,
+    #     'ISK': 20001,
+    #     'V1': 20002,
+    #     'V2': 20003,
+    #     'V3': 20004,
+    #     'V4': 20005,
+    #     'V5': 20006,
+    #     # Add more field-to-port mappings as needed
+    # }
+
+    # # Default port (if the user input is not recognized)
+    # #Default port (if the user input is not recognized)
+    # default_port = 2
+
+    # # Get the port based on user input; use the default if not found in the dictionary
+    # port = field_to_port.get(user_input, default_port)
+    # # Check if the user input is not recognized
+    # if port == default_port:
+    #     error_message = f"Invalid Application: {user_input}."
+    #     return jsonify({'error': error_message}), 400  # Return a JSON error response with a 400 status code
+    
+    # # Define the API endpoint URL
+    # alldidurl = f'http://localhost:{port}/api/
+
+
+    url = 'http://localhost:20000/api/create-data-token?did=bafybmigqedkcsr3drksfhc5iwza7ajavdaaswsn3ro2cvlu6fgbypbqz7q'
+    form_data = {'UserID': '1','UserInfo': 'abc','CommitterDID': 'bafybmigqedkcsr3drksfhc5iwza7ajavdaaswsn3ro2cvlu6fgbypbqz7q','BacthID': '1','FileInfo': '{}'}
     files = {'FileContent': ('quorumlist.json', open('quorumlist.json', 'rb'), 'application/json')}
 
     try:
@@ -278,6 +315,7 @@ def createdt():
 
 @app.route('/api/commitdt', methods=['GET'])
 def commitdt():
+    security(str(sys._getframe().f_code.co_name))
     print('commitDT')
     url = 'http://localhost:20000/api/commit-data-token?did=bafybmiapskapvyjxa4zaa3hvzuqiu6sti7h6aofam6eu7vxjef3ad4lg7m&batchID=1'
     response = requests.post(url)
@@ -286,6 +324,7 @@ def commitdt():
 
 @app.route('/api/shutdownall')
 def shutdownall():
+    security(str(sys._getframe().f_code.co_name))
     node_statuses = {}
 
     node_to_port = {
@@ -315,6 +354,7 @@ def shutdownall():
 
 @app.route('/api/testallnodes', methods=['GET'])
 def testAllNodes():
+    security(str(sys._getframe().f_code.co_name))
     node_statuses = {}
 
     node_to_port = {
@@ -341,6 +381,107 @@ def testAllNodes():
             node_statuses[node_name] = f"Unable to connect (Error: {str(e)})"
 
     return jsonify(node_statuses)
+
+@app.route('/api/createquorum', methods=['GET'])
+def createquorum():
+    security(str(sys._getframe().f_code.co_name))
+    user_input = request.args.get('app', '')
+    # Define a dictionary to map field values to ports
+    field_to_port = {
+        'AM': 20000,
+        'ISK': 20001,
+        'V1': 20002,
+        'V2': 20003,
+        'V3': 20004,
+        'V4': 20005,
+        'V5': 20006,
+        # Add more field-to-port mappings as needed
+    }
+
+    # Default port (if the user input is not recognized)
+    #Default port (if the user input is not recognized)
+    default_port = 2
+
+    # Get the port based on user input; use the default if not found in the dictionary
+    port = field_to_port.get(user_input, default_port)
+    # Connect to MongoDB (assuming it's running on localhost, default port)
+    client = MongoClient(MONGO_HOST, MONGO_PORT)
+
+    # Select the MongoDB database and collection where your records are stored
+    db = client[MONGO_DB]
+    collection = db['parentdid']
+
+    # Query the database to retrieve the 7 records
+    records = collection.find({'port': {'$ne': int(port)}}).limit(7)
+
+# Create a list to store the quorumlist
+    quorumlist = []
+
+# Iterate through the retrieved records and format them
+    for record in records:
+        did = record.get('did', '')
+        peerid = record.get('peerid', '')
+        if did and peerid:
+            quorum_entry = {
+                'type': 2,
+                'address': f"{peerid}.{did}"
+            }
+            quorumlist.append(quorum_entry)
+
+# Close the MongoDB connection
+    client.close()
+
+# Save the quorumlist to a JSON file
+    # current_directory = os.path.dirname(os.path.abspath(__file__))
+    # '' = os.path.join(current_directory, 'quorumlist.json')
+    with open('quorumlist.json', 'w') as json_file:
+        json.dump(quorumlist, json_file, indent=4)
+    # print(json_file_path)
+    return quorumlist
+
+@app.route("/api/getallquorum", methods=['GET'])
+def getallquorum():
+    security(str(sys._getframe().f_code.co_name))
+    user_input = request.args.get('app', '')
+    # Define a dictionary to map field values to ports
+    field_to_port = {
+        'AM': 20000,
+        'ISK': 20001,
+        'V1': 20002,
+        'V2': 20003,
+        'V3': 20004,
+        'V4': 20005,
+        'V5': 20006,
+        # Add more field-to-port mappings as needed
+    }
+
+    # Default port (if the user input is not recognized)
+    #Default port (if the user input is not recognized)
+    default_port = 2
+
+    # Get the port based on user input; use the default if not found in the dictionary
+    port = field_to_port.get(user_input, default_port)
+    # Check if the user input is not recognized
+    if port == default_port:
+        error_message = f"Invalid Application: {user_input}."
+        return jsonify({'error': error_message}), 400  # Return a JSON error response with a 400 status code
+    
+    # Define the API endpoint URL
+    alldidurl = f'http://localhost:{port}/api/getallquorum'
+
+    try:
+        response = requests.get(alldidurl)
+
+    # Check the response status code
+        if response.status_code == 200:
+        # Request was successful
+            return json.loads(response.text)
+        else:
+            return json.loads(response.text)
+
+    except requests.exceptions.RequestException as e:
+        return (str(e))
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5050, debug=True)
