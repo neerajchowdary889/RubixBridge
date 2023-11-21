@@ -269,58 +269,174 @@ def getalldid():
 def createdt():
     security(str(sys._getframe().f_code.co_name))
     print("createDT")
+    start_time = time.time()
 
     # Get the user input for the field (e.g., "AM" or "ISK")
-    # user_input = request.args.get('app', '')
+    user_input = request.args.get('app', '')
 
     # # Define a dictionary to map field values to ports
     # # Define a dictionary to map field values to ports
-    # field_to_port = {
-    #     'AM': 20000,
-    #     'ISK': 20001,
-    #     'V1': 20002,
-    #     'V2': 20003,
-    #     'V3': 20004,
-    #     'V4': 20005,
-    #     'V5': 20006,
+    field_to_port = {
+        'AM': 20000,
+        'ISK': 20001,
+        'V1': 20002,
+        'V2': 20003,
+        'V3': 20004,
+        'V4': 20005,
+        'V5': 20006,
     #     # Add more field-to-port mappings as needed
-    # }
+    }
 
     # # Default port (if the user input is not recognized)
-    # #Default port (if the user input is not recognized)
-    # default_port = 2
+    
+    default_port = 2
 
     # # Get the port based on user input; use the default if not found in the dictionary
-    # port = field_to_port.get(user_input, default_port)
+    port = field_to_port.get(user_input, default_port)
     # # Check if the user input is not recognized
-    # if port == default_port:
-    #     error_message = f"Invalid Application: {user_input}."
-    #     return jsonify({'error': error_message}), 400  # Return a JSON error response with a 400 status code
+    if port == default_port:
+        error_message = f"Invalid Application: {user_input}."
+        return jsonify({'error': error_message}), 400  # Return a JSON error response with a 400 status code
     
-    # # Define the API endpoint URL
-    # alldidurl = f'http://localhost:{port}/api/
+    #To get parentDID
+    alldidurl = f'http://localhost:{port}/api/getalldid'
+
+    
+    
+    alldid = requests.get(alldidurl)
+    alldid = json.loads(alldid.text)
+    parentDID = alldid['account_info'][0]['did']
+    print(parentDID)
+       
+    # Define the API endpoint URL
+    url = f'http://localhost:{port}/api/create-data-token?did={parentDID}'
+
+    formstring = '{"UserID": "1","UserInfo": "abc","CommitterDID": "cdid","BacthID": "10","FileInfo": "{}"}'
+    formstring = json.loads(formstring)
+    formstring['CommitterDID'] = parentDID
+    # formstring = json.dumps(formstring)
 
 
-    url = 'http://localhost:20000/api/create-data-token?did=bafybmigqedkcsr3drksfhc5iwza7ajavdaaswsn3ro2cvlu6fgbypbqz7q'
-    form_data = {'UserID': '1','UserInfo': 'abc','CommitterDID': 'bafybmigqedkcsr3drksfhc5iwza7ajavdaaswsn3ro2cvlu6fgbypbqz7q','BacthID': '1','FileInfo': '{}'}
+    # url = 'http://localhost:20000/api/create-data-token?did=bafybmigqedkcsr3drksfhc5iwza7ajavdaaswsn3ro2cvlu6fgbypbqz7q'
+    # form_data = {'UserID': '1','UserInfo': 'abc','CommitterDID': '{did}','BacthID': '10','FileInfo': '{}'}
+    
     files = {'FileContent': ('quorumlist.json', open('quorumlist.json', 'rb'), 'application/json')}
 
     try:
-        response = requests.post(url, data=form_data, files=files)
+        response = requests.post(url, data=formstring, files=files)
         print(response.text)
         
-        return json.loads(response.text)
+        #signature
+        id=json.loads(response.text)
+        id=id['result']['id']
+        print(id)
+        signdata={"id":str(id),"mode":0,"password":"mypassword"}
+        signurl=f'http://localhost:{port}/api/signature-response'
+        print(signurl)
+        try:
+            #calling signature API
+            signresponse = requests.post(signurl, data=json.dumps(signdata))
+            end_time = time.time()
+            elapsed_time = end_time - start_time
+            print(elapsed_time)
+            print(signresponse.text)
+            return jsonify(signresponse.text)
+        except requests.exceptions.RequestException as e:
+            end_time = time.time()
+            elapsed_time = end_time - start_time
+            return (str(e))
     except requests.exceptions.RequestException as e:
+        end_time = time.time()
+        elapsed_time = end_time - start_time
         return (str(e))
 
 @app.route('/api/commitdt', methods=['GET'])
 def commitdt():
     security(str(sys._getframe().f_code.co_name))
     print('commitDT')
-    url = 'http://localhost:20000/api/commit-data-token?did=bafybmiapskapvyjxa4zaa3hvzuqiu6sti7h6aofam6eu7vxjef3ad4lg7m&batchID=1'
-    response = requests.post(url)
-    print(response.text)
-    return json.loads(response.text)
+    start_time = time.time()
+
+    # Get the user input for the field (e.g., "AM" or "ISK")
+    user_input = request.args.get('app', '')
+
+    # # Define a dictionary to map field values to ports
+    field_to_port = {
+        'AM': 20000,
+        'ISK': 20001,
+        'V1': 20002,
+        'V2': 20003,
+        'V3': 20004,
+        'V4': 20005,
+        'V5': 20006,
+    #     # Add more field-to-port mappings as needed
+    }
+
+    # # Default port (if the user input is not recognized)
+    
+    default_port = 2
+
+    # # Get the port based on user input; use the default if not found in the dictionary
+    port = field_to_port.get(user_input, default_port)
+    # # Check if the user input is not recognized
+    if port == default_port:
+        error_message = f"Invalid Application: {user_input}."
+        return jsonify({'error': error_message}), 400  # Return a JSON error response with a 400 status code
+    
+    #To get parentDID
+    alldidurl = f'http://localhost:{port}/api/getalldid'
+  
+    alldid = requests.get(alldidurl)
+    alldid = json.loads(alldid.text)
+    parentDID = alldid['account_info'][0]['did']
+    print(parentDID)
+    checkdturl = f'http://localhost:{port}/api/get-data-token?did={parentDID}'
+    
+    try:
+        checkdturlresponse = requests.get(checkdturl)
+        print(checkdturlresponse.text)
+        
+        commitdturl = f'http://localhost:{port}/api/commit-data-token?did={parentDID}&batchID={parentDID}'
+        
+        response = requests.post(commitdturl)
+        print(response)
+        print(response.text)
+        if response.status_code == 200:
+            response_data = response.json()
+            if 'status' in response_data and response_data['status'] is False:
+            # Return the response
+                return jsonify(response.text)
+            
+            else:
+            
+                #signature
+                id=json.loads(response.text)
+                id=id['result']['id']
+                print(id)
+                signdata={"id":str(id),"mode":0,"password":"mypassword"}
+                signurl=f'http://localhost:{port}/api/signature-response'
+                print(signurl)
+                try:
+                    #calling signature API
+                    signresponse = requests.post(signurl, data=json.dumps(signdata))
+                    end_time = time.time()
+                    elapsed_time = end_time - start_time
+                    print(elapsed_time)
+                    print(signresponse.text)
+                    return jsonify(signresponse.text)
+                except requests.exceptions.RequestException as e:
+                    end_time = time.time()
+                    elapsed_time = end_time - start_time
+                    return (str(e))
+        else:
+            return jsonify(response.text)
+
+        # return jsonify(response.text)
+    
+    
+    except requests.exceptions.RequestException as e:
+        end_time = time.time()
+        elapsed_time = end_time - start_time
+        return (str(e))  
 
 @app.route('/api/shutdownall')
 def shutdownall():
