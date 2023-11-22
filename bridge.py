@@ -525,7 +525,7 @@ def createquorum():
 
     # Select the MongoDB database and collection where your records are stored
     db = client[MONGO_DB]
-    collection = db['parentdid']
+    collection = db['quorumdetails']
 
     # Query the database to retrieve the 7 records
     records = collection.find({'port': {'$ne': int(port)}}).limit(5)
