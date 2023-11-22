@@ -4,6 +4,8 @@ from flask_cors import CORS
 from pymongo import MongoClient
 import json
 import os
+import ipfshttpclient
+
 
 
 # Define MongoDB connection information
@@ -597,6 +599,27 @@ def getallquorum():
 
     except requests.exceptions.RequestException as e:
         return (str(e))
+
+@app.route("/api/fetchdt", methods=['GET'])
+def fetchdt():
+	security(str(sys._getframe().f_code.co_name))
+	user_input = request.args.get('txid', '')
+	try:
+		client = ipfshttpclient.connect('/ip4/127.0.0.1/tcp/5001')
+    		# Fetch data from IPFS using the token ID
+    		data = client.cat(txid)
+
+    		# Assuming it's a text file, decode the bytes to a string
+    		decoded_data = data.decode('utf-8')
+
+    		# Print the fetched data
+    		print(decoded_data)
+		client.close()
+		return (str(decoded_data))
+	except ipfshttpclient.exceptions.ErrorResponse as e:
+    		print("Error fetching data from IPFS:", e)
+		return (str(e))
+    		
 
 
 if __name__ == '__main__':
