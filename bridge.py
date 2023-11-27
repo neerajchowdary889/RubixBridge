@@ -605,7 +605,7 @@ def fetchdt():
     security(str(sys._getframe().f_code.co_name))
     user_input = request.args.get('txid', '')
     try:
-        client = ipfshttpclient.connect('/ip4/127.0.0.1/tcp/4002')
+        client = ipfshttpclient.connect('/ip4/127.0.0.1/tcp/8081')
     		# Fetch data from IPFS using the token ID
         data = client.cat(txid)
 
