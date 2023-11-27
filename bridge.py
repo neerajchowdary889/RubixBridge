@@ -602,23 +602,23 @@ def getallquorum():
 
 @app.route("/api/fetchdt", methods=['GET'])
 def fetchdt():
-	security(str(sys._getframe().f_code.co_name))
-	user_input = request.args.get('txid', '')
-	try:
-		client = ipfshttpclient.connect('/ip4/127.0.0.1/tcp/5001')
+    security(str(sys._getframe().f_code.co_name))
+    user_input = request.args.get('txid', '')
+    try:
+        client = ipfshttpclient.connect('/ip4/127.0.0.1/tcp/4002')
     		# Fetch data from IPFS using the token ID
-    		data = client.cat(txid)
+        data = client.cat(txid)
 
     		# Assuming it's a text file, decode the bytes to a string
-    		decoded_data = data.decode('utf-8')
+        decoded_data = data.decode('utf-8')
 
     		# Print the fetched data
-    		print(decoded_data)
-		client.close()
-		return (str(decoded_data))
-	except ipfshttpclient.exceptions.ErrorResponse as e:
-    		print("Error fetching data from IPFS:", e)
-		return (str(e))
+        print(decoded_data)
+        client.close()
+        return (str(decoded_data))
+    except ipfshttpclient.exceptions.ErrorResponse as e:
+        print("Error fetching data from IPFS:", e)
+        return (str(e))
     		
 
 
