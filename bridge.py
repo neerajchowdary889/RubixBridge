@@ -607,8 +607,9 @@ def fetchdt():
     print("fetchdt")
     security(str(sys._getframe().f_code.co_name))
     user_input = request.args.get('txid', '')
+    print(user_input)
     # try:
-    client = ipfsapi.connect('127.0.0.1', 5002)
+    client = ipfsapi.connect('localhost', 4002)
     		# Fetch data from IPFS using the token ID
     data = client.cat(user_input)
 
