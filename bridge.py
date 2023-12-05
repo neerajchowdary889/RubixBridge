@@ -269,6 +269,24 @@ def getalldid():
     except requests.exceptions.RequestException as e:
         return (str(e))
 
+@app.route('/api/savedatatoken', methods=['POST'])
+def save_json():
+    try:
+        # Get JSON data from the API request
+        user_data = request.json
+        
+        # Check if the JSON data is empty or malformed
+        if not user_data:
+            return jsonify({'error': 'Invalid JSON data.'}), 400
+
+        # Save the JSON data to a file
+        with open('datatoken.json', 'w') as file:
+            json.dump(user_data, file)
+        
+        return jsonify({'message': 'JSON data saved successfully.'}), 200
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
 @app.route('/api/createdt', methods=['GET'])
 def createdt():
     security(str(sys._getframe().f_code.co_name))
@@ -324,7 +342,7 @@ def createdt():
     # url = 'http://localhost:20000/api/create-data-token?did=bafybmigqedkcsr3drksfhc5iwza7ajavdaaswsn3ro2cvlu6fgbypbqz7q'
     # form_data = {'UserID': '1','UserInfo': 'abc','CommitterDID': '{did}','BacthID': '10','FileInfo': '{}'}
     
-    files = {'FileContent': ('quorumlist.json', open('quorumlist.json', 'rb'), 'application/json')}
+    files = {'FileContent': ('datatoken.json', open('datatoken.json', 'rb'), 'application/json')}
 
     try:
         response = requests.post(url, data=formstring, files=files)
