@@ -274,6 +274,7 @@ def save_json():
     try:
         # Get JSON data from the API request
         user_data = request.json
+        print(user_data)
         
         # Check if the JSON data is empty or malformed
         if not user_data:
