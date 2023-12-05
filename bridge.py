@@ -271,6 +271,8 @@ def getalldid():
 
 @app.route('/api/savedatatoken', methods=['POST'])
 def save_json():
+    security(str(sys._getframe().f_code.co_name))
+    print("saveDT")
     try:
         # Get JSON data from the API request
         user_data = request.json
