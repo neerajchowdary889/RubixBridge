@@ -554,7 +554,7 @@ def createquorum():
     collection = db['quorumdetails']
 
     # Query the database to retrieve the 7 records
-    records = collection.find({'port': {'$ne': int(port)}}).limit(5)
+    records = collection.find({'port': {'$ne': int(port)}}).limit(6)
 
 # Create a list to store the quorumlist
     quorumlist = []
