@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 from flask import Flask, request, jsonify, Response
 import requests,json, time, geocoder, sys
 from flask_cors import CORS
