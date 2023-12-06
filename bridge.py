@@ -626,6 +626,46 @@ def getallquorum():
     except requests.exceptions.RequestException as e:
         return (str(e))
 
+
+@app.route("/api/getalldt",methods=["GET"])
+def getalldt():
+	security(str(sys._getframe().f_code.co_name))
+	user_input = request.args.get('app', '')
+	field_to_port = {
+		'AM': 20000,
+		'ISK': 20001,
+		'V1': 20002,
+		'V2': 20003,
+		'V3': 20004,
+		'V4': 20005,
+		'V5': 20006,
+	}
+	default_port = 2
+	port = field_to_port.get(user_input, default_port)
+	if port == default_port:
+		error_message = f"Invalid Application: {user_input}."
+		return jsonify({'error': error_message}), 400  # Return a JSON error response with a 400 status code
+    
+    # Define the API endpoint URL
+
+
+	url = f'http://localhost:{port}/api/get-data-token?did=bafybmifals6czhdo26ltfhes2gjzfsxoondsmulylg663f3jm3chaexwiy'
+	headers = {'accept': 'application/json'}
+
+	try:
+		response = requests.get(url, headers=headers)
+		if response.status_code == 200:
+			json_response = response.json()
+			print("Response JSON:", json_response)
+			return jsonify(json_response)
+		else:
+			print("Request failed with status code:", response.status_code)
+			return response.status_code
+	except requests.exceptions.RequestException as e:
+		print("Request error:", e)
+		return jsonify("Request error:", e)
+
+
 @app.route("/api/fetchdt", methods=['GET'])
 def fetchdt():
     print("fetchdt")
