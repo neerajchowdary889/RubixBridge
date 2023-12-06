@@ -450,7 +450,7 @@ def commitdt():
                     elapsed_time = end_time - start_time
                     print(elapsed_time)
                     print(signresponse.text)
-                    return jsonify(signresponse.text)
+                    return jsonify(json.loads(signresponse.text))
                 except requests.exceptions.RequestException as e:
                     end_time = time.time()
                     elapsed_time = end_time - start_time
