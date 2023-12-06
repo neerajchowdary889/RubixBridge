@@ -9,7 +9,7 @@ import os
 import ipfsapi
 
 
-
+os.chdir("/home/ubuntu/rubix/RubixBridge")
 
 # Define MongoDB connection information
 MONGO_HOST = "localhost"
