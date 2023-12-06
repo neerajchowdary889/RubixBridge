@@ -629,6 +629,7 @@ def getallquorum():
 
 @app.route("/api/getalldt",methods=["GET"])
 def getalldt():
+	print(getalldt)
 	security(str(sys._getframe().f_code.co_name))
 	user_input = request.args.get('app', '')
 	field_to_port = {
