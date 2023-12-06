@@ -8,6 +8,8 @@ import os
 # import ipfshttpclient
 import ipfsapi
 
+current_directory = os.getcwd()
+print("Current Directory:", current_directory)
 
 os.chdir("/home/ubuntu/rubix/RubixBridge")
 
