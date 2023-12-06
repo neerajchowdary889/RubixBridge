@@ -629,6 +629,7 @@ def getallquorum():
 
 @app.route("/api/getalldt",methods=["GET"])
 def getalldt():
+	print('getalldt')
 	security(str(sys._getframe().f_code.co_name))
 	user_input = request.args.get('app', '')
 	field_to_port = {
@@ -645,11 +646,14 @@ def getalldt():
 	if port == default_port:
 		error_message = f"Invalid Application: {user_input}."
 		return jsonify({'error': error_message}), 400  # Return a JSON error response with a 400 status code
-    
-    # Define the API endpoint URL
 
+	alldidurl = f'http://localhost:{port}/api/getalldid'
+	alldid = requests.get(alldidurl)
+	alldid = json.loads(alldid.text)
+	parentDID = alldid['account_info'][0]['did']
+	print(parentDID)
 
-	url = f'http://localhost:{port}/api/get-data-token?did=bafybmifals6czhdo26ltfhes2gjzfsxoondsmulylg663f3jm3chaexwiy'
+	url = f'http://localhost:{port}/api/get-data-token?did={parentDID}'
 	headers = {'accept': 'application/json'}
 
 	try:
