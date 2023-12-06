@@ -1,0 +1,13 @@
+[Unit]
+Description= RubixBridge Startup Service
+After=mongod.service network.target
+
+[Service]
+Type=simple
+User=root
+ExecStart=/home/ubuntu/rubix/RubixBridge/bridge.py
+
+Restart=on-abort
+
+[Install]
+WantedBy=multi-user.target
