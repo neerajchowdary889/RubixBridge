@@ -16,7 +16,7 @@ set "base_grpc_port=10500"
 rem Change directory to rubixgoplatform directory
 cd /d "!rubix_dir!" || exit /b 1
 
-for /l %%i in (0,1,6) do (
+for /l %%i in (0,1,9) do (
   set /a "port=base_port + %%i"
   set /a "grpc_port=base_grpc_port + %%i"
   start "Node%%i" cmd /c ".\rubixgoplatform.exe run -p Node%%i -n %%i -s -port !port! -testNet -grpcPort !grpc_port!"

@@ -24,7 +24,7 @@ cd "$rubix_dir" || exit 1  # Exit the script if cd fails
 # sleep 30
 
 #Validator Nodes
-for ((i=0; i<=6; i++)); do
+for ((i=0; i<=9; i++)); do
   port=$((base_port + i))
   grpc_port=$((base_grpc_port + i))
   echo "Starting for node$i on $port"
