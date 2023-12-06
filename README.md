@@ -107,6 +107,7 @@ Before running the "oneclickquorum.sh" script, make sure you have the following 
 - **Operating System**: These instructions are provided for Windows, macOS, and Linux.
 - **`rubixgoplatform` Installation**: Ensure you have `rubixgoplatform` installed on your system.
 - **Directory Path**: Navigate to the directory where the "oneclickquorum.sh" script is located.
+- Make necessart changes to the path in the oneclickquorum file.
 
 ## Windows
 
@@ -119,7 +120,7 @@ Before running the "oneclickquorum.sh" script, make sure you have the following 
 3. **Run the Script**:
    - To run the script, use the following command:
      ```bash
-     bash oneclickquorum.sh
+     bash oneclickquorumwindows.bat
      ```
 
 ## macOS (formerly OS X)
@@ -133,7 +134,7 @@ Before running the "oneclickquorum.sh" script, make sure you have the following 
 3. **Run the Script**:
    - To run the script, use the following command:
      ```bash
-     bash oneclickquorum.sh
+     bash oneclickquorummac.sh
      ```
 
 ## Linux
@@ -158,3 +159,8 @@ Before running the "oneclickquorum.sh" script, make sure you have the following 
 
 These steps will execute the "oneclickquorum.sh" script on Windows, macOS, and Linux, provided that you have set up `rubixgoplatform` and configured the script correctly for your environment.
 
+They python script - bridge.py has an APIs to get details of the quorums and create quorumList.json file
+Setting us the quorum and connecting them is manual for now. For instructions refer - https://docs.google.com/document/d/1GA8J9YALiRsNXq8XALS0Xi-jJeQtX-eyWQywem3-eno/edit
+
+TODOs
+- Need to write a script to setup and connect all the quorums.
