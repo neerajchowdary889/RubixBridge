@@ -1,35 +1,779 @@
-2023-11-17T11:31:27.495+0530 [INFO]  Main.Core: Initializing IPFS
-2023-11-17T11:31:27.496+0530 [ERROR] Main.Core: failed to run command: err="fork/exec ./ipfs: no such file or directory"
-2023-11-17T11:31:27.496+0530 [ERROR] Main.Core: failed to initialize IPFS: err="fork/exec ./ipfs: no such file or directory"
-2023-11-17T11:31:28.496+0530 [ERROR] Main.Rubixplatform: failed to create server: err="fork/exec ./ipfs: no such file or directory"
-2023-11-17T11:31:28.496+0530 [ERROR] Main: Failed to create server
-2023-11-17T11:41:28.134+0530 [INFO]  Main: Shutdown initiated successfully, Shutting down...
-2023-11-17T11:41:33.970+0530 [ERROR] Main: Failed to get response from the server, Post "http://localhost:20002/api/shutdown": dial tcp 127.0.0.1:20002: connect: connection refused
-2023-11-17T11:41:33.970+0530 [ERROR] Main: Failed to shutdown: msg="Failed to shutdown, Post "http://localhost:20002/api/shutdown": dial tcp 127.0.0.1:20002: connect: connection refused"
-2023-11-17T11:41:37.939+0530 [INFO]  Main: Shutdown initiated successfully, Shutting down...
-2023-11-17T11:41:40.450+0530 [INFO]  Main: Shutdown initiated successfully, Shutting down...
-2023-11-17T11:41:42.702+0530 [INFO]  Main: Shutdown initiated successfully, Shutting down...
-2023-11-17T11:41:45.662+0530 [INFO]  Main: Shutdown initiated successfully, Shutting down...
-2023-11-17T11:41:47.814+0530 [ERROR] Main: Failed to get response from the server, Post "http://localhost:20007/api/shutdown": dial tcp 127.0.0.1:20007: connect: connection refused
-2023-11-17T11:41:47.814+0530 [ERROR] Main: Failed to shutdown: msg="Failed to shutdown, Post "http://localhost:20007/api/shutdown": dial tcp 127.0.0.1:20007: connect: connection refused"
-2023-11-17T12:06:14.015+0530 [INFO]  Main: Shutdown initiated successfully, Shutting down...
-2023-11-17T12:06:16.584+0530 [INFO]  Main: Shutdown initiated successfully, Shutting down...
-2023-11-17T12:06:18.123+0530 [INFO]  Main: Shutdown initiated successfully, Shutting down...
-2023-11-17T12:06:19.656+0530 [INFO]  Main: Shutdown initiated successfully, Shutting down...
-2023-11-17T12:06:21.198+0530 [ERROR] Main: Failed to get response from the server, Post "http://localhost:20002/api/shutdown": dial tcp 127.0.0.1:20002: connect: connection refused
-2023-11-17T12:06:21.198+0530 [ERROR] Main: Failed to shutdown: msg="Failed to shutdown, Post "http://localhost:20002/api/shutdown": dial tcp 127.0.0.1:20002: connect: connection refused"
-2023-11-17T12:06:22.911+0530 [INFO]  Main: Shutdown initiated successfully, Shutting down...
-2023-11-17T12:06:25.357+0530 [INFO]  Main: Shutdown initiated successfully, Shutting down...
-2023-11-17T12:06:28.844+0530 [ERROR] Main: Failed to get response from the server, Post "http://localhost:20007/api/shutdown": dial tcp 127.0.0.1:20007: connect: connection refused
-2023-11-17T12:06:28.844+0530 [ERROR] Main: Failed to shutdown: msg="Failed to shutdown, Post "http://localhost:20007/api/shutdown": dial tcp 127.0.0.1:20007: connect: connection refused"
-2023-11-17T17:55:57.430+0530 [INFO]  Main: Shutdown initiated successfully, Shutting down...
-2023-11-17T17:56:05.791+0530 [ERROR] Main: Failed to get response from the server, Post "http://localhost:200001/api/shutdown": dial tcp: address 200001: invalid port
-2023-11-17T17:56:05.791+0530 [ERROR] Main: Failed to shutdown: msg="Failed to shutdown, Post "http://localhost:200001/api/shutdown": dial tcp: address 200001: invalid port"
-2023-11-17T17:56:10.902+0530 [ERROR] Main: Failed to get response from the server, Post "http://localhost:200002/api/shutdown": dial tcp: address 200002: invalid port
-2023-11-17T17:56:10.902+0530 [ERROR] Main: Failed to shutdown: msg="Failed to shutdown, Post "http://localhost:200002/api/shutdown": dial tcp: address 200002: invalid port"
-2023-11-17T17:56:12.630+0530 [ERROR] Main: Failed to get response from the server, Post "http://localhost:200003/api/shutdown": dial tcp: address 200003: invalid port
-2023-11-17T17:56:12.630+0530 [ERROR] Main: Failed to shutdown: msg="Failed to shutdown, Post "http://localhost:200003/api/shutdown": dial tcp: address 200003: invalid port"
-2023-11-17T17:56:19.379+0530 [ERROR] Main: Failed to get response from the server, Post "http://localhost:200004/api/shutdown": dial tcp: address 200004: invalid port
-2023-11-17T17:56:19.379+0530 [ERROR] Main: Failed to shutdown: msg="Failed to shutdown, Post "http://localhost:200004/api/shutdown": dial tcp: address 200004: invalid port"
-2023-11-17T17:56:37.980+0530 [ERROR] Main: Failed to get response from the server, Post "http://localhost:200004/api/shutdown": dial tcp: address 200004: invalid port
-2023-11-17T17:56:37.980+0530 [ERROR] Main: Failed to shutdown: msg="Failed to shutdown, Post "http://localhost:200004/api/shutdown": dial tcp: address 200004: invalid port"
+2023-07-26T09:10:31.157Z [INFO]  Main.Core: Initializing IPFS
+2023-07-26T09:10:34.371Z [INFO]  Main.Core: Waiting for IPFS daemon to start
+2023-07-26T09:10:34.461Z [INFO]  Main.Core: Initializing daemon...
+2023-07-26T09:10:34.461Z [INFO]  Main.Core: Kubo version: 0.18.0
+2023-07-26T09:10:34.461Z [INFO]  Main.Core: Repo version: 13
+2023-07-26T09:10:34.461Z [INFO]  Main.Core: System version: amd64/linux
+2023-07-26T09:10:34.461Z [INFO]  Main.Core: Golang version: go1.19.1
+2023-07-26T09:10:34.485Z [INFO]  Main.Core: 
+2023-07-26T09:10:34.485Z [INFO]  Main.Core: Computing default go-libp2p Resource Manager limits based on:
+2023-07-26T09:10:34.485Z [INFO]  Main.Core:     - 'Swarm.ResourceMgr.MaxMemory': "2.1 GB"
+2023-07-26T09:10:34.485Z [INFO]  Main.Core:     - 'Swarm.ResourceMgr.MaxFileDescriptors': 500000
+2023-07-26T09:10:34.485Z [INFO]  Main.Core: 
+2023-07-26T09:10:34.485Z [INFO]  Main.Core: Applying any user-supplied overrides on top.
+2023-07-26T09:10:34.485Z [INFO]  Main.Core: Run 'ipfs swarm limit all' to see the resulting limits.
+2023-07-26T09:10:34.485Z [INFO]  Main.Core: 
+2023-07-26T09:10:44.520Z [INFO]  Main.Core: Swarm is limited to private network of peers with the swarm key
+2023-07-26T09:10:44.521Z [INFO]  Main.Core: Swarm key fingerprint: a5ef5059eede91e09c9994d112fd1e05
+2023-07-26T09:10:44.521Z [INFO]  Main.Core: Swarm listening on /ip4/10.60.88.89/tcp/4002
+2023-07-26T09:10:44.521Z [INFO]  Main.Core: Swarm listening on /ip4/127.0.0.1/tcp/4002
+2023-07-26T09:10:44.521Z [INFO]  Main.Core: Swarm listening on /p2p-circuit
+2023-07-26T09:10:44.521Z [INFO]  Main.Core: Swarm announcing /ip4/10.60.88.89/tcp/4002
+2023-07-26T09:10:44.521Z [INFO]  Main.Core: Swarm announcing /ip4/127.0.0.1/tcp/4002
+2023-07-26T09:10:44.521Z [INFO]  Main.Core: API server listening on /ip4/127.0.0.1/tcp/5002
+2023-07-26T09:10:44.521Z [INFO]  Main.Core: WebUI: http://127.0.0.1:5002/webui
+2023-07-26T09:10:44.521Z [INFO]  Main.Core: Gateway (readonly) server listening on /ip4/127.0.0.1/tcp/8081
+2023-07-26T09:10:44.521Z [INFO]  Main.Core: IPFS Daemon is ready
+2023-07-26T09:10:46.530Z [INFO]  Main.Core: IPFS daemon requested to close
+2023-07-26T09:10:46.531Z [INFO]  Main.Core: IPFS daemon finished
+2023-07-26T09:10:46.541Z [INFO]  Main.Core: IPFS Initialized
+2023-07-26T09:10:46.541Z [INFO]  Main.Core: Waiting for IPFS daemon to start
+2023-07-26T09:10:46.641Z [INFO]  Main.Core: Initializing daemon...
+2023-07-26T09:10:46.641Z [INFO]  Main.Core: Kubo version: 0.18.0
+2023-07-26T09:10:46.641Z [INFO]  Main.Core: Repo version: 13
+2023-07-26T09:10:46.641Z [INFO]  Main.Core: System version: amd64/linux
+2023-07-26T09:10:46.641Z [INFO]  Main.Core: Golang version: go1.19.1
+2023-07-26T09:10:46.666Z [INFO]  Main.Core: 
+2023-07-26T09:10:46.666Z [INFO]  Main.Core: Computing default go-libp2p Resource Manager limits based on:
+2023-07-26T09:10:46.667Z [INFO]  Main.Core:     - 'Swarm.ResourceMgr.MaxMemory': "2.1 GB"
+2023-07-26T09:10:46.667Z [INFO]  Main.Core:     - 'Swarm.ResourceMgr.MaxFileDescriptors': 500000
+2023-07-26T09:10:46.667Z [INFO]  Main.Core: 
+2023-07-26T09:10:46.667Z [INFO]  Main.Core: Applying any user-supplied overrides on top.
+2023-07-26T09:10:46.667Z [INFO]  Main.Core: Run 'ipfs swarm limit all' to see the resulting limits.
+2023-07-26T09:10:46.667Z [INFO]  Main.Core: 
+2023-07-26T09:10:47.904Z [INFO]  Main.Core: Swarm is limited to private network of peers with the swarm key
+2023-07-26T09:10:47.904Z [INFO]  Main.Core: Swarm key fingerprint: a5ef5059eede91e09c9994d112fd1e05
+2023-07-26T09:10:47.904Z [INFO]  Main.Core: Swarm listening on /ip4/10.60.88.89/tcp/4002
+2023-07-26T09:10:47.904Z [INFO]  Main.Core: Swarm listening on /ip4/127.0.0.1/tcp/4002
+2023-07-26T09:10:47.904Z [INFO]  Main.Core: Swarm listening on /p2p-circuit
+2023-07-26T09:10:47.904Z [INFO]  Main.Core: Swarm announcing /ip4/10.60.88.89/tcp/4002
+2023-07-26T09:10:47.904Z [INFO]  Main.Core: Swarm announcing /ip4/127.0.0.1/tcp/4002
+2023-07-26T09:10:47.904Z [INFO]  Main.Core: API server listening on /ip4/127.0.0.1/tcp/5002
+2023-07-26T09:10:47.904Z [INFO]  Main.Core: WebUI: http://127.0.0.1:5002/webui
+2023-07-26T09:10:47.904Z [INFO]  Main.Core: Gateway (readonly) server listening on /ip4/127.0.0.1/tcp/8081
+2023-07-26T09:10:47.905Z [INFO]  Main.Core: IPFS Daemon is ready
+2023-07-26T09:10:47.907Z [INFO]  Main.Core: Node PeerID : 12D3KooWAebP2RqWGXQZDbFviZmdq2zdtmB7X8AczCm62GS9kaef
+2023-07-26T09:10:47.908Z [INFO]  Main.Core: Setting up the core
+2023-07-26T09:10:47.910Z [INFO]  Main.Core.PeerManager: Bootstrap swarm connected
+2023-07-26T09:10:47.911Z [INFO]  Main.Core.PeerManager: Bootstrap swarm connected
+2023-07-26T09:10:47.912Z [INFO]  Main.Core.PeerManager: Bootstrap swarm connected
+2023-07-26T09:10:47.913Z [INFO]  Main.grpc: GRPC Server created
+2023-07-26T09:10:47.914Z [INFO]  Main: Swagger URL : http://localhost:20000/swagger/index.html
+2023-07-26T09:10:47.915Z [INFO]  Main: Core version : 0.0.8
+2023-07-26T09:10:47.915Z [INFO]  Main: Starting server...
+2023-07-26T09:10:47.915Z [INFO]  Main.enswebserver: Starting Server at localhost:20000
+2023-07-26T09:10:47.915Z [INFO]  Main.enswebserver: Server running at : http://localhost:20000
+2023-07-26T09:10:47.915Z [INFO]  Main.grpc: Running GRPC server...
+2023-07-26T09:11:03.929Z [INFO]  Main.Core: IPFS daemon requested to close
+2023-07-26T09:11:03.929Z [INFO]  Main.Core: IPFS daemon finished
+2023-07-26T09:11:03.939Z [INFO]  Main: Shutting down...
+2023-07-26T09:12:37.266Z [INFO]  Main.Core: Waiting for IPFS daemon to start
+2023-07-26T09:12:37.363Z [INFO]  Main.Core: Initializing daemon...
+2023-07-26T09:12:37.363Z [INFO]  Main.Core: Kubo version: 0.18.0
+2023-07-26T09:12:37.363Z [INFO]  Main.Core: Repo version: 13
+2023-07-26T09:12:37.363Z [INFO]  Main.Core: System version: amd64/linux
+2023-07-26T09:12:37.363Z [INFO]  Main.Core: Golang version: go1.19.1
+2023-07-26T09:12:37.393Z [INFO]  Main.Core: 
+2023-07-26T09:12:37.393Z [INFO]  Main.Core: Computing default go-libp2p Resource Manager limits based on:
+2023-07-26T09:12:37.394Z [INFO]  Main.Core:     - 'Swarm.ResourceMgr.MaxMemory': "2.1 GB"
+2023-07-26T09:12:37.394Z [INFO]  Main.Core:     - 'Swarm.ResourceMgr.MaxFileDescriptors': 500000
+2023-07-26T09:12:37.394Z [INFO]  Main.Core: 
+2023-07-26T09:12:37.394Z [INFO]  Main.Core: Applying any user-supplied overrides on top.
+2023-07-26T09:12:37.394Z [INFO]  Main.Core: Run 'ipfs swarm limit all' to see the resulting limits.
+2023-07-26T09:12:37.394Z [INFO]  Main.Core: 
+2023-07-26T09:12:38.598Z [INFO]  Main.Core: Swarm is limited to private network of peers with the swarm key
+2023-07-26T09:12:38.598Z [INFO]  Main.Core: Swarm key fingerprint: a5ef5059eede91e09c9994d112fd1e05
+2023-07-26T09:12:38.598Z [INFO]  Main.Core: Swarm listening on /ip4/10.60.88.89/tcp/4002
+2023-07-26T09:12:38.598Z [INFO]  Main.Core: Swarm listening on /ip4/127.0.0.1/tcp/4002
+2023-07-26T09:12:38.599Z [INFO]  Main.Core: Swarm listening on /p2p-circuit
+2023-07-26T09:12:38.599Z [INFO]  Main.Core: Swarm announcing /ip4/10.60.88.89/tcp/4002
+2023-07-26T09:12:38.599Z [INFO]  Main.Core: Swarm announcing /ip4/127.0.0.1/tcp/4002
+2023-07-26T09:12:38.599Z [INFO]  Main.Core: API server listening on /ip4/127.0.0.1/tcp/5002
+2023-07-26T09:12:38.599Z [INFO]  Main.Core: WebUI: http://127.0.0.1:5002/webui
+2023-07-26T09:12:38.599Z [INFO]  Main.Core: Gateway (readonly) server listening on /ip4/127.0.0.1/tcp/8081
+2023-07-26T09:12:38.599Z [INFO]  Main.Core: IPFS Daemon is ready
+2023-07-26T09:12:38.602Z [INFO]  Main.Core: Node PeerID : 12D3KooWAebP2RqWGXQZDbFviZmdq2zdtmB7X8AczCm62GS9kaef
+2023-07-26T09:12:38.602Z [INFO]  Main.Core: Setting up the core
+2023-07-26T09:12:38.605Z [INFO]  Main.Core.PeerManager: Bootstrap swarm connected
+2023-07-26T09:12:38.606Z [INFO]  Main.Core.PeerManager: Bootstrap swarm connected
+2023-07-26T09:12:38.607Z [INFO]  Main.Core.PeerManager: Bootstrap swarm connected
+2023-07-26T09:12:38.610Z [INFO]  Main.grpc: GRPC Server created
+2023-07-26T09:12:38.612Z [INFO]  Main: Swagger URL : http://localhost:20000/swagger/index.html
+2023-07-26T09:12:38.613Z [INFO]  Main: Core version : 0.0.8
+2023-07-26T09:12:38.613Z [INFO]  Main: Starting server...
+2023-07-26T09:12:38.613Z [INFO]  Main.enswebserver: Starting Server at localhost:20000
+2023-07-26T09:12:38.615Z [INFO]  Main.enswebserver: Server running at : http://localhost:20000
+2023-07-26T09:12:38.615Z [INFO]  Main.grpc: Running GRPC server...
+2023-07-26T09:13:17.208Z [INFO]  Main.Core: Node DID: QmavvrbtX82M4SgdiG6VhXrZSUo3FnUE972Woz2xmbe4hd
+2023-07-26T09:13:17.366Z [INFO]  Main.Core: Conneting to node : 12D3KooWQ2as3FNtvL1MKTeo7XAuBZxSv8QqobxX4AmURxyNe5mX.bafybmicro2m4kove5vsetej63xq4csobtlzchb2c34lp6dnakzkwtq2mmy
+2023-07-26T09:13:17.997Z [INFO]  Main.Core: Starting the batch
+2023-07-26T09:13:36.171Z [INFO]  Main.Core: Number of tokens migrtaed: count=100
+2023-07-26T09:13:36.171Z [INFO]  Main.Core: Batch process end: duration=18.173205553s
+2023-07-26T09:13:36.171Z [INFO]  Main.Core: Starting the batch
+2023-07-26T09:13:52.733Z [INFO]  Main.Core: Number of tokens migrtaed: count=190
+2023-07-26T09:13:52.733Z [INFO]  Main.Core: Batch process end: duration=16.562208332s
+2023-07-26T09:13:56.851Z [INFO]  Main.Core: Tokens signatures completed: duration=38.853455671s
+2023-07-26T09:13:57.020Z [INFO]  Main.Core: Removed old did & peer map
+2023-07-26T09:13:58.225Z [INFO]  Main.Core: Tokens migration completed: duration=-186.025µs
+2023-07-26T09:13:58.225Z [INFO]  Main.Core: Old DID=QmavvrbtX82M4SgdiG6VhXrZSUo3FnUE972Woz2xmbe4hd migrated to New DID=bafybmicn6ugqkkfuxvdqn7shjzlkufa3socrlb35a2gd46bww5o37iun4e
+2023-07-26T09:13:58.225Z [INFO]  Main.Core: Number of tokens migrated =190
+2023-07-26T09:13:58.225Z [INFO]  Main.Core: Number of credits migrated =0
+2023-07-26T09:13:58.225Z [INFO]  Main.Core: Migration done successfully
+2023-07-26T09:29:18.217Z [ERROR] Main.Core.wallet: Failed to get tokens: err="no records found"
+2023-07-26T11:23:48.064Z [INFO]  Main.Rubixplatform: Shutting down...
+2023-07-26T11:23:51.066Z [INFO]  Main.Core: IPFS daemon requested to close
+2023-07-26T11:23:51.066Z [INFO]  Main.Core: IPFS daemon finished
+2023-07-26T11:23:51.076Z [INFO]  Main: Shutting down...
+2023-07-26T11:24:06.716Z [ERROR] Main.Core: Failed to create storage DB: err="mssql: login error: Cannot open server 'jms-iskcon' requested by the login. Client with IP address '174.141.238.99' is not allowed to access the server.  To enable access, use the Azure Management Portal or run sp_set_firewall_rule on the master database to create a firewall rule for this IP address or address range.  It may take up to five minutes for this change to take effect."
+2023-07-26T11:24:06.716Z [ERROR] Main: failed to create core
+2023-07-26T11:24:41.449Z [ERROR] Main.Core: Failed to create storage DB: err="mssql: login error: Cannot open server 'jms-iskcon' requested by the login. Client with IP address '174.141.238.99' is not allowed to access the server.  To enable access, use the Azure Management Portal or run sp_set_firewall_rule on the master database to create a firewall rule for this IP address or address range.  It may take up to five minutes for this change to take effect."
+2023-07-26T11:24:41.449Z [ERROR] Main: failed to create core
+2023-07-26T11:25:21.428Z [ERROR] Main.Core: Failed to create storage DB: err="mssql: login error: Login failed for user 'jms-iskcon'."
+2023-07-26T11:25:21.429Z [ERROR] Main: failed to create core
+2023-07-26T11:33:34.326Z [INFO]  Main.Core: Waiting for IPFS daemon to start
+2023-07-26T11:33:34.404Z [INFO]  Main.Core: Initializing daemon...
+2023-07-26T11:33:34.404Z [INFO]  Main.Core: Kubo version: 0.18.0
+2023-07-26T11:33:34.404Z [INFO]  Main.Core: Repo version: 13
+2023-07-26T11:33:34.404Z [INFO]  Main.Core: System version: amd64/linux
+2023-07-26T11:33:34.404Z [INFO]  Main.Core: Golang version: go1.19.1
+2023-07-26T11:33:34.440Z [INFO]  Main.Core: 
+2023-07-26T11:33:34.440Z [INFO]  Main.Core: Computing default go-libp2p Resource Manager limits based on:
+2023-07-26T11:33:34.440Z [INFO]  Main.Core:     - 'Swarm.ResourceMgr.MaxMemory': "2.1 GB"
+2023-07-26T11:33:34.440Z [INFO]  Main.Core:     - 'Swarm.ResourceMgr.MaxFileDescriptors': 500000
+2023-07-26T11:33:34.440Z [INFO]  Main.Core: 
+2023-07-26T11:33:34.440Z [INFO]  Main.Core: Applying any user-supplied overrides on top.
+2023-07-26T11:33:34.440Z [INFO]  Main.Core: Run 'ipfs swarm limit all' to see the resulting limits.
+2023-07-26T11:33:34.440Z [INFO]  Main.Core: 
+2023-07-26T11:33:35.662Z [INFO]  Main.Core: Swarm is limited to private network of peers with the swarm key
+2023-07-26T11:33:35.662Z [INFO]  Main.Core: Swarm key fingerprint: a5ef5059eede91e09c9994d112fd1e05
+2023-07-26T11:33:35.663Z [INFO]  Main.Core: Swarm listening on /ip4/10.60.88.89/tcp/4002
+2023-07-26T11:33:35.663Z [INFO]  Main.Core: Swarm listening on /ip4/127.0.0.1/tcp/4002
+2023-07-26T11:33:35.663Z [INFO]  Main.Core: Swarm listening on /p2p-circuit
+2023-07-26T11:33:35.663Z [INFO]  Main.Core: Swarm announcing /ip4/10.60.88.89/tcp/4002
+2023-07-26T11:33:35.663Z [INFO]  Main.Core: Swarm announcing /ip4/127.0.0.1/tcp/4002
+2023-07-26T11:33:35.663Z [INFO]  Main.Core: API server listening on /ip4/127.0.0.1/tcp/5002
+2023-07-26T11:33:35.663Z [INFO]  Main.Core: WebUI: http://127.0.0.1:5002/webui
+2023-07-26T11:33:35.664Z [INFO]  Main.Core: Gateway (readonly) server listening on /ip4/127.0.0.1/tcp/8081
+2023-07-26T11:33:35.664Z [INFO]  Main.Core: IPFS Daemon is ready
+2023-07-26T11:33:35.667Z [INFO]  Main.Core: Node PeerID : 12D3KooWAebP2RqWGXQZDbFviZmdq2zdtmB7X8AczCm62GS9kaef
+2023-07-26T11:33:35.667Z [INFO]  Main.Core: Setting up the core
+2023-07-26T11:33:35.669Z [INFO]  Main.Core.PeerManager: Bootstrap swarm connected
+2023-07-26T11:33:35.670Z [INFO]  Main.Core.PeerManager: Bootstrap swarm connected
+2023-07-26T11:33:35.671Z [INFO]  Main.Core.PeerManager: Bootstrap swarm connected
+2023-07-26T11:33:35.673Z [INFO]  Main.grpc: GRPC Server created
+2023-07-26T11:33:35.674Z [INFO]  Main: Swagger URL : http://localhost:20000/swagger/index.html
+2023-07-26T11:33:35.674Z [INFO]  Main: Core version : 0.0.8
+2023-07-26T11:33:35.674Z [INFO]  Main: Starting server...
+2023-07-26T11:33:35.674Z [INFO]  Main.enswebserver: Starting Server at localhost:20000
+2023-07-26T11:33:35.675Z [INFO]  Main.enswebserver: Server running at : http://localhost:20000
+2023-07-26T11:33:35.675Z [INFO]  Main.grpc: Running GRPC server...
+2023-07-26T11:34:12.064Z [INFO]  Main.Core: IPFS daemon requested to close
+2023-07-26T11:34:12.064Z [INFO]  Main.Core: IPFS daemon finished
+2023-07-26T11:34:12.075Z [INFO]  Main: Shutting down...
+2023-07-26T11:34:32.888Z [INFO]  Main.Core: Waiting for IPFS daemon to start
+2023-07-26T11:34:32.993Z [INFO]  Main.Core: Initializing daemon...
+2023-07-26T11:34:32.993Z [INFO]  Main.Core: Kubo version: 0.18.0
+2023-07-26T11:34:32.993Z [INFO]  Main.Core: Repo version: 13
+2023-07-26T11:34:32.993Z [INFO]  Main.Core: System version: amd64/linux
+2023-07-26T11:34:32.993Z [INFO]  Main.Core: Golang version: go1.19.1
+2023-07-26T11:34:33.022Z [INFO]  Main.Core: 
+2023-07-26T11:34:33.022Z [INFO]  Main.Core: Computing default go-libp2p Resource Manager limits based on:
+2023-07-26T11:34:33.022Z [INFO]  Main.Core:     - 'Swarm.ResourceMgr.MaxMemory': "2.1 GB"
+2023-07-26T11:34:33.022Z [INFO]  Main.Core:     - 'Swarm.ResourceMgr.MaxFileDescriptors': 500000
+2023-07-26T11:34:33.022Z [INFO]  Main.Core: 
+2023-07-26T11:34:33.022Z [INFO]  Main.Core: Applying any user-supplied overrides on top.
+2023-07-26T11:34:33.022Z [INFO]  Main.Core: Run 'ipfs swarm limit all' to see the resulting limits.
+2023-07-26T11:34:33.022Z [INFO]  Main.Core: 
+2023-07-26T11:34:34.199Z [INFO]  Main.Core: Swarm is limited to private network of peers with the swarm key
+2023-07-26T11:34:34.199Z [INFO]  Main.Core: Swarm key fingerprint: a5ef5059eede91e09c9994d112fd1e05
+2023-07-26T11:34:34.200Z [INFO]  Main.Core: Swarm listening on /ip4/10.60.88.89/tcp/4002
+2023-07-26T11:34:34.200Z [INFO]  Main.Core: Swarm listening on /ip4/127.0.0.1/tcp/4002
+2023-07-26T11:34:34.200Z [INFO]  Main.Core: Swarm listening on /p2p-circuit
+2023-07-26T11:34:34.200Z [INFO]  Main.Core: Swarm announcing /ip4/10.60.88.89/tcp/4002
+2023-07-26T11:34:34.200Z [INFO]  Main.Core: Swarm announcing /ip4/127.0.0.1/tcp/4002
+2023-07-26T11:34:34.200Z [INFO]  Main.Core: API server listening on /ip4/127.0.0.1/tcp/5002
+2023-07-26T11:34:34.200Z [INFO]  Main.Core: WebUI: http://127.0.0.1:5002/webui
+2023-07-26T11:34:34.200Z [INFO]  Main.Core: Gateway (readonly) server listening on /ip4/127.0.0.1/tcp/8081
+2023-07-26T11:34:34.200Z [INFO]  Main.Core: IPFS Daemon is ready
+2023-07-26T11:34:34.202Z [INFO]  Main.Core: Node PeerID : 12D3KooWAebP2RqWGXQZDbFviZmdq2zdtmB7X8AczCm62GS9kaef
+2023-07-26T11:34:34.202Z [INFO]  Main.Core: Setting up the core
+2023-07-26T11:34:34.204Z [INFO]  Main.Core.PeerManager: Bootstrap swarm connected
+2023-07-26T11:34:34.205Z [INFO]  Main.Core.PeerManager: Bootstrap swarm connected
+2023-07-26T11:34:34.206Z [INFO]  Main.Core.PeerManager: Bootstrap swarm connected
+2023-07-26T11:34:34.207Z [INFO]  Main.grpc: GRPC Server created
+2023-07-26T11:34:34.208Z [INFO]  Main: Swagger URL : http://localhost:20000/swagger/index.html
+2023-07-26T11:34:34.208Z [INFO]  Main: Core version : 0.0.8
+2023-07-26T11:34:34.208Z [INFO]  Main: Starting server...
+2023-07-26T11:34:34.208Z [INFO]  Main.enswebserver: Starting Server at localhost:20000
+2023-07-26T11:34:34.208Z [INFO]  Main.grpc: Running GRPC server...
+2023-07-26T11:34:34.208Z [INFO]  Main.enswebserver: Server running at : http://localhost:20000
+2023-07-26T11:34:46.426Z [ERROR] Main.Core.wallet: Failed to get DID: err="no records found"
+2023-07-27T10:32:47.234Z [INFO]  Main.Core: Waiting for IPFS daemon to start
+2023-07-27T10:32:47.382Z [INFO]  Main.Core: Initializing daemon...
+2023-07-27T10:32:47.382Z [INFO]  Main.Core: Kubo version: 0.18.0
+2023-07-27T10:32:47.383Z [INFO]  Main.Core: Repo version: 13
+2023-07-27T10:32:47.383Z [INFO]  Main.Core: System version: amd64/linux
+2023-07-27T10:32:47.383Z [INFO]  Main.Core: Golang version: go1.19.1
+2023-07-27T10:32:47.601Z [INFO]  Main.Core: 
+2023-07-27T10:32:47.601Z [INFO]  Main.Core: Computing default go-libp2p Resource Manager limits based on:
+2023-07-27T10:32:47.602Z [INFO]  Main.Core:     - 'Swarm.ResourceMgr.MaxMemory': "2.1 GB"
+2023-07-27T10:32:47.602Z [INFO]  Main.Core:     - 'Swarm.ResourceMgr.MaxFileDescriptors': 500000
+2023-07-27T10:32:47.602Z [INFO]  Main.Core: 
+2023-07-27T10:32:47.602Z [INFO]  Main.Core: Applying any user-supplied overrides on top.
+2023-07-27T10:32:47.602Z [INFO]  Main.Core: Run 'ipfs swarm limit all' to see the resulting limits.
+2023-07-27T10:32:47.602Z [INFO]  Main.Core: 
+2023-07-27T10:32:48.844Z [INFO]  Main.Core: Swarm is limited to private network of peers with the swarm key
+2023-07-27T10:32:48.844Z [INFO]  Main.Core: Swarm key fingerprint: a5ef5059eede91e09c9994d112fd1e05
+2023-07-27T10:32:48.844Z [INFO]  Main.Core: Swarm listening on /ip4/10.60.88.89/tcp/4002
+2023-07-27T10:32:48.844Z [INFO]  Main.Core: Swarm listening on /ip4/127.0.0.1/tcp/4002
+2023-07-27T10:32:48.844Z [INFO]  Main.Core: Swarm listening on /p2p-circuit
+2023-07-27T10:32:48.844Z [INFO]  Main.Core: Swarm announcing /ip4/10.60.88.89/tcp/4002
+2023-07-27T10:32:48.844Z [INFO]  Main.Core: Swarm announcing /ip4/127.0.0.1/tcp/4002
+2023-07-27T10:32:48.844Z [INFO]  Main.Core: API server listening on /ip4/127.0.0.1/tcp/5002
+2023-07-27T10:32:48.844Z [INFO]  Main.Core: WebUI: http://127.0.0.1:5002/webui
+2023-07-27T10:32:48.845Z [INFO]  Main.Core: Gateway (readonly) server listening on /ip4/127.0.0.1/tcp/8081
+2023-07-27T10:32:48.845Z [INFO]  Main.Core: IPFS Daemon is ready
+2023-07-27T10:32:48.849Z [INFO]  Main.Core: Node PeerID : 12D3KooWAebP2RqWGXQZDbFviZmdq2zdtmB7X8AczCm62GS9kaef
+2023-07-27T10:32:48.849Z [INFO]  Main.Core: Setting up the core
+2023-07-27T10:32:48.852Z [INFO]  Main.Core.PeerManager: Bootstrap swarm connected
+2023-07-27T10:32:48.853Z [INFO]  Main.Core.PeerManager: Bootstrap swarm connected
+2023-07-27T10:32:48.854Z [INFO]  Main.Core.PeerManager: Bootstrap swarm connected
+2023-07-27T10:32:48.856Z [INFO]  Main.Core: Starting the core
+2023-07-27T10:32:48.856Z [INFO]  Main.Core.enswebserver: Starting Server at localhost:22010
+2023-07-27T10:32:48.856Z [INFO]  Main.Core.enswebserver: Server running at : https://localhost:22010
+2023-07-27T10:32:48.857Z [INFO]  Main.grpc: GRPC Server created
+2023-07-27T10:32:48.857Z [INFO]  Main.grpc: Running GRPC server...
+2023-07-27T10:32:48.858Z [INFO]  Main: Swagger URL : http://localhost:20000/swagger/index.html
+2023-07-27T10:32:48.859Z [INFO]  Main: Core version : 0.0.8
+2023-07-27T10:32:48.859Z [INFO]  Main: Starting server...
+2023-07-27T10:32:48.859Z [INFO]  Main.enswebserver: Starting Server at localhost:20000
+2023-07-27T10:32:48.859Z [INFO]  Main.enswebserver: Server running at : http://localhost:20000
+2023-07-27T11:17:31.476Z [INFO]  Main.Core: Ping Received
+2023-07-27T12:32:01.358Z [INFO]  Main.Rubixplatform: Shutting down...
+2023-07-27T12:32:04.358Z [INFO]  Main.Core: IPFS daemon requested to close
+2023-07-27T12:32:04.359Z [INFO]  Main.Core: IPFS daemon finished
+2023-07-27T12:32:04.369Z [INFO]  Main: Shutting down...
+2023-07-27T13:50:32.344Z [INFO]  Main.Core: Waiting for IPFS daemon to start
+2023-07-27T13:50:32.459Z [INFO]  Main.Core: Initializing daemon...
+2023-07-27T13:50:32.459Z [INFO]  Main.Core: Kubo version: 0.18.0
+2023-07-27T13:50:32.459Z [INFO]  Main.Core: Repo version: 13
+2023-07-27T13:50:32.459Z [INFO]  Main.Core: System version: amd64/linux
+2023-07-27T13:50:32.459Z [INFO]  Main.Core: Golang version: go1.19.1
+2023-07-27T13:50:32.498Z [INFO]  Main.Core: 
+2023-07-27T13:50:32.498Z [INFO]  Main.Core: Computing default go-libp2p Resource Manager limits based on:
+2023-07-27T13:50:32.498Z [INFO]  Main.Core:     - 'Swarm.ResourceMgr.MaxMemory': "2.1 GB"
+2023-07-27T13:50:32.498Z [INFO]  Main.Core:     - 'Swarm.ResourceMgr.MaxFileDescriptors': 500000
+2023-07-27T13:50:32.498Z [INFO]  Main.Core: 
+2023-07-27T13:50:32.498Z [INFO]  Main.Core: Applying any user-supplied overrides on top.
+2023-07-27T13:50:32.498Z [INFO]  Main.Core: Run 'ipfs swarm limit all' to see the resulting limits.
+2023-07-27T13:50:32.498Z [INFO]  Main.Core: 
+2023-07-27T13:50:33.749Z [INFO]  Main.Core: Swarm is limited to private network of peers with the swarm key
+2023-07-27T13:50:33.749Z [INFO]  Main.Core: Swarm key fingerprint: a5ef5059eede91e09c9994d112fd1e05
+2023-07-27T13:50:33.749Z [INFO]  Main.Core: Swarm listening on /ip4/10.60.88.89/tcp/4002
+2023-07-27T13:50:33.750Z [INFO]  Main.Core: Swarm listening on /ip4/127.0.0.1/tcp/4002
+2023-07-27T13:50:33.750Z [INFO]  Main.Core: Swarm listening on /p2p-circuit
+2023-07-27T13:50:33.750Z [INFO]  Main.Core: Swarm announcing /ip4/10.60.88.89/tcp/4002
+2023-07-27T13:50:33.750Z [INFO]  Main.Core: Swarm announcing /ip4/127.0.0.1/tcp/4002
+2023-07-27T13:50:33.750Z [INFO]  Main.Core: API server listening on /ip4/127.0.0.1/tcp/5002
+2023-07-27T13:50:33.750Z [INFO]  Main.Core: WebUI: http://127.0.0.1:5002/webui
+2023-07-27T13:50:33.750Z [INFO]  Main.Core: Gateway (readonly) server listening on /ip4/127.0.0.1/tcp/8081
+2023-07-27T13:50:33.751Z [INFO]  Main.Core: IPFS Daemon is ready
+2023-07-27T13:50:33.755Z [INFO]  Main.Core: Node PeerID : 12D3KooWAebP2RqWGXQZDbFviZmdq2zdtmB7X8AczCm62GS9kaef
+2023-07-27T13:50:33.755Z [INFO]  Main.Core: Setting up the core
+2023-07-27T13:50:33.758Z [INFO]  Main.Core.PeerManager: Bootstrap swarm connected
+2023-07-27T13:50:33.760Z [INFO]  Main.Core.PeerManager: Bootstrap swarm connected
+2023-07-27T13:50:33.761Z [INFO]  Main.Core.PeerManager: Bootstrap swarm connected
+2023-07-27T13:50:33.762Z [INFO]  Main.Core: Starting the core
+2023-07-27T13:50:33.762Z [INFO]  Main.Core.enswebserver: Starting Server at localhost:22010
+2023-07-27T13:50:33.763Z [INFO]  Main.Core.enswebserver: Server running at : https://localhost:22010
+2023-07-27T13:50:33.763Z [INFO]  Main.grpc: GRPC Server created
+2023-07-27T13:50:33.763Z [INFO]  Main.grpc: Running GRPC server...
+2023-07-27T13:50:33.764Z [INFO]  Main: Swagger URL : http://localhost:20000/swagger/index.html
+2023-07-27T13:50:33.766Z [INFO]  Main: Core version : 0.0.8
+2023-07-27T13:50:33.766Z [INFO]  Main: Starting server...
+2023-07-27T13:50:33.766Z [INFO]  Main.enswebserver: Starting Server at localhost:20000
+2023-07-27T13:50:33.767Z [INFO]  Main.enswebserver: Server running at : http://localhost:20000
+2023-07-27T13:50:59.559Z [INFO]  Main.Rubixplatform: Shutting down...
+2023-07-27T13:51:02.561Z [INFO]  Main.Core: IPFS daemon requested to close
+2023-07-27T13:51:02.561Z [INFO]  Main.Core: IPFS daemon finished
+2023-07-27T13:51:02.572Z [INFO]  Main: Shutting down...
+2023-07-27T14:12:43.000Z [INFO]  Main.Core: Waiting for IPFS daemon to start
+2023-07-27T14:12:43.133Z [INFO]  Main.Core: Initializing daemon...
+2023-07-27T14:12:43.133Z [INFO]  Main.Core: Kubo version: 0.18.0
+2023-07-27T14:12:43.133Z [INFO]  Main.Core: Repo version: 13
+2023-07-27T14:12:43.133Z [INFO]  Main.Core: System version: amd64/linux
+2023-07-27T14:12:43.133Z [INFO]  Main.Core: Golang version: go1.19.1
+2023-07-27T14:12:43.172Z [INFO]  Main.Core: 
+2023-07-27T14:12:43.172Z [INFO]  Main.Core: Computing default go-libp2p Resource Manager limits based on:
+2023-07-27T14:12:43.172Z [INFO]  Main.Core:     - 'Swarm.ResourceMgr.MaxMemory': "2.1 GB"
+2023-07-27T14:12:43.172Z [INFO]  Main.Core:     - 'Swarm.ResourceMgr.MaxFileDescriptors': 500000
+2023-07-27T14:12:43.173Z [INFO]  Main.Core: 
+2023-07-27T14:12:43.173Z [INFO]  Main.Core: Applying any user-supplied overrides on top.
+2023-07-27T14:12:43.173Z [INFO]  Main.Core: Run 'ipfs swarm limit all' to see the resulting limits.
+2023-07-27T14:12:43.173Z [INFO]  Main.Core: 
+2023-07-27T14:12:44.407Z [INFO]  Main.Core: Swarm is limited to private network of peers with the swarm key
+2023-07-27T14:12:44.407Z [INFO]  Main.Core: Swarm key fingerprint: a5ef5059eede91e09c9994d112fd1e05
+2023-07-27T14:12:44.407Z [INFO]  Main.Core: Swarm listening on /ip4/10.60.88.89/tcp/4002
+2023-07-27T14:12:44.408Z [INFO]  Main.Core: Swarm listening on /ip4/127.0.0.1/tcp/4002
+2023-07-27T14:12:44.408Z [INFO]  Main.Core: Swarm listening on /p2p-circuit
+2023-07-27T14:12:44.408Z [INFO]  Main.Core: Swarm announcing /ip4/10.60.88.89/tcp/4002
+2023-07-27T14:12:44.408Z [INFO]  Main.Core: Swarm announcing /ip4/127.0.0.1/tcp/4002
+2023-07-27T14:12:44.408Z [INFO]  Main.Core: API server listening on /ip4/127.0.0.1/tcp/5002
+2023-07-27T14:12:44.408Z [INFO]  Main.Core: WebUI: http://127.0.0.1:5002/webui
+2023-07-27T14:12:44.409Z [INFO]  Main.Core: Gateway (readonly) server listening on /ip4/127.0.0.1/tcp/8081
+2023-07-27T14:12:44.410Z [INFO]  Main.Core: IPFS Daemon is ready
+2023-07-27T14:12:44.413Z [INFO]  Main.Core: Node PeerID : 12D3KooWAebP2RqWGXQZDbFviZmdq2zdtmB7X8AczCm62GS9kaef
+2023-07-27T14:12:44.413Z [INFO]  Main.Core: Setting up the core
+2023-07-27T14:12:44.415Z [INFO]  Main.Core.PeerManager: Bootstrap swarm connected
+2023-07-27T14:12:44.417Z [INFO]  Main.Core.PeerManager: Bootstrap swarm connected
+2023-07-27T14:12:44.418Z [INFO]  Main.Core.PeerManager: Bootstrap swarm connected
+2023-07-27T14:12:44.420Z [INFO]  Main.Core: Starting the core
+2023-07-27T14:12:44.420Z [INFO]  Main.Core.enswebserver: Starting Server at localhost:22010
+2023-07-27T14:12:44.420Z [INFO]  Main.Core.enswebserver: Server running at : https://localhost:22010
+2023-07-27T14:12:44.421Z [INFO]  Main.grpc: GRPC Server created
+2023-07-27T14:12:44.423Z [INFO]  Main: Swagger URL : http://localhost:20000/swagger/index.html
+2023-07-27T14:12:44.424Z [INFO]  Main: Core version : 0.0.8
+2023-07-27T14:12:44.424Z [INFO]  Main: Starting server...
+2023-07-27T14:12:44.424Z [INFO]  Main.grpc: Running GRPC server...
+2023-07-27T14:12:44.424Z [INFO]  Main.enswebserver: Starting Server at localhost:20000
+2023-07-27T14:12:44.424Z [INFO]  Main.enswebserver: Server running at : http://localhost:20000
+2023-07-27T14:31:20.520Z [INFO]  Main.Rubixplatform: Shutting down...
+2023-07-27T14:31:23.521Z [INFO]  Main.Core: IPFS daemon requested to close
+2023-07-27T14:31:23.522Z [INFO]  Main.Core: IPFS daemon finished
+2023-07-27T14:31:23.532Z [INFO]  Main: Shutting down...
+2023-07-27T14:31:34.302Z [INFO]  Main.Core: Waiting for IPFS daemon to start
+2023-07-27T14:31:34.436Z [INFO]  Main.Core: Initializing daemon...
+2023-07-27T14:31:34.436Z [INFO]  Main.Core: Kubo version: 0.18.0
+2023-07-27T14:31:34.436Z [INFO]  Main.Core: Repo version: 13
+2023-07-27T14:31:34.436Z [INFO]  Main.Core: System version: amd64/linux
+2023-07-27T14:31:34.436Z [INFO]  Main.Core: Golang version: go1.19.1
+2023-07-27T14:31:34.470Z [INFO]  Main.Core: 
+2023-07-27T14:31:34.470Z [INFO]  Main.Core: Computing default go-libp2p Resource Manager limits based on:
+2023-07-27T14:31:34.470Z [INFO]  Main.Core:     - 'Swarm.ResourceMgr.MaxMemory': "2.1 GB"
+2023-07-27T14:31:34.470Z [INFO]  Main.Core:     - 'Swarm.ResourceMgr.MaxFileDescriptors': 500000
+2023-07-27T14:31:34.470Z [INFO]  Main.Core: 
+2023-07-27T14:31:34.470Z [INFO]  Main.Core: Applying any user-supplied overrides on top.
+2023-07-27T14:31:34.470Z [INFO]  Main.Core: Run 'ipfs swarm limit all' to see the resulting limits.
+2023-07-27T14:31:34.470Z [INFO]  Main.Core: 
+2023-07-27T14:31:35.711Z [INFO]  Main.Core: Swarm is limited to private network of peers with the swarm key
+2023-07-27T14:31:35.711Z [INFO]  Main.Core: Swarm key fingerprint: a5ef5059eede91e09c9994d112fd1e05
+2023-07-27T14:31:35.711Z [INFO]  Main.Core: Swarm listening on /ip4/10.60.88.89/tcp/4002
+2023-07-27T14:31:35.711Z [INFO]  Main.Core: Swarm listening on /ip4/127.0.0.1/tcp/4002
+2023-07-27T14:31:35.711Z [INFO]  Main.Core: Swarm listening on /p2p-circuit
+2023-07-27T14:31:35.711Z [INFO]  Main.Core: Swarm announcing /ip4/10.60.88.89/tcp/4002
+2023-07-27T14:31:35.711Z [INFO]  Main.Core: Swarm announcing /ip4/127.0.0.1/tcp/4002
+2023-07-27T14:31:35.711Z [INFO]  Main.Core: API server listening on /ip4/127.0.0.1/tcp/5002
+2023-07-27T14:31:35.711Z [INFO]  Main.Core: WebUI: http://127.0.0.1:5002/webui
+2023-07-27T14:31:35.712Z [INFO]  Main.Core: Gateway (readonly) server listening on /ip4/127.0.0.1/tcp/8081
+2023-07-27T14:31:35.712Z [INFO]  Main.Core: IPFS Daemon is ready
+2023-07-27T14:31:35.716Z [INFO]  Main.Core: Node PeerID : 12D3KooWAebP2RqWGXQZDbFviZmdq2zdtmB7X8AczCm62GS9kaef
+2023-07-27T14:31:35.716Z [INFO]  Main.Core: Setting up the core
+2023-07-27T14:31:35.718Z [INFO]  Main.Core.PeerManager: Bootstrap swarm connected
+2023-07-27T14:31:35.719Z [INFO]  Main.Core.PeerManager: Bootstrap swarm connected
+2023-07-27T14:31:35.720Z [INFO]  Main.Core.PeerManager: Bootstrap swarm connected
+2023-07-27T14:31:35.722Z [INFO]  Main.Core: Starting the core
+2023-07-27T14:31:35.722Z [INFO]  Main.Core.enswebserver: Starting Server at localhost:22010
+2023-07-27T14:31:35.722Z [INFO]  Main.Core.enswebserver: Server running at : https://localhost:22010
+2023-07-27T14:31:35.722Z [INFO]  Main.grpc: GRPC Server created
+2023-07-27T14:31:35.724Z [INFO]  Main: Swagger URL : http://localhost:20000/swagger/index.html
+2023-07-27T14:31:35.724Z [INFO]  Main: Core version : 0.0.8
+2023-07-27T14:31:35.724Z [INFO]  Main: Starting server...
+2023-07-27T14:31:35.724Z [INFO]  Main.enswebserver: Starting Server at localhost:20000
+2023-07-27T14:31:35.724Z [INFO]  Main.grpc: Running GRPC server...
+2023-07-27T14:31:35.725Z [INFO]  Main.enswebserver: Server running at : http://localhost:20000
+2023-07-27T15:40:05.571Z [ERROR] Main.Core.PeerManager.12D3KooWFoAUeT1w8aUTKWa8boStV1KRkomjEkYtTCKQkJETwdih: failed to receive reply: err="Get "http://localhost:22013/api/peerstatus?did=bafybmie7ytdguxjtmdtac5dijf2rcm3pdek6dyhhkrecfmjirwgmea6tme": EOF"
+2023-07-27T15:40:05.571Z [ERROR] Main.Core: Failed to get peer connection: err="Get "http://localhost:22013/api/peerstatus?did=bafybmie7ytdguxjtmdtac5dijf2rcm3pdek6dyhhkrecfmjirwgmea6tme": EOF"
+2023-07-27T15:45:05.716Z [ERROR] Main.Core: Unable to pledge token
+2023-07-27T15:45:05.717Z [ERROR] Main.Core: Failed to pleadge token: err="unable to pledge token"
+2023-07-27T15:45:05.743Z [ERROR] Main.Core: Unable to pledge token
+2023-07-27T15:45:05.743Z [ERROR] Main.Core: Failed to pleadge token: err="unable to pledge token"
+2023-07-27T15:45:05.751Z [ERROR] Main.Core: Unable to pledge token
+2023-07-27T15:45:05.751Z [ERROR] Main.Core: Failed to pleadge token: err="unable to pledge token"
+2023-07-27T15:45:05.784Z [ERROR] Main.Core: Unable to pledge token
+2023-07-27T15:45:05.784Z [ERROR] Main.Core: Failed to pleadge token: err="unable to pledge token"
+2023-07-27T15:45:06.688Z [ERROR] Main.Core: Consensus failed
+2023-07-27T15:45:06.689Z [ERROR] Main.Core: Consensus failed: err="consensus failed"
+2023-07-27T15:51:34.414Z [ERROR] Main.Core.wallet: DID does nto exist: did=bafybmidtfwc2jqkbtrny4efohmvwskofhpemya4zci2ntqshsvmgih5mw4
+2023-07-27T15:51:34.414Z [ERROR] Main.Core: DID does not exist: did=bafybmidtfwc2jqkbtrny4efohmvwskofhpemya4zci2ntqshsvmgih5mw4
+2023-07-27T15:53:04.078Z [INFO]  Main.Core: Transfer finished successfully: duration=39.8805511s
+2023-07-27T17:26:57.110Z [INFO]  Main.Rubixplatform: Shutting down...
+2023-07-27T17:27:00.112Z [INFO]  Main.Core: IPFS daemon requested to close
+2023-07-27T17:27:00.113Z [INFO]  Main.Core: IPFS daemon finished
+2023-07-27T17:27:00.122Z [INFO]  Main: Shutting down...
+2023-07-27T17:30:15.984Z [INFO]  Main.Core: Waiting for IPFS daemon to start
+2023-07-27T17:30:16.135Z [INFO]  Main.Core: Initializing daemon...
+2023-07-27T17:30:16.136Z [INFO]  Main.Core: Kubo version: 0.18.0
+2023-07-27T17:30:16.136Z [INFO]  Main.Core: Repo version: 13
+2023-07-27T17:30:16.136Z [INFO]  Main.Core: System version: amd64/linux
+2023-07-27T17:30:16.136Z [INFO]  Main.Core: Golang version: go1.19.1
+2023-07-27T17:30:16.170Z [INFO]  Main.Core: 
+2023-07-27T17:30:16.170Z [INFO]  Main.Core: Computing default go-libp2p Resource Manager limits based on:
+2023-07-27T17:30:16.170Z [INFO]  Main.Core:     - 'Swarm.ResourceMgr.MaxMemory': "2.1 GB"
+2023-07-27T17:30:16.170Z [INFO]  Main.Core:     - 'Swarm.ResourceMgr.MaxFileDescriptors': 500000
+2023-07-27T17:30:16.170Z [INFO]  Main.Core: 
+2023-07-27T17:30:16.170Z [INFO]  Main.Core: Applying any user-supplied overrides on top.
+2023-07-27T17:30:16.170Z [INFO]  Main.Core: Run 'ipfs swarm limit all' to see the resulting limits.
+2023-07-27T17:30:16.170Z [INFO]  Main.Core: 
+2023-07-27T17:30:17.393Z [INFO]  Main.Core: Swarm is limited to private network of peers with the swarm key
+2023-07-27T17:30:17.394Z [INFO]  Main.Core: Swarm key fingerprint: a5ef5059eede91e09c9994d112fd1e05
+2023-07-27T17:30:17.394Z [INFO]  Main.Core: Swarm listening on /ip4/10.60.88.89/tcp/4002
+2023-07-27T17:30:17.394Z [INFO]  Main.Core: Swarm listening on /ip4/127.0.0.1/tcp/4002
+2023-07-27T17:30:17.394Z [INFO]  Main.Core: Swarm listening on /p2p-circuit
+2023-07-27T17:30:17.394Z [INFO]  Main.Core: Swarm announcing /ip4/10.60.88.89/tcp/4002
+2023-07-27T17:30:17.394Z [INFO]  Main.Core: Swarm announcing /ip4/127.0.0.1/tcp/4002
+2023-07-27T17:30:17.394Z [INFO]  Main.Core: API server listening on /ip4/127.0.0.1/tcp/5002
+2023-07-27T17:30:17.394Z [INFO]  Main.Core: WebUI: http://127.0.0.1:5002/webui
+2023-07-27T17:30:17.395Z [INFO]  Main.Core: Gateway (readonly) server listening on /ip4/127.0.0.1/tcp/8081
+2023-07-27T17:30:17.395Z [INFO]  Main.Core: IPFS Daemon is ready
+2023-07-27T17:30:17.399Z [INFO]  Main.Core: Node PeerID : 12D3KooWAebP2RqWGXQZDbFviZmdq2zdtmB7X8AczCm62GS9kaef
+2023-07-27T17:30:17.399Z [INFO]  Main.Core: Setting up the core
+2023-07-27T17:30:17.401Z [INFO]  Main.Core.PeerManager: Bootstrap swarm connected
+2023-07-27T17:30:17.403Z [INFO]  Main.Core.PeerManager: Bootstrap swarm connected
+2023-07-27T17:30:17.404Z [INFO]  Main.Core.PeerManager: Bootstrap swarm connected
+2023-07-27T17:30:17.406Z [INFO]  Main.Core: Starting the core
+2023-07-27T17:30:17.406Z [INFO]  Main.Core.enswebserver: Starting Server at localhost:22010
+2023-07-27T17:30:17.407Z [INFO]  Main.Core.enswebserver: Server running at : https://localhost:22010
+2023-07-27T17:30:17.407Z [INFO]  Main.grpc: GRPC Server created
+2023-07-27T17:30:17.409Z [INFO]  Main: Swagger URL : http://localhost:20000/swagger/index.html
+2023-07-27T17:30:17.409Z [INFO]  Main: Core version : 0.0.8
+2023-07-27T17:30:17.409Z [INFO]  Main: Starting server...
+2023-07-27T17:30:17.409Z [INFO]  Main.enswebserver: Starting Server at localhost:20000
+2023-07-27T17:30:17.410Z [INFO]  Main.grpc: Running GRPC server...
+2023-07-27T17:30:17.410Z [INFO]  Main.enswebserver: Server running at : http://localhost:20000
+2023-07-27T17:35:41.589Z [ERROR] Main.Core.wallet: Failed to get DID: err="no records found"
+2023-07-27T17:35:41.589Z [ERROR] Main.Core: DID does not exist: err="no records found"
+2023-07-27T17:45:29.729Z [INFO]  Main.Core: Waiting for IPFS daemon to start
+2023-07-27T17:45:29.855Z [INFO]  Main.Core: Initializing daemon...
+2023-07-27T17:45:29.855Z [INFO]  Main.Core: Kubo version: 0.18.0
+2023-07-27T17:45:29.855Z [INFO]  Main.Core: Repo version: 13
+2023-07-27T17:45:29.855Z [INFO]  Main.Core: System version: amd64/linux
+2023-07-27T17:45:29.855Z [INFO]  Main.Core: Golang version: go1.19.1
+2023-07-27T17:45:29.883Z [INFO]  Main.Core: 
+2023-07-27T17:45:29.883Z [INFO]  Main.Core: Computing default go-libp2p Resource Manager limits based on:
+2023-07-27T17:45:29.883Z [INFO]  Main.Core:     - 'Swarm.ResourceMgr.MaxMemory': "2.1 GB"
+2023-07-27T17:45:29.884Z [INFO]  Main.Core:     - 'Swarm.ResourceMgr.MaxFileDescriptors': 500000
+2023-07-27T17:45:29.884Z [INFO]  Main.Core: 
+2023-07-27T17:45:29.884Z [INFO]  Main.Core: Applying any user-supplied overrides on top.
+2023-07-27T17:45:29.884Z [INFO]  Main.Core: Run 'ipfs swarm limit all' to see the resulting limits.
+2023-07-27T17:45:29.884Z [INFO]  Main.Core: 
+2023-07-27T17:45:31.123Z [INFO]  Main.Core: Swarm is limited to private network of peers with the swarm key
+2023-07-27T17:45:31.123Z [INFO]  Main.Core: Swarm key fingerprint: a5ef5059eede91e09c9994d112fd1e05
+2023-07-27T17:45:31.123Z [INFO]  Main.Core: Swarm listening on /ip4/10.60.88.89/tcp/4002
+2023-07-27T17:45:31.123Z [INFO]  Main.Core: Swarm listening on /ip4/127.0.0.1/tcp/4002
+2023-07-27T17:45:31.123Z [INFO]  Main.Core: Swarm listening on /p2p-circuit
+2023-07-27T17:45:31.123Z [INFO]  Main.Core: Swarm announcing /ip4/10.60.88.89/tcp/4002
+2023-07-27T17:45:31.123Z [INFO]  Main.Core: Swarm announcing /ip4/127.0.0.1/tcp/4002
+2023-07-27T17:45:31.123Z [INFO]  Main.Core: Swarm announcing /ip4/174.141.238.99/tcp/4002
+2023-07-27T17:45:31.124Z [INFO]  Main.Core: API server listening on /ip4/127.0.0.1/tcp/5002
+2023-07-27T17:45:31.124Z [INFO]  Main.Core: WebUI: http://127.0.0.1:5002/webui
+2023-07-27T17:45:31.124Z [INFO]  Main.Core: Gateway (readonly) server listening on /ip4/127.0.0.1/tcp/8081
+2023-07-27T17:45:31.124Z [INFO]  Main.Core: IPFS Daemon is ready
+2023-07-27T17:45:31.128Z [INFO]  Main.Core: Node PeerID : 12D3KooWAebP2RqWGXQZDbFviZmdq2zdtmB7X8AczCm62GS9kaef
+2023-07-27T17:45:31.129Z [INFO]  Main.Core: Setting up the core
+2023-07-27T17:45:31.132Z [INFO]  Main.Core.PeerManager: Bootstrap swarm connected
+2023-07-27T17:45:31.134Z [INFO]  Main.Core.PeerManager: Bootstrap swarm connected
+2023-07-27T17:45:31.135Z [INFO]  Main.Core.PeerManager: Bootstrap swarm connected
+2023-07-27T17:45:31.137Z [INFO]  Main.Core: Starting the core
+2023-07-27T17:45:31.137Z [INFO]  Main.Core.enswebserver: Starting Server at localhost:22010
+2023-07-27T17:45:31.137Z [INFO]  Main.Core.enswebserver: Server running at : https://localhost:22010
+2023-07-27T17:45:31.137Z [INFO]  Main.grpc: GRPC Server created
+2023-07-27T17:45:31.141Z [INFO]  Main: Swagger URL : http://localhost:20000/swagger/index.html
+2023-07-27T17:45:31.141Z [INFO]  Main: Core version : 0.0.8
+2023-07-27T17:45:31.141Z [INFO]  Main: Starting server...
+2023-07-27T17:45:31.142Z [INFO]  Main.enswebserver: Starting Server at localhost:20000
+2023-07-27T17:45:31.142Z [INFO]  Main.grpc: Running GRPC server...
+2023-07-27T17:45:31.142Z [INFO]  Main.enswebserver: Server running at : http://localhost:20000
+2023-07-27T17:46:00.754Z [ERROR] Main.Core.wallet: Failed to get DID: err="no records found"
+2023-08-21T06:56:20.533Z [INFO]  Main.Core: DID : bafybmibejih3ipzzqnrpegsvqpd7aktcbtgbrfc7fmm4rdbrrhojh3igue, Time to create DID & Keys : 38.837668ms
+2023-08-21T06:56:22.871Z [INFO]  Main.native_grpc.grpcclient: DID Created successfully
+2023-08-21T06:59:44.551Z [INFO]  Main.Core: DID : bafybmia2c7out4lelyrqrjd5wyzjwivard4p6hs5bhi2b5jxrecguxfg5a, Time to create DID & Keys : 20.360926ms
+2023-08-21T06:59:45.939Z [INFO]  Main.native_grpc.grpcclient: DID Created successfully
+2023-08-21T07:16:56.959Z [INFO]  Main.Core: DID : bafybmiapf2ootp3hbmroa4u3vwcid2ei7b4nglu2gqqhjuanonqhsgi3j4, Time to create DID & Keys : 20.697953ms
+2023-08-21T07:16:58.420Z [INFO]  Main.native_grpc.grpcclient: DID Created successfully
+2023-08-21T07:34:12.747Z [INFO]  Main.Core: DID : bafybmicogcwoisy3fugw5qh4rxh443tzrw37ngl2jj5owdraeugybfwhoq, Time to create DID & Keys : 30.261017ms
+2023-08-21T07:34:14.244Z [INFO]  Main.native_grpc.grpcclient: DID Created successfully
+2023-08-21T07:40:13.663Z [INFO]  Main.Core: DID : bafybmid6um2r75dhpity2k2bcakcxwhnyaqkk2gfloqpnqv64evvkjz3ha, Time to create DID & Keys : 17.78409ms
+2023-08-21T07:40:15.106Z [INFO]  Main.native_grpc.grpcclient: DID Created successfully
+2023-08-21T07:44:05.422Z [INFO]  Main.Core: DID : bafybmicmfe25fxvfzd5grix6t53bu7wzg5zptwzuj5fcnf3cp3jrftffw4, Time to create DID & Keys : 22.853411ms
+2023-08-21T07:44:07.174Z [INFO]  Main.native_grpc.grpcclient: DID Created successfully
+2023-08-21T07:45:06.473Z [INFO]  Main.Core: DID : bafybmicxttmr2tgpayc3c5z55f234uraogq7oqugfgjuyz64et43rc5syy, Time to create DID & Keys : 20.953231ms
+2023-08-21T07:45:07.046Z [INFO]  Main.native_grpc.grpcclient: DID Created successfully
+2023-08-21T07:46:34.600Z [INFO]  Main.Core: DID : bafybmiforsal7urcjiecsk4rhyblv3kcmrsl2nqfsnpcjxhkboaaa7iw2e, Time to create DID & Keys : 16.590757ms
+2023-08-21T07:46:35.165Z [INFO]  Main.native_grpc.grpcclient: DID Created successfully
+2023-08-21T07:49:37.959Z [INFO]  Main.Core: DID : bafybmidkbby5n7nenpifd4qadxilvztxg6gpg2m72qaebchc22fcq2k7kq, Time to create DID & Keys : 16.241778ms
+2023-08-21T07:49:39.318Z [INFO]  Main.native_grpc.grpcclient: DID Created successfully
+2023-08-21T08:05:29.902Z [INFO]  Main.Core: DID : bafybmidcer3jnzljegfqr6mfcmhut66kvkujlay7qos2vvx3nwfngztlsq, Time to create DID & Keys : 14.822636ms
+2023-08-21T08:05:31.380Z [INFO]  Main.native_grpc.grpcclient: DID Created successfully
+2023-08-21T11:01:46.085Z [INFO]  Main.Core: DID : bafybmigphkou2ozp3is4fx4goe7yvrbbqn3ylnq4teo6qhkokb47dbcmye, Time to create DID & Keys : 22.545611ms
+2023-08-21T11:01:47.891Z [INFO]  Main.native_grpc.grpcclient: DID Created successfully
+2023-08-21T11:01:50.923Z [ERROR] Main.Core.wallet: Failed to get tokens: err="no records found"
+2023-08-21T11:05:11.431Z [INFO]  Main.Core: DID : bafybmibbnalwjfzhfprmjwenptwu5jomtau4ryd6c2pyuxcp7mofxltijq, Time to create DID & Keys : 18.830792ms
+2023-08-21T11:05:12.753Z [INFO]  Main.native_grpc.grpcclient: DID Created successfully
+2023-08-21T11:05:13.167Z [ERROR] Main.Core.wallet: Failed to get tokens: err="no records found"
+2023-08-21T11:06:50.084Z [INFO]  Main.Core: DID : bafybmihjjah4ctwskr7iekp5kpob27sdhuygmv3qayeczpcw3vdpm7exfe, Time to create DID & Keys : 30.467608ms
+2023-08-21T11:06:50.581Z [INFO]  Main.native_grpc.grpcclient: DID Created successfully
+2023-08-21T11:06:50.969Z [ERROR] Main.Core.wallet: Failed to get tokens: err="no records found"
+2023-08-21T11:08:07.462Z [INFO]  Main.Core: DID : bafybmiaz2b6l4d5g3dtuhyfxdofhf2nm23ypsuy7k47hfdvd4mo7phgdfi, Time to create DID & Keys : 22.757352ms
+2023-08-21T11:08:07.973Z [INFO]  Main.native_grpc.grpcclient: DID Created successfully
+2023-08-21T11:08:08.381Z [ERROR] Main.Core.wallet: Failed to get tokens: err="no records found"
+2023-08-21T11:12:24.839Z [INFO]  Main.Core: DID : bafybmigvstof64sukknub2nbotb4idcol4526czbcqgs75a4wyx3w77dze, Time to create DID & Keys : 25.524221ms
+2023-08-21T11:12:26.154Z [INFO]  Main.native_grpc.grpcclient: DID Created successfully
+2023-08-21T11:12:26.524Z [ERROR] Main.Core.wallet: Failed to get tokens: err="no records found"
+2023-08-21T12:48:33.449Z [INFO]  Main.Core: DID : bafybmiga2nd6z22rviayuuthh4lxwcam4g4zx3oqr2oiia2fsyk4mw2cme, Time to create DID & Keys : 27.332011ms
+2023-08-21T12:48:35.554Z [INFO]  Main.native_grpc.grpcclient: DID Created successfully
+2023-08-21T13:23:30.628Z [INFO]  Main.Core: DID : bafybmiamx5b65mghrfrdat5ynpypuichx4krtvgqkfe3rzszfony3vxdlu, Time to create DID & Keys : 23.35967ms
+2023-08-21T13:23:32.543Z [INFO]  Main.native_grpc.grpcclient: DID Created successfully
+2023-08-21T13:23:39.427Z [INFO]  Main.Core: DID : bafybmiax2rh7p6im5ukjb6heyvpnguqatocje4fqtqgeqm2etisggokeci, Time to create DID & Keys : 25.845817ms
+2023-08-21T13:23:39.925Z [INFO]  Main.native_grpc.grpcclient: DID Created successfully
+2023-08-21T13:23:40.476Z [INFO]  Main.Core: DID : bafybmiaw7zwhoihgo4pd6rgmd45u3axjcobdqszrrfzs474ceavgve5gau, Time to create DID & Keys : 20.506165ms
+2023-08-21T13:23:40.958Z [INFO]  Main.native_grpc.grpcclient: DID Created successfully
+2023-08-21T13:43:13.260Z [INFO]  Main.Core: DID : bafybmifc5xdiuht3kv72obvihoxlr6eyartx6abdxaxv2b2hgcbe2notsm, Time to create DID & Keys : 29.067272ms
+2023-08-21T13:43:14.720Z [INFO]  Main.native_grpc.grpcclient: DID Created successfully
+2023-08-21T13:43:15.299Z [INFO]  Main.Core: DID : bafybmidbnimdxniuzprz7z5sgfzwshqguw2u67nadr2dvpwcgszhu7fft4, Time to create DID & Keys : 26.871691ms
+2023-08-21T13:43:15.789Z [INFO]  Main.native_grpc.grpcclient: DID Created successfully
+2023-08-21T13:43:16.210Z [INFO]  Main.Core: DID : bafybmibnfopno5qugwzdd3o2y3xhdhcmgmc643tnzdne35uh47mq3sugbe, Time to create DID & Keys : 17.707572ms
+2023-08-21T13:43:16.736Z [INFO]  Main.native_grpc.grpcclient: DID Created successfully
+2023-09-04T07:42:31.446Z [INFO]  Main.Core: DID : bafybmif3nfx7tz3agb5jwaslyrhsnwkbir3l7mbfam5s2l5tdealy47fru, Time to create DID & Keys : 39.530027ms
+2023-09-04T07:42:33.337Z [INFO]  Main.native_grpc.grpcclient: DID Created successfully
+2023-09-06T06:39:12.007Z [INFO]  Main.Core: DID : bafybmifmete7jmdcmvucbkf4b5l6sllmrzwc4amtemluuduxd6rtuon45a, Time to create DID & Keys : 51.621329ms
+2023-09-06T06:39:14.494Z [INFO]  Main.native_grpc.grpcclient: DID Created successfully
+2023-09-11T07:08:51.429Z [INFO]  Main.Core: DID : bafybmif5nrzhcs4ip6j7ccojca67mzghputevwcclygaeciyx7riejmj5i, Time to create DID & Keys : 23.37993ms
+2023-09-11T07:08:53.725Z [INFO]  Main.native_grpc.grpcclient: DID Created successfully
+2023-09-11T09:08:06.043Z [INFO]  Main.Core: DID : bafybmiemr34ahasq3u533ufodne2eghuv3w5qza435eagfondtzpwrhmgu, Time to create DID & Keys : 25.874029ms
+2023-09-11T09:08:08.081Z [INFO]  Main.native_grpc.grpcclient: DID Created successfully
+2023-09-12T06:43:39.796Z [INFO]  Main.Core: DID : bafybmifzuqm5vjx2k3geqep7mjychig5ppkpcn532kj5jw4xzbhorsa2xm, Time to create DID & Keys : 13.432317ms
+2023-09-12T06:43:42.234Z [INFO]  Main.native_grpc.grpcclient: DID Created successfully
+2023-09-13T06:52:45.911Z [INFO]  Main.Core: DID : bafybmieejytfzek3vrlhqzfbbzfcjeran76kphupztldb6vuknxti5uzne, Time to create DID & Keys : 32.776562ms
+2023-09-13T06:52:48.054Z [INFO]  Main.native_grpc.grpcclient: DID Created successfully
+2023-09-13T06:59:30.081Z [INFO]  Main.Core: DID : bafybmibyginnxslipltusumtgpzrdy5lgrosbituqqrnzbpdis6oumy3wm, Time to create DID & Keys : 24.637972ms
+2023-09-13T06:59:31.406Z [INFO]  Main.native_grpc.grpcclient: DID Created successfully
+2023-09-14T06:53:23.649Z [INFO]  Main.Core: DID : bafybmihoax7iolp7ewfhxg66uzcb5uf2ux5o23p6zvy5imfufzfz4mrh7a, Time to create DID & Keys : 27.837458ms
+2023-09-14T06:53:25.579Z [INFO]  Main.native_grpc.grpcclient: DID Created successfully
+2023-09-14T07:00:57.692Z [INFO]  Main.Core: DID : bafybmihrabmtlomddcidk7r4h4l3bhh4kygpavnusoxlta24t2zgd2hi6a, Time to create DID & Keys : 18.019711ms
+2023-09-14T07:00:58.985Z [INFO]  Main.native_grpc.grpcclient: DID Created successfully
+2023-09-14T07:12:43.603Z [INFO]  Main.Core: DID : bafybmigp5mwtwsvcjr55hemw3sufzajjj4dtldv4avcwhfy42jumac3yyy, Time to create DID & Keys : 31.614376ms
+2023-09-14T07:12:44.984Z [INFO]  Main.native_grpc.grpcclient: DID Created successfully
+2023-09-14T11:28:16.145Z [INFO]  Main.Core: DID : bafybmig34qnntb6rfussi3htaciiiep5247y2papeq4eduf627alow3aaq, Time to create DID & Keys : 24.965191ms
+2023-09-14T11:28:18.389Z [INFO]  Main.native_grpc.grpcclient: DID Created successfully
+2023-09-14T11:47:19.887Z [INFO]  Main.Core: DID : bafybmiaegdr5jajc6atdrfg2bg5jelcwss2o5tqordvcmrf26uwu4qr2hi, Time to create DID & Keys : 21.107914ms
+2023-09-14T11:47:21.598Z [INFO]  Main.native_grpc.grpcclient: DID Created successfully
+2023-09-14T11:49:43.154Z [INFO]  Main.Core: DID : bafybmibtaxep6kghignhg5j27tl23iishzfvxfshmbcdl5wqvhw73ds4cm, Time to create DID & Keys : 21.192022ms
+2023-09-14T11:49:44.589Z [INFO]  Main.native_grpc.grpcclient: DID Created successfully
+2023-09-20T08:00:08.276Z [INFO]  Main.Core: DID : bafybmielunvdylrtvxyu5zwaex6u4uziy3umnfwak625jcgv7ojsqfbcbi, Time to create DID & Keys : 62.406331ms
+2023-09-20T08:00:10.495Z [INFO]  Main.native_grpc.grpcclient: DID Created successfully
+2023-09-21T05:49:59.466Z [INFO]  Main.Core: DID : bafybmibzgkmqzgux22erpvg6v56qgw67ux2xnd47adphj6xfqg7liaj2ym, Time to create DID & Keys : 20.620537ms
+2023-09-21T05:50:03.144Z [INFO]  Main.native_grpc.grpcclient: DID Created successfully
+2023-09-28T10:11:44.735Z [ERROR] Main.Core: Failed to create data token, failed to update signature: err="key is invalid or password is wrong"
+2023-09-28T10:25:46.623Z [ERROR] Main.Core: Failed to create data token, failed to update signature: err="key is invalid or password is wrong"
+2023-09-28T13:02:02.075Z [ERROR] Main.Core: Failed to create data token, failed to update signature: err="key is invalid or password is wrong"
+2023-10-04T16:35:38.111Z [INFO]  Main.Core: DID : bafybmiez7o6j6cyfvg7xlx6z63kockqly3aofupg45nnogsztv54tbf3q4, Time to create DID & Keys : 20.518605ms
+2023-10-04T16:35:40.514Z [INFO]  Main.native_grpc.grpcclient: DID Created successfully
+2023-10-04T16:36:44.278Z [ERROR] Main.Core: Failed to create data token, failed to update signature: err="key is invalid or password is wrong"
+2023-10-04T16:38:03.821Z [ERROR] Main.Core: Failed to create data token, failed to update signature: err="key is invalid or password is wrong"
+2023-10-04T16:49:40.289Z [INFO]  Main.Core: DID : bafybmihtwjjlkfbzxf454kvpuzq5lqa5zglsr7tr3y6ltoonoy4f4y4hee, Time to create DID & Keys : 17.574642ms
+2023-10-04T16:49:41.686Z [INFO]  Main.native_grpc.grpcclient: DID Created successfully
+2023-10-04T16:52:10.362Z [ERROR] Main.Core: Failed to create data token, failed to update signature: err="key is invalid or password is wrong"
+2023-10-04T16:54:26.282Z [ERROR] Main.Core: Failed to create data token, failed to update signature: err="key is invalid or password is wrong"
+2023-10-04T17:01:05.126Z [ERROR] Main.Core: Failed to create data token, failed to update signature: err="key is invalid or password is wrong"
+2023-10-04T17:38:40.694Z [ERROR] Main.Core: Failed to create data token, failed to update signature: err="key is invalid or password is wrong"
+2023-10-04T17:40:01.744Z [ERROR] Main.Core: Failed to create data token, failed to update signature: err="key is invalid or password is wrong"
+2023-10-05T06:54:15.522Z [INFO]  Main.Core: DID : bafybmifd4w4k27gl6igpsiat5ghgqmyhlkdytnlessipaucufyzxsm35bi, Time to create DID & Keys : 18.650287ms
+2023-10-05T06:54:17.568Z [INFO]  Main.native_grpc.grpcclient: DID Created successfully
+2023-10-05T07:48:08.939Z [INFO]  Main.Core: DID : bafybmicz3qcirmiskbk2txhhkkviqvvi6olbwinwrtmw3n772yfb43ne3q, Time to create DID & Keys : 24.04461ms
+2023-10-05T07:48:10.840Z [INFO]  Main.native_grpc.grpcclient: DID Created successfully
+2023-10-05T07:49:24.318Z [ERROR] Main.Core: Failed to create data token, failed to update signature: err="key is invalid or password is wrong"
+2023-10-05T08:54:08.160Z [ERROR] Main.Core: Failed to create data token, failed to update signature: err="key is invalid or password is wrong"
+2023-10-05T11:56:09.124Z [INFO]  Main.Core: DID : bafybmifixzhsda3llzma5aeutpaivbtdzfjlbrxdm2zlzyv6q5nhvht7xq, Time to create DID & Keys : 15.574719ms
+2023-10-05T11:56:10.443Z [INFO]  Main.native_grpc.grpcclient: DID Created successfully
+2023-10-05T17:47:34.342Z [INFO]  Main.Core: DID : bafybmihklmvukb5twyhm3pzbonmi54dvrfl2nnmrbarvw36mheu6fmgwxe, Time to create DID & Keys : 24.50252ms
+2023-10-05T17:47:36.810Z [INFO]  Main.native_grpc.grpcclient: DID Created successfully
+2023-10-05T17:59:42.795Z [INFO]  Main.Core: DID : bafybmigr6fvxozzcp2nixfhq6ngu6whf43i3yckfyi5ppuila34jhqw3wq, Time to create DID & Keys : 34.392216ms
+2023-10-05T17:59:44.138Z [INFO]  Main.native_grpc.grpcclient: DID Created successfully
+2023-10-05T18:02:36.876Z [INFO]  Main.Core: DID : bafybmihnc7jc2hz673spez557zziqfhs3gftpzmkqlrlu67yr7sfkapqai, Time to create DID & Keys : 17.347472ms
+2023-10-05T18:02:38.189Z [INFO]  Main.native_grpc.grpcclient: DID Created successfully
+2023-10-06T08:26:59.718Z [INFO]  Main.Core: DID : bafybmiff7ymdzmhhbituy4r3jzm77mjklrn4nk7ja5oy4tjmhzr6cbs6se, Time to create DID & Keys : 18.790038ms
+2023-10-06T08:27:01.861Z [INFO]  Main.native_grpc.grpcclient: DID Created successfully
+2023-10-06T13:19:30.375Z [INFO]  Main.Core: DID : bafybmiepp5kimirfsguokrb46zcsihhhybpx4w5hmqmk62y6e5b4pwdmhe, Time to create DID & Keys : 21.965981ms
+2023-10-06T13:19:32.278Z [INFO]  Main.native_grpc.grpcclient: DID Created successfully
+2023-10-06T13:26:18.010Z [INFO]  Main.Core: DID : bafybmibk74hefa24i2o6lr565hqq6f2wyumenksjz5bhqyabdv6ur4mmle, Time to create DID & Keys : 26.170974ms
+2023-10-06T13:26:19.254Z [INFO]  Main.native_grpc.grpcclient: DID Created successfully
+2023-10-07T12:34:24.750Z [INFO]  Main.Core: DID : bafybmihiyp67ldqy6xp5cl6jfnol2orj33j7gppjnbe2oyssx6xtkpng3e, Time to create DID & Keys : 24.974722ms
+2023-10-07T12:34:26.972Z [INFO]  Main.native_grpc.grpcclient: DID Created successfully
+2023-10-09T06:13:38.056Z [INFO]  Main.Core: DID : bafybmicxedcpyrv4w4udmr4vqjuv6aycgnmc5yw7u4ark46tihyh6kg5du, Time to create DID & Keys : 26.951048ms
+2023-10-09T06:13:39.886Z [INFO]  Main.native_grpc.grpcclient: DID Created successfully
+2023-10-09T12:29:30.324Z [INFO]  Main.Core: DID : bafybmicnayrbbvtssknhoqpkf2reg2pbk7n2a3l7nm2cjpm6zo6xl4h2wu, Time to create DID & Keys : 20.844382ms
+2023-10-09T12:29:32.241Z [INFO]  Main.native_grpc.grpcclient: DID Created successfully
+2023-10-09T14:00:57.038Z [INFO]  Main.Core: DID : bafybmig4hshixkl7jhpacfdicizke3ti7do322vishoipypykpdsoxxkk4, Time to create DID & Keys : 32.866093ms
+2023-10-09T14:00:59.759Z [INFO]  Main.native_grpc.grpcclient: DID Created successfully
+2023-10-09T14:38:09.793Z [INFO]  Main.Core: DID : bafybmicyj3d3pexxv4vojwrkqd7rf67gmmggzrbbvdslmgslvewowrrai4, Time to create DID & Keys : 16.754196ms
+2023-10-09T14:38:11.715Z [INFO]  Main.native_grpc.grpcclient: DID Created successfully
+2023-10-09T14:50:17.186Z [INFO]  Main.Core: DID : bafybmih72jyn3fccnsqd3aha5wqqgxhba36sxzl67zwrmvppajgi6zmlpq, Time to create DID & Keys : 29.341796ms
+2023-10-09T14:50:18.525Z [INFO]  Main.native_grpc.grpcclient: DID Created successfully
+2023-10-09T14:53:01.781Z [INFO]  Main.Core: DID : bafybmigog7nfwfs7w2t2rgoclkhivut4gfh4ghuejuqtxcesw3owfvu2yi, Time to create DID & Keys : 24.700027ms
+2023-10-09T14:53:03.108Z [INFO]  Main.native_grpc.grpcclient: DID Created successfully
+2023-10-09T14:53:03.483Z [INFO]  Main.Core: DID : bafybmiekwszskv535sogipmfnyc3vwxcaesl6rl22jhpmlevpd6h3dhjdy, Time to create DID & Keys : 18.776411ms
+2023-10-09T14:53:03.972Z [INFO]  Main.native_grpc.grpcclient: DID Created successfully
+2023-10-11T03:59:32.515Z [INFO]  Main.Core: DID : bafybmiaseocns2jeixppxkpkuwkdlqqkq22tl4gj5m4varczhyphbjjbku, Time to create DID & Keys : 20.849241ms
+2023-10-11T03:59:34.464Z [INFO]  Main.native_grpc.grpcclient: DID Created successfully
+2023-10-11T07:14:23.375Z [INFO]  Main.Core: DID : bafybmifzxadmgxutiwd6lostgsvw463zc7uaxp5fgetap47m7moqw6cg5e, Time to create DID & Keys : 22.034179ms
+2023-10-11T07:14:25.380Z [INFO]  Main.native_grpc.grpcclient: DID Created successfully
+2023-10-11T08:47:14.194Z [INFO]  Main.Core: DID : bafybmihzamyxyr5pzfp33vyzkobfmd3creblljpk4v56twgbccrchpor64, Time to create DID & Keys : 29.427143ms
+2023-10-11T08:47:16.797Z [INFO]  Main.native_grpc.grpcclient: DID Created successfully
+2023-10-11T08:47:17.164Z [INFO]  Main.Core: DID : bafybmia4cyd7uswpiz2isg3fveegxnzetgprm3nfobnpxx7pb6ox6g6lkq, Time to create DID & Keys : 12.356582ms
+2023-10-11T08:47:17.772Z [INFO]  Main.native_grpc.grpcclient: DID Created successfully
+2023-10-11T08:47:18.128Z [INFO]  Main.Core: DID : bafybmiadysclbfc3ztthnmsig65mtgibzvmhehkgunxhii6irxw44g7rwa, Time to create DID & Keys : 21.801289ms
+2023-10-11T08:47:18.736Z [INFO]  Main.native_grpc.grpcclient: DID Created successfully
+2023-10-11T08:47:19.057Z [INFO]  Main.Core: DID : bafybmiharguudluzzcbc4sn5tnjtsm6zc4eawwttxwasqzdttvorfewkt4, Time to create DID & Keys : 18.895278ms
+2023-10-11T08:47:19.656Z [INFO]  Main.native_grpc.grpcclient: DID Created successfully
+2023-10-11T08:47:19.977Z [INFO]  Main.Core: DID : bafybmictnejcsku32obn5aqrxq4bx2zo7g6pzfg4hkka4dkxno63jec6je, Time to create DID & Keys : 10.749907ms
+2023-10-11T08:47:20.605Z [INFO]  Main.native_grpc.grpcclient: DID Created successfully
+2023-10-11T08:47:20.936Z [INFO]  Main.Core: DID : bafybmicaoedy3slvg2bm5salp56u5abppn4jl7v4m4vgpdmsmjh52ieyd4, Time to create DID & Keys : 15.04915ms
+2023-10-11T08:47:21.549Z [INFO]  Main.native_grpc.grpcclient: DID Created successfully
+2023-10-11T08:47:21.873Z [INFO]  Main.Core: DID : bafybmidrzowedmwm6mfetyaxdheqzucaitpfqmc3rgtdmenjo2cgo4kmb4, Time to create DID & Keys : 11.784703ms
+2023-10-11T08:47:22.472Z [INFO]  Main.native_grpc.grpcclient: DID Created successfully
+2023-10-11T08:47:22.777Z [INFO]  Main.Core: DID : bafybmihciti4g7id3zfesiuh7b5rnyo4z4pmaov5f7youyotoekkeknpoq, Time to create DID & Keys : 11.580347ms
+2023-10-11T08:47:23.375Z [INFO]  Main.native_grpc.grpcclient: DID Created successfully
+2023-10-11T08:47:23.689Z [INFO]  Main.Core: DID : bafybmidcgj642fasz6hp7osnb4tll4fnjg5hej35425uochkpx5assajnq, Time to create DID & Keys : 11.974388ms
+2023-10-11T08:47:24.281Z [INFO]  Main.native_grpc.grpcclient: DID Created successfully
+2023-10-11T08:49:49.838Z [INFO]  Main.Core: DID : bafybmihvxitf4zq4dhzfclw52mtrhzkv6uaza7yhhd4725nigwhy5w2piq, Time to create DID & Keys : 22.770554ms
+2023-10-11T08:49:51.116Z [INFO]  Main.native_grpc.grpcclient: DID Created successfully
+2023-10-11T14:18:46.195Z [INFO]  Main.Core: DID : bafybmiblbgw4rc4j5qjcjisv7nns37b7ew7bb4yjvxhntludf3aifo5y4i, Time to create DID & Keys : 24.391061ms
+2023-10-11T14:18:48.445Z [INFO]  Main.native_grpc.grpcclient: DID Created successfully
+2023-10-12T11:12:38.614Z [INFO]  Main.Core: DID : bafybmif45blwvspxwrwbfjhqpgvb42d7gfms7syah2vubnk6ryu5ymzusq, Time to create DID & Keys : 13.920198ms
+2023-10-12T11:12:40.270Z [INFO]  Main.native_grpc.grpcclient: DID Created successfully
+2023-10-12T12:02:03.859Z [INFO]  Main.Core: DID : bafybmidqruxz5adedorzbobv3rby6lgavchryocnjte4f3gqylcvui4rwi, Time to create DID & Keys : 24.183292ms
+2023-10-12T12:02:05.515Z [INFO]  Main.native_grpc.grpcclient: DID Created successfully
+2023-10-13T07:07:49.478Z [INFO]  Main.Core: DID : bafybmiga2ll4ahfkywlmgna6uysfsi6yabeflqv5xvuwsgfzhnlmb52stq, Time to create DID & Keys : 28.336909ms
+2023-10-13T07:07:51.670Z [INFO]  Main.native_grpc.grpcclient: DID Created successfully
+2023-10-13T08:41:35.776Z [INFO]  Main.Core: DID : bafybmibpopwurcrtwnsoqry77ibsuaynmcktv52psgkxjiemaprhagl2hm, Time to create DID & Keys : 17.771146ms
+2023-10-13T08:41:37.517Z [INFO]  Main.native_grpc.grpcclient: DID Created successfully
+2023-10-13T09:45:45.353Z [INFO]  Main.Core: DID : bafybmifekostmphww5drgiwuo2euarnifqcggtrz3piqeu6a6sbjfumoni, Time to create DID & Keys : 14.777192ms
+2023-10-13T09:45:47.118Z [INFO]  Main.native_grpc.grpcclient: DID Created successfully
+2023-10-13T11:23:27.257Z [INFO]  Main.Core: DID : bafybmiagyhszvnm4vpoq4e4nfnzrrvhwfvgwjv2ticobvvx6ytypn4efye, Time to create DID & Keys : 33.312914ms
+2023-10-13T11:23:29.082Z [INFO]  Main.native_grpc.grpcclient: DID Created successfully
+2023-10-15T04:42:31.776Z [INFO]  Main.Core: DID : bafybmid533xzw6tumrkxtmre6to6q5jdkay2dw5y5jfqwuo2ne5cdmh4my, Time to create DID & Keys : 21.867205ms
+2023-10-15T04:42:34.051Z [INFO]  Main.native_grpc.grpcclient: DID Created successfully
+2023-10-16T06:58:21.585Z [INFO]  Main.Core: DID : bafybmif2rpze3icpstpqacffx64fe6sbwity2k7oy4qsbkl2zbqaxfpage, Time to create DID & Keys : 21.156ms
+2023-10-16T06:58:24.021Z [INFO]  Main.native_grpc.grpcclient: DID Created successfully
+2023-10-16T08:52:17.416Z [INFO]  Main.Core: DID : bafybmifjq3bvfpb3zxj2e66jd57grbl3ejslev5lob5ot4mx42iv6ssnha, Time to create DID & Keys : 23.082129ms
+2023-10-16T08:52:19.450Z [INFO]  Main.native_grpc.grpcclient: DID Created successfully
+2023-10-19T13:36:29.288Z [INFO]  Main.Core: DID : bafybmiedyxapusj3agqmumooqtexrmgzeugxuc6k3sdvvu7iwl3rig3j74, Time to create DID & Keys : 20.281298ms
+2023-10-19T13:36:31.326Z [INFO]  Main.native_grpc.grpcclient: DID Created successfully
+2023-11-03T05:41:23.132Z [INFO]  Main.Core: DID : bafybmich3xy6mamaif4ujogyexi3r7zu5prmgfsjsdrr63zxa7n57mx364, Time to create DID & Keys : 12.134262ms
+2023-11-03T05:41:24.817Z [INFO]  Main.native_grpc.grpcclient: DID Created successfully
+2023-11-08T06:44:50.397Z [ERROR] Main.Core: Failed to validate token: err="token is malformed: token contains an invalid number of segments"
+2023-11-09T05:07:33.151Z [INFO]  Main.Core: DID : bafybmidterjchtwe52ocjcw6nxmdnvm4xxkhxdpzsqt5q7pn2rzixtibpu, Time to create DID & Keys : 18.602691ms
+2023-11-09T05:07:34.391Z [INFO]  Main.native_grpc.grpcclient: DID Created successfully
+2023-11-09T05:09:39.519Z [INFO]  Main.Core: DID : bafybmid5q35ea2cu6so5bsxvxv6fcoloyqzvmi753m7lpj6zcjkncu7wc4, Time to create DID & Keys : 14.434068ms
+2023-11-09T05:09:39.980Z [INFO]  Main.native_grpc.grpcclient: DID Created successfully
+2023-11-25T12:10:15.569Z [INFO]  Main.Core: DID : bafybmie7ka6237nj7ilod7g5clmhviunboem74bzqkkmijp4orm3f253pm, Time to create DID & Keys : 17.202451ms
+2023-11-25T12:10:17.607Z [INFO]  Main.native_grpc.grpcclient: DID Created successfully
+2023-11-28T17:41:59.858Z [INFO]  Main.Core: DID : bafybmigteh5hrc7r5h52y5p4b4ho3b7l7l7a74wjprw4yusimppceodjjy, Time to create DID & Keys : 33.971389ms
+2023-11-28T17:42:02.668Z [INFO]  Main.native_grpc.grpcclient: DID Created successfully
+2023-12-13T14:03:32.380+0530 [ERROR] Main.Core: Failed to create storage DB: err="mssql: login error: Cannot open server 'jms-iskcon' requested by the login. Client with IP address '13.235.145.208' is not allowed to access the server.  To enable access, use the Azure Management Portal or run sp_set_firewall_rule on the master database to create a firewall rule for this IP address or address range.  It may take up to five minutes for this change to take effect."
+2023-12-13T14:03:32.381+0530 [ERROR] Main: failed to create core
+2023-12-13T14:03:44.705+0530 [ERROR] Main.Core: Failed to create storage DB: err="mssql: login error: Cannot open server 'jms-iskcon' requested by the login. Client with IP address '13.235.145.208' is not allowed to access the server.  To enable access, use the Azure Management Portal or run sp_set_firewall_rule on the master database to create a firewall rule for this IP address or address range.  It may take up to five minutes for this change to take effect."
+2023-12-13T14:03:44.705+0530 [ERROR] Main: failed to create core
+2023-12-13T14:28:30.647+0530 [INFO]  Main.Core: Waiting for IPFS daemon to start
+2023-12-13T14:28:30.776+0530 [INFO]  Main.Core: Initializing daemon...
+2023-12-13T14:28:30.776+0530 [INFO]  Main.Core: Kubo version: 0.24.0
+2023-12-13T14:28:30.776+0530 [INFO]  Main.Core: Repo version: 15
+2023-12-13T14:28:30.777+0530 [INFO]  Main.Core: System version: amd64/linux
+2023-12-13T14:28:30.777+0530 [INFO]  Main.Core: Golang version: go1.21.3
+2023-12-13T14:28:30.778+0530 [INFO]  Main.Core: IPFS repo needs update
+2023-12-13T14:28:30.778+0530 [INFO]  Main.Core: Found outdated fs-repo, migrations need to be run.
+2023-12-13T14:28:30.779+0530 [INFO]  Main.Core: Run migrations now? [y/N] Looking for suitable migration binaries.
+2023-12-13T14:28:30.781+0530 [INFO]  Main.Core: Need 2 migrations, downloading.
+2023-12-13T14:28:30.785+0530 [INFO]  Main.Core: Downloading migration: fs-repo-13-to-14...
+2023-12-13T14:28:30.786+0530 [INFO]  Main.Core: Downloading migration: fs-repo-14-to-15...
+2023-12-13T14:28:30.786+0530 [INFO]  Main.Core: Fetching with HTTP: "https://dweb.link/ipfs/QmZPedUiZNe6Gq9oDvoizuuCMVoeb7shwq9xKhysq7exMo/fs-repo-14-to-15/versions"
+2023-12-13T14:28:30.786+0530 [INFO]  Main.Core: Fetching with HTTP: "https://dweb.link/ipfs/QmZPedUiZNe6Gq9oDvoizuuCMVoeb7shwq9xKhysq7exMo/fs-repo-13-to-14/versions"
+2023-12-13T14:28:31.525+0530 [INFO]  Main.Core: Fetching with HTTP: "https://dweb.link/ipfs/QmZPedUiZNe6Gq9oDvoizuuCMVoeb7shwq9xKhysq7exMo/fs-repo-13-to-14/v1.0.0/fs-repo-13-to-14_v1.0.0_linux-amd64.tar.gz"
+2023-12-13T14:28:31.526+0530 [INFO]  Main.Core: Fetching with HTTP: "https://dweb.link/ipfs/QmZPedUiZNe6Gq9oDvoizuuCMVoeb7shwq9xKhysq7exMo/fs-repo-14-to-15/v1.0.1/fs-repo-14-to-15_v1.0.1_linux-amd64.tar.gz"
+2023-12-13T14:28:32.191+0530 [INFO]  Main.Core: Downloaded and unpacked migration: /tmp/migrations3977935566/fs-repo-13-to-14 (v1.0.0)
+2023-12-13T14:28:32.193+0530 [INFO]  Main.Core: Downloaded and unpacked migration: /tmp/migrations3977935566/fs-repo-14-to-15 (v1.0.1)
+2023-12-13T14:28:32.194+0530 [INFO]  Main.Core: Running migration fs-repo-13-to-14 ...
+2023-12-13T14:28:32.194+0530 [INFO]  Main.Core:   => Running: /tmp/migrations3977935566/fs-repo-13-to-14 -path=iskonwallet/.ipfs -verbose=true
+2023-12-13T14:28:32.195+0530 [INFO]  Main.Core: applying 13-to-14 repo migration
+2023-12-13T14:28:32.195+0530 [INFO]  Main.Core: locking repo at "iskonwallet/.ipfs"
+2023-12-13T14:28:32.195+0530 [INFO]  Main.Core:   - verifying version is '13'
+2023-12-13T14:28:32.195+0530 [INFO]  Main.Core: > Upgrading config to new format
+2023-12-13T14:28:32.196+0530 [INFO]  Main.Core: updated version file
+2023-12-13T14:28:32.196+0530 [INFO]  Main.Core: Migration 13 to 14 succeeded
+2023-12-13T14:28:32.197+0530 [INFO]  Main.Core: Running migration fs-repo-14-to-15 ...
+2023-12-13T14:28:32.197+0530 [INFO]  Main.Core:   => Running: /tmp/migrations3977935566/fs-repo-14-to-15 -path=iskonwallet/.ipfs -verbose=true
+2023-12-13T14:28:32.198+0530 [INFO]  Main.Core: applying 14-to-15 repo migration
+2023-12-13T14:28:32.198+0530 [INFO]  Main.Core: locking repo at "iskonwallet/.ipfs"
+2023-12-13T14:28:32.198+0530 [INFO]  Main.Core:   - verifying version is '14'
+2023-12-13T14:28:32.198+0530 [INFO]  Main.Core: > Upgrading config to new format
+2023-12-13T14:28:32.199+0530 [INFO]  Main.Core: updated version file
+2023-12-13T14:28:32.199+0530 [INFO]  Main.Core: Migration 14 to 15 succeeded
+2023-12-13T14:28:32.199+0530 [INFO]  Main.Core: Success: fs-repo migrated to version 15.
+2023-12-13T14:28:37.281+0530 [INFO]  Main.Core: Swarm is limited to private network of peers with the swarm key
+2023-12-13T14:28:37.281+0530 [INFO]  Main.Core: Swarm key fingerprint: a5ef5059eede91e09c9994d112fd1e05
+2023-12-13T14:28:37.281+0530 [INFO]  Main.Core: Swarm listening on /ip4/127.0.0.1/tcp/4003
+2023-12-13T14:28:37.281+0530 [INFO]  Main.Core: Swarm listening on /ip4/172.17.0.1/tcp/4003
+2023-12-13T14:28:37.281+0530 [INFO]  Main.Core: Swarm listening on /ip4/172.31.14.220/tcp/4003
+2023-12-13T14:28:37.281+0530 [INFO]  Main.Core: Swarm listening on /ip6/::1/tcp/4003
+2023-12-13T14:28:37.281+0530 [INFO]  Main.Core: Swarm listening on /p2p-circuit
+2023-12-13T14:28:37.281+0530 [INFO]  Main.Core: Swarm announcing /ip4/127.0.0.1/tcp/4003
+2023-12-13T14:28:37.281+0530 [INFO]  Main.Core: Swarm announcing /ip4/172.31.14.220/tcp/4003
+2023-12-13T14:28:37.281+0530 [INFO]  Main.Core: Swarm announcing /ip6/::1/tcp/4003
+2023-12-13T14:28:37.282+0530 [INFO]  Main.Core: RPC API server listening on /ip4/127.0.0.1/tcp/5003
+2023-12-13T14:28:37.282+0530 [INFO]  Main.Core: WebUI: http://127.0.0.1:5003/webui
+2023-12-13T14:28:37.337+0530 [INFO]  Main.Core: Added migration file "fs-repo-13-to-14_v1.0.0_linux-amd64.tar.gz": /ipfs/QmSjsGhQVGxYX9wrFacM6goiMzs1uu8uFQmCaNQo2htU33
+2023-12-13T14:28:37.405+0530 [INFO]  Main.Core: Added migration file "fs-repo-14-to-15_v1.0.1_linux-amd64.tar.gz": /ipfs/QmU3M9F7rYdSt77ybFRCGLmccKTH2G4fAFeYXK4MCXrooD
+2023-12-13T14:28:37.407+0530 [INFO]  Main.Core: Gateway server listening on /ip4/127.0.0.1/tcp/8082
+2023-12-13T14:28:37.407+0530 [INFO]  Main.Core: IPFS Daemon is ready
+2023-12-13T14:28:37.411+0530 [INFO]  Main.Core: Node PeerID : 12D3KooWAebP2RqWGXQZDbFviZmdq2zdtmB7X8AczCm62GS9kaef
+2023-12-13T14:28:37.412+0530 [INFO]  Main.Core: Setting up the core
+2023-12-13T14:28:37.414+0530 [INFO]  Main.Core.PeerManager: Bootstrap swarm connected
+2023-12-13T14:28:42.417+0530 [ERROR] Main.Core.PeerManager: Bootstrap swarm failed to connect
+2023-12-13T14:28:47.420+0530 [ERROR] Main.Core.PeerManager: Bootstrap swarm failed to connect
+2023-12-13T14:28:47.502+0530 [INFO]  Main.Core: Starting the core
+2023-12-13T14:28:47.502+0530 [INFO]  Main.Core.enswebserver: Starting Server at localhost:22110
+2023-12-13T14:28:47.502+0530 [INFO]  Main.Core.enswebserver: Server running at : https://localhost:22110
+2023-12-13T14:28:47.502+0530 [INFO]  Main.grpc: GRPC Server created
+2023-12-13T14:28:47.503+0530 [ERROR] Main.grpc: failed to listen: err="listen tcp 127.0.0.1:10500: bind: address already in use"
+2023-12-13T14:30:19.121+0530 [INFO]  Main.Core: Waiting for IPFS daemon to start
+2023-12-13T14:30:19.151+0530 [INFO]  Main.Core: Initializing daemon...
+2023-12-13T14:30:19.151+0530 [INFO]  Main.Core: Kubo version: 0.24.0
+2023-12-13T14:30:19.151+0530 [INFO]  Main.Core: Repo version: 15
+2023-12-13T14:30:19.151+0530 [INFO]  Main.Core: System version: amd64/linux
+2023-12-13T14:30:19.151+0530 [INFO]  Main.Core: Golang version: go1.21.3
+2023-12-13T14:30:19.152+0530 [INFO]  Main.Core: 
+2023-12-13T14:30:19.154+0530 [INFO]  Main.Core: Node PeerID : 12D3KooWAebP2RqWGXQZDbFviZmdq2zdtmB7X8AczCm62GS9kaef
+2023-12-13T14:30:19.154+0530 [INFO]  Main.Core: Setting up the core
+2023-12-13T14:30:19.155+0530 [ERROR] Main.Core: failed to create ipfs listener: err="p2p/listen: listener already registered"
+2023-12-13T14:30:20.156+0530 [INFO]  Main.Core: IPFS daemon requested to close
+2023-12-13T14:30:20.156+0530 [INFO]  Main.Core: IPFS daemon finished
+2023-12-13T14:30:20.166+0530 [ERROR] Main.Rubixplatform: failed to create server: err="p2p/listen: listener already registered"
+2023-12-13T14:30:20.166+0530 [ERROR] Main: Failed to create server
+2023-12-13T14:44:10.726+0530 [INFO]  Main.Core: Waiting for IPFS daemon to start
+2023-12-13T14:44:10.757+0530 [INFO]  Main.Core: Initializing daemon...
+2023-12-13T14:44:10.757+0530 [INFO]  Main.Core: Kubo version: 0.24.0
+2023-12-13T14:44:10.757+0530 [INFO]  Main.Core: Repo version: 15
+2023-12-13T14:44:10.757+0530 [INFO]  Main.Core: System version: amd64/linux
+2023-12-13T14:44:10.758+0530 [INFO]  Main.Core: Golang version: go1.21.3
+2023-12-13T14:44:10.758+0530 [INFO]  Main.Core: 
+2023-12-13T14:44:10.760+0530 [INFO]  Main.Core: Node PeerID : 12D3KooWAebP2RqWGXQZDbFviZmdq2zdtmB7X8AczCm62GS9kaef
+2023-12-13T14:44:10.761+0530 [INFO]  Main.Core: Setting up the core
+2023-12-13T14:44:10.761+0530 [ERROR] Main.Core: failed to create ipfs listener: err="p2p/listen: listener already registered"
+2023-12-13T14:44:11.762+0530 [INFO]  Main.Core: IPFS daemon requested to close
+2023-12-13T14:44:11.763+0530 [INFO]  Main.Core: IPFS daemon finished
+2023-12-13T14:44:11.773+0530 [ERROR] Main.Rubixplatform: failed to create server: err="p2p/listen: listener already registered"
+2023-12-13T14:44:11.773+0530 [ERROR] Main: Failed to create server
+2023-12-14T00:43:12.339+0530 [INFO]  Main.Core: Waiting for IPFS daemon to start
+2023-12-14T00:43:12.369+0530 [INFO]  Main.Core: Initializing daemon...
+2023-12-14T00:43:12.369+0530 [INFO]  Main.Core: Kubo version: 0.24.0
+2023-12-14T00:43:12.369+0530 [INFO]  Main.Core: Repo version: 15
+2023-12-14T00:43:12.370+0530 [INFO]  Main.Core: System version: amd64/linux
+2023-12-14T00:43:12.370+0530 [INFO]  Main.Core: Golang version: go1.21.3
+2023-12-14T00:43:12.370+0530 [INFO]  Main.Core: 
+2023-12-14T00:43:12.374+0530 [INFO]  Main.Core: Node PeerID : 12D3KooWAebP2RqWGXQZDbFviZmdq2zdtmB7X8AczCm62GS9kaef
+2023-12-14T00:43:12.374+0530 [INFO]  Main.Core: Setting up the core
+2023-12-14T00:43:12.375+0530 [ERROR] Main.Core: failed to create ipfs listener: err="p2p/listen: listener already registered"
+2023-12-14T00:43:13.375+0530 [INFO]  Main.Core: IPFS daemon requested to close
+2023-12-14T00:43:13.375+0530 [INFO]  Main.Core: IPFS daemon finished
+2023-12-14T00:43:13.385+0530 [ERROR] Main.Rubixplatform: failed to create server: err="p2p/listen: listener already registered"
+2023-12-14T00:43:13.385+0530 [ERROR] Main: Failed to create server
