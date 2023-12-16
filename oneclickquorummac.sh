@@ -1,6 +1,8 @@
 #!/bin/bash
-logfile="/Users/saishibunb/Documents/GitHub/rubixgoplatform-develop/mac/rubixstartup.log"
-rubix_dir="/Users/saishibunb/Documents/GitHub/rubixgoplatform-develop/mac" 
+# logfile="/Users/saishibunb/Documents/GitHub/rubixgoplatform-develop/mac/rubixstartup.log"
+# rubix_dir="/Users/saishibunb/Documents/GitHub/rubixgoplatform-develop/mac" 
+logfile=$env_logfile
+rubix_dir=$env_rubix_dir
 
 # Function to add a timestamp to the logfile
 add_timestamp() {

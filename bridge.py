@@ -7,16 +7,23 @@ import json
 import os
 # import ipfshttpclient
 import ipfsapi
+from dotenv import load_dotenv
+load_dotenv()
 
 current_directory = os.getcwd()
 print("Current Directory:", current_directory)
 
-os.chdir("/home/ubuntu/rubix/RubixBridge")
+if os.path.isdir(os.getenv('env_WORK_DIR')):
+    print("Changing to working directory:", os.getenv('env_WORK_DIR'))
+    os.chdir(os.getenv('env_WORK_DIR'))
+else:
+    print("Working directory not found. Changing to current directory")
+    os.chdir(current_directory)
 
 # Define MongoDB connection information
-MONGO_HOST = "localhost"
-MONGO_PORT = 27017
-MONGO_DB = "jm"
+MONGO_HOST = os.getenv('env_MONGO_HOST')
+MONGO_PORT = os.getenv('env_MONGO_PORT')
+MONGO_DB = os.getenv('env_MONGO_DB')
 
 app = Flask(__name__)
 CORS(app)

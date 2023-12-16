@@ -1,0 +1,6 @@
+flask
+flask_cors
+pymongo
+ipfsapi
+geocoder
+python-dotenv
