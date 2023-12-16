@@ -22,7 +22,7 @@ else:
 
 # Define MongoDB connection information
 MONGO_HOST = os.getenv('env_MONGO_HOST')
-MONGO_PORT = os.getenv('env_MONGO_PORT')
+MONGO_PORT = int(os.getenv('env_MONGO_PORT'))
 MONGO_DB = os.getenv('env_MONGO_DB')
 
 app = Flask(__name__)
