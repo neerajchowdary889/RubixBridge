@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-from flask import Flask, request, jsonify, Response
+from flask import Flask, request, jsonify, Response, send_file , render_template, redirect, session, url_for, send_from_directory
 import requests,json, time, geocoder, sys
 from flask_cors import CORS
 from pymongo import MongoClient
@@ -8,6 +8,8 @@ import os
 # import ipfshttpclient
 import ipfsapi
 from dotenv import load_dotenv
+from Run_commands import get_only_cid, upload_to_ipfs, download_from_ipfs
+
 load_dotenv()
 
 current_directory = os.getcwd()
@@ -143,6 +145,7 @@ def createchildDID():
 
     # Get the user input for the field (e.g., "AM" or "ISK")
     user_input = request.args.get('app', '')
+    did_input = request.args.get('did', '')
 
     # Define a dictionary to map field values to ports
     # Define a dictionary to map field values to ports
@@ -158,7 +161,6 @@ def createchildDID():
     }
     #Default port (if the user input is not recognized)
     default_port = 2
-
     # Get the port based on user input; use the default if not found in the dictionary
     port = field_to_port.get(user_input, default_port)
     # Check if the user input is not recognized
@@ -173,7 +175,10 @@ def createchildDID():
     
     alldid = requests.get(alldidurl)
     alldid = json.loads(alldid.text)
-    parentDID = alldid['account_info'][0]['did']
+    if did_input:
+        parentDID = did_input
+    else:
+        parentDID = alldid['account_info'][0]['did']
     print(parentDID)
     start_time = time.time()
     # Define the API endpoint URL
@@ -449,7 +454,22 @@ def commitdt():
                 print(id)
                 signdata={"id":str(id),"mode":0,"password":"mypassword"}
                 signurl=f'http://localhost:{port}/api/signature-response'
-                print(signurl)
+                print(signurl)@app.route('/api/getfromipfs', methods=['POST','GET'])
+# def get_from_ipfs():
+#     if request.method == 'POST':
+
+#         CID = request.form['CID']
+#         print(CID)
+
+#         File = download_from_ipfs(CID=CID)
+
+#         print("Debugger")
+
+#         getFilepath(File)
+
+#         return {"message": "File downloaded successfully"}, 200
+    
+#     return render_template('upload.html')
                 try:
                     #calling signature API
                     signresponse = requests.post(signurl, data=json.dumps(signdata))
@@ -698,7 +718,100 @@ def fetchdt():
     # except:
     #     print("Error fetching data from IPFS:", e)
     #     # return (str())
-    		
+
+@app.route('/api/fetch_all', methods=['GET'])
+def fetch_all():
+    security(str(sys._getframe().f_code.co_name))
+    print("fetch_all")
+    start_time = time.time()
+
+    # Define a dictionary to map field values to ports
+    field_to_port = {
+        'AM': 20000,
+        'ISK':20001,
+        'V1': 20002,
+        'V2': 20003,
+        'V3': 20004,
+        'V4': 20005,
+        'V5': 20006,
+    }
+
+    # Default port (if the user input is not recognized)
+    default_port = 2
+
+    if os.path.exists('responses.json'):
+        with open("responses.json", "w") as file:
+        # Use the `truncate()` method to clear the file's content
+            file.truncate()
+        responses = []
+    else:
+        responses = []
+
+
+    for user_input in ['AM', 'ISK', 'V1', 'V2', 'V3', 'V4', 'V5']:
+        # Get the port based on user input; use the default if not found in the dictionary
+        port = field_to_port.get(user_input, default_port)
+
+        # Check if the user input is not recognized
+        if port == default_port:
+            error_message = f"Invalid Application: {user_input}."
+            return jsonify({'error': error_message}), 400  # Return a JSON error response with a 400 status code
+
+        # To get parentDID
+        parentdidurl = f'http://localhost:5050/api/createparentdid?app={user_input}'
+        print(parentdidurl) #http://localhost:5050/api/createparentdid?app=AM
+
+        alldid = requests.get(parentdidurl)
+        print(alldid.text)
+        alldid = json.loads(alldid.text)
+        parentDID = alldid['did']
+        print(parentDID)
+
+        # Add the user_input and default_port to the response
+        response = {
+            'did': parentDID,
+            'user_input': user_input,
+            'port': port
+        }
+
+        # Add the response to the list
+        responses.append(response)
+
+    # Save the responses to a JSON file
+    with open('responses.json', 'w') as file:
+        json.dump(responses, file)
+
+    return jsonify({'message': 'Data fetched and saved successfully.'}), 200
+
+def getFilepath(path) -> (bool,str,str):
+    try:
+        directory = os.path.dirname(path).split("Saving file(s) to")[-1].strip()
+        filename = os.path.basename(path) 
+        return(True,directory,filename)
+    except:
+        return(False,None,None)
+    
+@app.route('/api/getfromipfs', methods=['POST','GET'])
+def get_from_ipfs():
+    if request.method == 'POST':
+        CID = request.form['CID']
+        print(CID)
+        File = download_from_ipfs(
+            CID=CID
+            )
+        print(File)
+        status, directory, _filename = getFilepath(File)
+
+        if status:
+            try:
+                return {"message": "File Downloaded succesfully"}, 200
+            except Exception as e:
+                print(e)
+                return {"message": "File not found"}, 404
+        else:
+            return {"message": "File not found"}, 404
+    else:
+        return render_template('upload.html')
 
 
 if __name__ == '__main__':
