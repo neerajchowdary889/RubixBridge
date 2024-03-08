@@ -801,7 +801,7 @@ def turn_on_nodes():
     try:
         subprocess.call(["./oneclickquorum.sh"])
 
-        return jsonify({'message': 'Shell script executed successfully.'}), 200
+        return jsonify({'message': 'Shell script executed successfully. turning on the nodes'}), 200
     
     except subprocess.CalledProcessError as e:
         return jsonify({'message': 'Failed to execute shell script.', 'error': str(e)}), 500
@@ -818,7 +818,25 @@ def force_stop_nodes():
         # Run the stopservice.sh script with the ports as arguments
         subprocess.call(["./stopservice.sh"] + ports)
 
-        return jsonify({'message': 'Shell script executed successfully.'}), 200
+        return jsonify({'message': 'Shell script executed successfully. force stopping of nodes'}), 200
+    
+    except subprocess.CalledProcessError as e:
+        return jsonify({'message': 'Failed to execute shell script.', 'error': str(e)}), 500
+
+
+@app.route('/api/checkservice')
+def check_service():
+    try:
+        # Define the ports you want to stop services on
+        ports = [20000, 20001, 20002, 20003, 20004, 20005, 20006]
+
+        # Convert the ports to strings
+        ports = [str(port) for port in ports]
+
+        # Run the stopservice.sh script with the ports as arguments
+        subprocess.call(["./checkservice.sh"] + ports)
+
+        return jsonify({'message': 'Shell script executed successfully. node service check'}), 200
     
     except subprocess.CalledProcessError as e:
         return jsonify({'message': 'Failed to execute shell script.', 'error': str(e)}), 500
