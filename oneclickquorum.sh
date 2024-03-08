@@ -1,5 +1,4 @@
 #!/bin/bash
-source .env
 logfile=$env_logfile
 rubix_dir=$env_rubix_dir
 

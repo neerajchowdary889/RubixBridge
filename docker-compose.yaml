@@ -1,0 +1,54 @@
+version: '3.7'
+
+services:
+  mongodb:
+    image: mongo
+    # command: ["mongod", "--bind_ip", "0.0.0.0"]
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: pass
+    networks:
+      - testnet
+
+  mongoexpress:
+    image: mongo-express
+    ports:
+      - "5100:8081"
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: admin
+      ME_CONFIG_MONGODB_ADMINPASSWORD: pass
+      ME_CONFIG_MONGODB_SERVER: mongodb
+    networks:
+      - testnet
+    depends_on:
+      - "mongodb"
+
+  rubixbridge_flask:
+    build: .
+    volumes:
+      - /home/neeraj-xps/Codes/rubixgoplatform:/rubixgoplatform
+    ports:
+      - "5050:5050"
+      - "20000:20000"
+      - "20001:20001"
+      - "20002:20002"
+      - "20003:20003"
+      - "20004:20004"
+      - "20005:20005"
+      - "20006:20006"
+    environment:
+      - env_logfile=/rubixgoplatform/linux2/rubix.log
+      - env_rubix_dir=/rubixgoplatform/linux2
+      - env_MONGO_URL=mongodb://admin:pass@mongodb:27017/
+      - env_MONGO_PORT=27017
+      - env_MONGO_DB=jm
+      - env_WORK_DIR=/home/ubuntu/rubix/RubixBridge
+    networks:
+      - testnet
+    depends_on:
+      - "mongodb"
+
+networks:
+  testnet:

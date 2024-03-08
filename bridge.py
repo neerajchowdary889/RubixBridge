@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+import subprocess
 from flask import Flask, request, jsonify, Response, send_file , render_template, redirect, session, url_for, send_from_directory
 import requests,json, time, geocoder, sys
 from flask_cors import CORS
@@ -23,7 +24,7 @@ else:
     os.chdir(current_directory)
 
 # Define MongoDB connection information
-MONGO_HOST = os.getenv('env_MONGO_HOST')
+MONGO_HOST = os.getenv('env_MONGO_URL')
 MONGO_PORT = int(os.getenv('env_MONGO_PORT'))
 MONGO_DB = os.getenv('env_MONGO_DB')
 
@@ -36,7 +37,7 @@ def security(fname):
 		'clientAgent':str(request.headers.get('User-Agent')),
 		'clientIP':str(request.environ['REMOTE_ADDR']),
 		'API':fname}
-	mongo_client = MongoClient(MONGO_HOST, MONGO_PORT)
+	mongo_client = MongoClient(MONGO_HOST)
 	db = mongo_client[MONGO_DB]
 	MONGO_COLLECTION = "RubixBridgeAPILOG"
 	collection = db[MONGO_COLLECTION]
@@ -48,7 +49,7 @@ def security(fname):
 def createParentDID():
     security(str(sys._getframe().f_code.co_name))
     print("create ParentDID API")
-    mongo_client = MongoClient(MONGO_HOST, MONGO_PORT)
+    mongo_client = MongoClient(MONGO_HOST)
     db = mongo_client[MONGO_DB]
     MONGO_COLLECTION = "parentdid"
     collection = db[MONGO_COLLECTION]
@@ -123,10 +124,7 @@ def createParentDID():
              else:
                 print(message)
                 return message
-    #     else:
-    #  print(f"POST request failed with status code {response.status_code}")
-	# 		print("Response content:", response.text)
-	# 		return response.text
+
     except requests.exceptions.RequestException as e:
         print(f"An error occurred: {e}")
         end_time = time.time()
@@ -138,7 +136,7 @@ def createParentDID():
 def createchildDID():
     security(str(sys._getframe().f_code.co_name))
     print("create childDID API")
-    mongo_client = MongoClient(MONGO_HOST, MONGO_PORT)
+    mongo_client = MongoClient(MONGO_HOST)
     db = mongo_client[MONGO_DB]
     MONGO_COLLECTION = "childdid"
     collection = db[MONGO_COLLECTION]
@@ -244,8 +242,6 @@ def getalldid():
     # Get the user input for the field (e.g., "AM" or "ISK")
     user_input = request.args.get('app', '')
 
-    # Define a dictionary to map field values to ports
-    # Define a dictionary to map field values to ports
     field_to_port = {
         'AM': 20000,
         'ISK': 20001,
@@ -257,8 +253,7 @@ def getalldid():
         # Add more field-to-port mappings as needed
     }
 
-    # Default port (if the user input is not recognized)
-    #Default port (if the user input is not recognized)
+
     default_port = 2
 
     # Get the port based on user input; use the default if not found in the dictionary
@@ -399,7 +394,6 @@ def commitdt():
     # Get the user input for the field (e.g., "AM" or "ISK")
     user_input = request.args.get('app', '')
 
-    # # Define a dictionary to map field values to ports
     field_to_port = {
         'AM': 20000,
         'ISK': 20001,
@@ -408,10 +402,8 @@ def commitdt():
         'V3': 20004,
         'V4': 20005,
         'V5': 20006,
-    #     # Add more field-to-port mappings as needed
     }
 
-    # # Default port (if the user input is not recognized)
     
     default_port = 2
 
@@ -455,21 +447,7 @@ def commitdt():
                 signdata={"id":str(id),"mode":0,"password":"mypassword"}
                 signurl=f'http://localhost:{port}/api/signature-response'
                 print(signurl)@app.route('/api/getfromipfs', methods=['POST','GET'])
-# def get_from_ipfs():
-#     if request.method == 'POST':
 
-#         CID = request.form['CID']
-#         print(CID)
-
-#         File = download_from_ipfs(CID=CID)
-
-#         print("Debugger")
-
-#         getFilepath(File)
-
-#         return {"message": "File downloaded successfully"}, 200
-    
-#     return render_template('upload.html')
                 try:
                     #calling signature API
                     signresponse = requests.post(signurl, data=json.dumps(signdata))
@@ -485,7 +463,6 @@ def commitdt():
         else:
             return jsonify(response.text)
 
-        # return jsonify(response.text)
     
     
     except requests.exceptions.RequestException as e:
@@ -513,7 +490,7 @@ def shutdownall():
         
         try:
             response = requests.get(url)
-            # print(port, response.status_code)
+            print(port, response.status_code)
             if response.status_code == 200:
                 node_statuses[node_name] = "Shutdown complete"
             else:
@@ -557,7 +534,6 @@ def testAllNodes():
 def createquorum():
     security(str(sys._getframe().f_code.co_name))
     user_input = request.args.get('app', '')
-    # Define a dictionary to map field values to ports
     field_to_port = {
         'AM': 20000,
         'ISK': 20001,
@@ -566,17 +542,14 @@ def createquorum():
         'V3': 20004,
         'V4': 20005,
         'V5': 20006,
-        # Add more field-to-port mappings as needed
     }
 
-    # Default port (if the user input is not recognized)
-    #Default port (if the user input is not recognized)
     default_port = 2
 
     # Get the port based on user input; use the default if not found in the dictionary
     port = field_to_port.get(user_input, default_port)
     # Connect to MongoDB (assuming it's running on localhost, default port)
-    client = MongoClient(MONGO_HOST, MONGO_PORT)
+    client = MongoClient(MONGO_HOST)
 
     # Select the MongoDB database and collection where your records are stored
     db = client[MONGO_DB]
@@ -614,7 +587,6 @@ def createquorum():
 def getallquorum():
     security(str(sys._getframe().f_code.co_name))
     user_input = request.args.get('app', '')
-    # Define a dictionary to map field values to ports
     field_to_port = {
         'AM': 20000,
         'ISK': 20001,
@@ -623,11 +595,7 @@ def getallquorum():
         'V3': 20004,
         'V4': 20005,
         'V5': 20006,
-        # Add more field-to-port mappings as needed
     }
-
-    # Default port (if the user input is not recognized)
-    #Default port (if the user input is not recognized)
     default_port = 2
 
     # Get the port based on user input; use the default if not found in the dictionary
@@ -715,11 +683,8 @@ def fetchdt():
     print(decoded_data)
     client.close()
     return (str(decoded_data))
-    # except:
-    #     print("Error fetching data from IPFS:", e)
-    #     # return (str())
 
-@app.route('/api/fetch_all', methods=['GET'])
+@app.route("/api/fetchall", methods=['GET'])
 def fetch_all():
     security(str(sys._getframe().f_code.co_name))
     print("fetch_all")
@@ -813,6 +778,50 @@ def get_from_ipfs():
     else:
         return render_template('upload.html')
 
+@app.route('/test/add', methods=['POST'])
+def add_to_mongo():
+    data = request.get_json()
+
+    try:
+        mongo_client = MongoClient(MONGO_HOST)
+        db = mongo_client[MONGO_DB]
+        MONGO_COLLECTION = "test"
+        collection = db[MONGO_COLLECTION]
+
+        momgodid=data
+        collection.insert_one(momgodid)
+        mongo_client.close()
+
+        return jsonify({'message': 'Data inserted successfully.'}), 200
+    except Exception as e:
+        return jsonify({'message': 'Data not inserted.', 'error': str(e)}), 500
+
+@app.route('/api/turnonnodes')
+def turn_on_nodes():
+    try:
+        subprocess.call(["./oneclickquorum.sh"])
+
+        return jsonify({'message': 'Shell script executed successfully.'}), 200
+    
+    except subprocess.CalledProcessError as e:
+        return jsonify({'message': 'Failed to execute shell script.', 'error': str(e)}), 500
+
+@app.route('/api/forcestopnodes')
+def force_stop_nodes():
+    try:
+        # Define the ports you want to stop services on
+        ports = [20000, 20001, 20002, 20003, 20004, 20005, 20006]
+
+        # Convert the ports to strings
+        ports = [str(port) for port in ports]
+
+        # Run the stopservice.sh script with the ports as arguments
+        subprocess.call(["./stopservice.sh"] + ports)
+
+        return jsonify({'message': 'Shell script executed successfully.'}), 200
+    
+    except subprocess.CalledProcessError as e:
+        return jsonify({'message': 'Failed to execute shell script.', 'error': str(e)}), 500
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5050, debug=True)
