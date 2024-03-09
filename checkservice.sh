@@ -7,7 +7,7 @@ do
 
     # Find the PID of the service running on the port
     pid=$(lsof -t -i:$port)
-    # echo "PID: $pid"
+    echo "PID: $pid"
 
     if [ -n "$pid" ]; then
         echo "Service running on port $port --> PID: $pid"

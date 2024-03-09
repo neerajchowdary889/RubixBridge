@@ -3,7 +3,6 @@ version: '3.7'
 services:
   mongodb:
     image: mongo
-    # command: ["mongod", "--bind_ip", "0.0.0.0"]
     ports:
       - "27017:27017"
     environment:
@@ -11,6 +10,7 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: pass
     networks:
       - testnet
+
 
   mongoexpress:
     image: mongo-express
@@ -25,12 +25,15 @@ services:
     depends_on:
       - "mongodb"
 
-  rubixbridge_flask:
-    build: .
+
+  rubixgoplatform:
+    build:
+      context: /home/neeraj-xps/Codes/rubixgoplatform
+      dockerfile: Dockerfile.multistage
+    user: root
     volumes:
-      - /home/neeraj-xps/Codes/rubixgoplatform:/rubixgoplatform
+      - shared_volume:/linux1
     ports:
-      - "5050:5050"
       - "20000:20000"
       - "20001:20001"
       - "20002:20002"
@@ -38,9 +41,35 @@ services:
       - "20004:20004"
       - "20005:20005"
       - "20006:20006"
+      - "20007:20007"
+      - "20008:20008"
+      - "20009:20009"
+    networks:
+      - testnet
+    depends_on:
+      - "mongodb"
+
+
+  rubixbridge_flask:
+    build: .
+    user: root
+    volumes:
+      - shared_volume:/linux1
+    ports:
+      - "5050:5050"
+      # - "20000:20000"
+      # - "20001:20001"
+      # - "20002:20002"
+      # - "20003:20003"
+      # - "20004:20004"
+      # - "20005:20005"
+      # - "20006:20006"
+      # - "20007:20007"
+      # - "20008:20008"
+      # - "20009:20009"
     environment:
-      - env_logfile=/rubixgoplatform/linux2/rubix.log
-      - env_rubix_dir=/rubixgoplatform/linux2
+      - env_logfile=/linux1/rubix.log
+      - env_rubix_dir=/linux1
       - env_MONGO_URL=mongodb://admin:pass@mongodb:27017/
       - env_MONGO_PORT=27017
       - env_MONGO_DB=jm
@@ -48,7 +77,12 @@ services:
     networks:
       - testnet
     depends_on:
-      - "mongodb"
+      - "rubixgoplatform"
+
 
 networks:
   testnet:
+
+
+volumes:
+  shared_volume:

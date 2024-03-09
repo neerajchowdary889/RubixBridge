@@ -840,6 +840,24 @@ def check_service():
     
     except subprocess.CalledProcessError as e:
         return jsonify({'message': 'Failed to execute shell script.', 'error': str(e)}), 500
+    
+@app.route('/test/showcontent')
+def show_content():
+    try:
+        # Get the directory from the environment variable
+        directory = os.environ.get('env_rubix_dir')
+
+        # Check if the directory is not None
+        if directory is None:
+            raise ValueError("env_rubix_dir environment variable is not set.")
+
+        # Get a list of files in the directory
+        files = os.listdir(directory)
+
+        return jsonify({'message': 'Files listed successfully.', 'files': files}), 200
+    
+    except Exception as e:
+        return jsonify({'message': 'Failed to list files.', 'error': str(e)}), 500
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5050, debug=True)
