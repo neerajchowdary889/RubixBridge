@@ -10,9 +10,16 @@
    - You are all set. Now, you don't need to make changes anywhere in the codebase. You can manage everything just by editing the .env file.
 
 ## To run as docker network
-1. **Prerequisite: Set up the `rubixgoplatform` codebase for Docker**
-   - I need to manage Git permissions before uploading it to GitHub.
-   - Documentation for this process will be provided shortly.
+1. **Prerequisite: Set up the *rubixgoplatform-docker* codebase for Docker**
+   - Ensure that you have IPFS Kubo installed on your PC.
+   - Clone rubixgoplatform-docker repository 
+   ```https://github.com/neerajchowdary889/rubixgoplatform-docker.git```
+   - (Optional but Recommended) It is highly recommended to change the repository name to `rubixgoplatform` to avoid confusion. I added the `-docker` suffix to differentiate this repository from the original Rubixchain repository.
+   - Open a terminal, navigate to the rubixgoplatform directory, and execute the command
+   ```cp /usr/local/bin/ipfs .```
+   - Copy the path of rubixgoplatform, which will be helpful in further steps.
+   - (Optional) To create a Docker container that can run as an orphan container, open a terminal and execute this command: 
+   ```docker build -t rubixgoplatform:multistage -f Dockerfile.multistage .```
 
 2. **Open docker-compose.yaml file**
    - go to rubixgoplatform container section in the file
