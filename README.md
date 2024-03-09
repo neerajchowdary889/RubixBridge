@@ -1,102 +1,61 @@
 # Setting Up rubixgoplatform and Running the Quorum
 
+## To run in Local PC (Non-docker setup)
+1. **Setting up .env**
+   - Navigate to .env.example and provide the required absolute paths for rubixgoplatform. Ensure to follow the path format shown in the examples within .env.example. 
+   - Give required mongodb host address and port number.
+   - make .env.example into .env file by removing .example suffix.
 
-## Windows Installation
+2. **Get to go**
+   - You are all set. Now, you don't need to make changes anywhere in the codebase. You can manage everything just by editing the .env file.
 
-1. **Add to System PATH**:
-   - Right-click on the "Start" button and select "System."
-   - In the System window, click on "Advanced system settings" on the left-hand side.
-   - In the System Properties window, click on the "Environment Variables" button.
-   - Under "User variables" or "System variables," locate the "Path" variable, select it, and click on the "Edit" button.
-   - In the Edit Environment Variable window, click on the "New" button and add the path to the directory where `rubixgoplatform` is located (e.g., `C:\path\to\rubixgoplatform\directory`).
-   - Click "OK" to close each window, confirming the changes.
-   - You may need to restart any open command prompts or applications to apply the changes.
+## To run as docker network
+1. **Prerequisite: Set up the `rubixgoplatform` codebase for Docker**
+   - I need to manage Git permissions before uploading it to GitHub.
+   - Documentation for this process will be provided shortly.
 
-## macOS (formerly OS X) Installation
+2. **Open docker-compose.yaml file**
+   - go to rubixgoplatform container section in the file
+   ```  
+   rubixgoplatform:
+    build:
+      context: /home/neeraj-xps/Codes/rubixgoplatform
+      dockerfile: Dockerfile.multistage
+    user: root
+    volumes:
+      - shared_volume:/linux1
+    ports:
+      - "20000:20000"
+      - "20001:20001"
+      - "20002:20002"
+      - "20003:20003"
+      - "20004:20004"
+      - "20005:20005"
+      - "20006:20006"
+      - "20007:20007"
+      - "20008:20008"
+      - "20009:20009"
+    networks:
+      - testnet
+    depends_on:
+      - "mongodb"
+   ```
 
-1. **Edit Shell Profile**:
-   - Open the Terminal application.
+   - edit context path to your rubixgoplatform codebase's path. 
 
-2. **Edit Shell Profile**:
-   - For Bash:
-     ```bash
-     nano ~/.bash_profile
-     ```
-   - For Zsh:
-     ```bash
-     nano ~/.zshrc
-     ```
+   - make sure all the listed ports are not occupied. To check use this command (it won't work in windows)
+   ```./checkservice.sh 20000 20001 20002 20003 20004 20005 20006 20007 20008 20009```
 
-3. **Add the Directory to PATH**:
-   - Add the following line to the file, replacing `/path/to/rubixgoplatform/directory` with the actual path to the directory:
-     ```bash
-     export PATH="/path/to/rubixgoplatform/directory:$PATH"
-     ```
+   - to force-quit all the running services on that port using this command (it won't work in windows)
+   ```./stopservice.sh 20000 20001 20002 20003 20004 20005 20006 20007 20008 20009```
 
-4. **Save and Exit**:
-   - In Nano, press `Ctrl + O` to save the file and `Ctrl + X` to exit.
+3. **Build up Docker Network using docker-compose**
+   - Open terminal and run this command to build the Docker Network.
+   ``` docker-compose build rubixbridge_flask ```
 
-5. **Apply the Changes**:
-   - In the Terminal, run the following command to apply the changes to your current session:
-     ```bash
-     source ~/.bash_profile  # For Bash
-     # OR
-     source ~/.zshrc         # For Zsh
-     ```
+   - Open another terminal and run this command to run the Docket Network.
+   ``` docker-compose -f docker-compose.yaml up ```
 
-## Linux Installation
-
-1. **Edit Shell Profile**:
-   - Open a terminal.
-
-2. **Edit Shell Profile**:
-   - For Bash:
-     ```bash
-     nano ~/.bashrc
-     ```
-   - For Zsh:
-     ```bash
-     nano ~/.zshrc
-     ```
-
-3. **Add the Directory to PATH**:
-   - Add the following line to the file, replacing `/path/to/rubixgoplatform/directory` with the actual path to the directory:
-     ```bash
-     export PATH="/path/to/rubixgoplatform/directory:$PATH"
-     ```
-
-4. **Save and Exit**:
-   - In Nano, press `Ctrl + O` to save the file and `Ctrl + X` to exit.
-
-5. **Apply the Changes**:
-   - In the terminal, run the following command to apply the changes to your current session:
-     ```bash
-     source ~/.bashrc  # For Bash
-     # OR
-     source ~/.zshrc  # For Zsh
-     ```
-
-## Running 7 Nodes Quorum
-
-Now that you have `rubixgoplatform` set up systemwide, you can run 7 nodes using the following script:
-
-```bash
-#!/bin/bash
-logfile="/home/ubuntu/cronlog/rubixstartup.log"
-echo "Starting sessions" >> $logfile
-
-base_port=20000
-base_grpc_port=10500
-
-for ((i=1; i<=7; i++)); do
-  port=$((base_port + i - 1))
-  grpc_port=$((base_grpc_port + i - 1))
-  screen -dmS "node$i" /home/ubuntu/rubix/rubixgoplatform/linux/rubixgoplatform run -p "node$i" -n "$i" -s -port "$port" -testNet -grpcPort "$grpc_port"
-  echo "Started session for node$i, port: $port, grpcPort: $grpc_port" >> $logfile
-done
-
-echo "All sessions started" >> $logfile
-  ```
 
 # Running oneclickquorum.sh Script
 
