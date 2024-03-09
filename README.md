@@ -63,6 +63,10 @@
    - Open another terminal and run this command to run the Docket Network.
    ``` docker-compose -f docker-compose.yaml up ```
 
+4. **Use Mongo-express to view the data**
+   - Open your browser and enter the URL: `localhost:5100`.
+   - Enter your credentials: Username - `admin`, Password - `pass`.
+   - Now, you can view the data that has been appended to the local MongoDB dockerized cluster.
 
 # Running oneclickquorum.sh Script
 
