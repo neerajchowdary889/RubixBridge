@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+import stat
 import subprocess
 from flask import Flask, request, jsonify, Response, send_file , render_template, redirect, session, url_for, send_from_directory
 import requests,json, time, geocoder, sys
@@ -6,10 +7,11 @@ from flask_cors import CORS
 from pymongo import MongoClient
 import json
 import os
-# import ipfshttpclient
+import re
 import ipfsapi
 from dotenv import load_dotenv
 from Run_commands import get_only_cid, upload_to_ipfs, download_from_ipfs
+from mnemonic import Mnemonic
 
 load_dotenv()
 
@@ -67,6 +69,9 @@ def createParentDID():
 		'V3': 20004,
 		'V4': 20005,
 		'V5': 20006,
+        'V6': 20007,
+        'V7': 20008,
+        'V8': 20009,
 	}
         # Add more field-to-port mappings as needed
 		
@@ -232,15 +237,155 @@ def createchildDID():
         end_time = time.time()
         elapsed_time = end_time - start_time
         return (str(e))
-    
+
+@app.route('/test/getmnemonic', methods=['GET'])
+def getmnemonic():
+    security(str(sys._getframe().f_code.co_name))
+    mnemo = Mnemonic("english")
+    mnemonic_phrase = mnemo.generate(strength=256)
+    return jsonify({'mnemonic': mnemonic_phrase})
+
+def create_text_file(data) -> bool:
+    try:
+        with open ('mnemonic/mneonic.txt', 'w') as f:
+            f.write(data)
+        return True
+    except Exception as e:
+        print("Creating TextFile Error:", e)
+        return False
+
+@app.route('/api/makeType4DID', methods=['POST'])
+def MakeType4DID():
+    try:
+        security(str(sys._getframe().f_code.co_name))
+        path = r'/home/neeraj/Codes/rubixgoplatform/linux/'
+
+        os.chdir(path)
+
+        command = "./rubixgoplatform createdid -testNet -didType 4"
+        process = subprocess.run(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+
+        stderr_lines = process.stderr.decode('utf-8').splitlines()
+
+        DIDs = set()
+        for line in stderr_lines:
+            if 'DID' in line:
+                words = line.split()
+                for i, word in enumerate(words):
+                    if word == 'DID':
+                        did = words[i + 1] 
+                        DIDs.add(did)
+                        break
+
+        def get_mnemonic_content(did):
+            mnemonic_path = os.path.join(path, 'node0', 'Rubix', 'TestNetDID', did, 'mnemonic.txt')
+            if os.path.exists(mnemonic_path):
+                with open(mnemonic_path, 'r') as file:
+                    content = file.read()
+                return content
+            else:
+                return None
+
+        mnemonic_contents = {
+            "DID":"",
+            'Mnemonic':""
+        }
+        for did in DIDs:
+            content = get_mnemonic_content(did)
+            if content:
+                mnemonic_contents["DID"] = did
+                mnemonic_contents['Mnemonic'] = content
+            else:
+                mnemonic_contents[did] = "mnemonic.txt not found"
+
+        return jsonify(mnemonic_contents), 200
+
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/api/getDIDfromMnemonic', methods=['GET'])
+def getDIDfromMnemonic():
+    try:
+        security(str(sys._getframe().f_code.co_name))
+        path = r'/home/neeraj/Codes/rubixgoplatform/linux/'
+        data = request.get_json()
+        Mnemonic = data.get('Mnemonic')
+
+        os.chdir(path)
+
+        command = f"./rubixgoplatform createdid -testNet -mnemonic {Mnemonic}"
+        process = subprocess.run(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+
+        stderr_lines = process.stderr.decode('utf-8').splitlines()
+
+        DIDs = set()
+        for line in stderr_lines:
+            if 'DID' in line:
+                words = line.split()
+                for i, word in enumerate(words):
+                    if word == 'DID':
+                        did = words[i + 1] 
+                        DIDs.add(did)
+                        break
+        
+        mnemonic_contents= {
+            "DID":""
+        }
+
+        for did in DIDs:
+            mnemonic_contents["DID"] = did
+        return jsonify(mnemonic_contents), 200
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
 #Get all DIDs
 @app.route('/api/getalldid', methods=['GET'])
 def getalldid():
     security(str(sys._getframe().f_code.co_name))
     print("GetallDID API")
 
-    # Get the user input for the field (e.g., "AM" or "ISK")
     user_input = request.args.get('app', '')
+
+    field_to_port = {
+		'AM': 20000,
+		'ISK': 20001,
+		'V1': 20002,
+		'V2': 20003,
+		'V3': 20004,
+		'V4': 20005,
+		'V5': 20006,
+        'V6': 20007,
+        'V7': 20008,
+        'V8': 20009,
+    }
+
+
+    default_port = 2
+
+
+    port = field_to_port.get(user_input, default_port)
+
+    if port == default_port:
+        error_message = f"Invalid Application: {user_input}."
+        return jsonify({'error': error_message}), 400
+    
+    alldidurl = f'http://localhost:{port}/api/getalldid'
+
+    try:
+        response = requests.get(alldidurl)
+
+        if response.status_code == 200:
+            return json.loads(response.text)
+        else:
+            return json.loads(response.text)
+
+    except requests.exceptions.RequestException as e:
+        return (str(e))
+
+@app.route('/api/geteverydid', methods=['GET'])
+def geteverydid():
+    security(str(sys._getframe().f_code.co_name))
+    print("GetallDID API")
 
     field_to_port = {
         'AM': 20000,
@@ -250,34 +395,32 @@ def getalldid():
         'V3': 20004,
         'V4': 20005,
         'V5': 20006,
-        # Add more field-to-port mappings as needed
+        'V6': 20007,
+        'V7': 20008,
+        'V8': 20009,
     }
 
+    all_dids = {}
 
-    default_port = 2
+    # Iterate over all nodes
+    for node, port in field_to_port.items():
+        # Define the API endpoint URL
+        alldidurl = f'http://localhost:{port}/api/getalldid'
 
-    # Get the port based on user input; use the default if not found in the dictionary
-    port = field_to_port.get(user_input, default_port)
-    # Check if the user input is not recognized
-    if port == default_port:
-        error_message = f"Invalid Application: {user_input}."
-        return jsonify({'error': error_message}), 400  # Return a JSON error response with a 400 status code
-    
-    # Define the API endpoint URL
-    alldidurl = f'http://localhost:{port}/api/getalldid'
+        try:
+            response = requests.get(alldidurl)
 
-    try:
-        response = requests.get(alldidurl)
+            # Check the response status code
+            if response.status_code == 200:
+                # Request was successful, add the DID to the dictionary
+                all_dids[node] = json.loads(response.text)
+            else:
+                all_dids[node] = "Error: " + response.text
 
-    # Check the response status code
-        if response.status_code == 200:
-        # Request was successful
-            return json.loads(response.text)
-        else:
-            return json.loads(response.text)
+        except requests.exceptions.RequestException as e:
+            all_dids[node] = "Error: " + str(e)
 
-    except requests.exceptions.RequestException as e:
-        return (str(e))
+    return jsonify(all_dids)
 
 @app.route('/api/savedatatoken', methods=['POST'])
 def save_json():
@@ -309,20 +452,18 @@ def createdt():
     # Get the user input for the field (e.g., "AM" or "ISK")
     user_input = request.args.get('app', '')
 
-    # # Define a dictionary to map field values to ports
-    # # Define a dictionary to map field values to ports
     field_to_port = {
-        'AM': 20000,
-        'ISK': 20001,
-        'V1': 20002,
-        'V2': 20003,
-        'V3': 20004,
-        'V4': 20005,
-        'V5': 20006,
-    #     # Add more field-to-port mappings as needed
+		'AM': 20000,
+		'ISK': 20001,
+		'V1': 20002,
+		'V2': 20003,
+		'V3': 20004,
+		'V4': 20005,
+		'V5': 20006,
+        'V6': 20007,
+        'V7': 20008,
+        'V8': 20009,
     }
-
-    # # Default port (if the user input is not recognized)
     
     default_port = 2
 
@@ -395,13 +536,16 @@ def commitdt():
     user_input = request.args.get('app', '')
 
     field_to_port = {
-        'AM': 20000,
-        'ISK': 20001,
-        'V1': 20002,
-        'V2': 20003,
-        'V3': 20004,
-        'V4': 20005,
-        'V5': 20006,
+		'AM': 20000,
+		'ISK': 20001,
+		'V1': 20002,
+		'V2': 20003,
+		'V3': 20004,
+		'V4': 20005,
+		'V5': 20006,
+        'V6': 20007,
+        'V7': 20008,
+        'V8': 20009,
     }
 
     
@@ -476,13 +620,16 @@ def shutdownall():
     node_statuses = {}
 
     node_to_port = {
-        'AM': 20000,
-        'ISK': 20001,
-        'V1': 20002,
-        'V2': 20003,
-        'V3': 20004,
-        'V4': 20005,
-        'V5': 20006,
+		'AM': 20000,
+		'ISK': 20001,
+		'V1': 20002,
+		'V2': 20003,
+		'V3': 20004,
+		'V4': 20005,
+		'V5': 20006,
+        'V6': 20007,
+        'V7': 20008,
+        'V8': 20009,
     }
 
     for node_name, port in node_to_port.items():
@@ -506,13 +653,16 @@ def testAllNodes():
     node_statuses = {}
 
     node_to_port = {
-        'AM': 20000,
-        'ISK': 20001,
-        'V1': 20002,
-        'V2': 20003,
-        'V3': 20004,
-        'V4': 20005,
-        'V5': 20006,
+		'AM': 20000,
+		'ISK': 20001,
+		'V1': 20002,
+		'V2': 20003,
+		'V3': 20004,
+		'V4': 20005,
+		'V5': 20006,
+        'V6': 20007,
+        'V7': 20008,
+        'V8': 20009,
     }
 
     for node_name, port in node_to_port.items():
@@ -535,13 +685,16 @@ def createquorum():
     security(str(sys._getframe().f_code.co_name))
     user_input = request.args.get('app', '')
     field_to_port = {
-        'AM': 20000,
-        'ISK': 20001,
-        'V1': 20002,
-        'V2': 20003,
-        'V3': 20004,
-        'V4': 20005,
-        'V5': 20006,
+		'AM': 20000,
+		'ISK': 20001,
+		'V1': 20002,
+		'V2': 20003,
+		'V3': 20004,
+		'V4': 20005,
+		'V5': 20006,
+        'V6': 20007,
+        'V7': 20008,
+        'V8': 20009,
     }
 
     default_port = 2
@@ -570,6 +723,7 @@ def createquorum():
                 'type': 2,
                 'address': f"{peerid}.{did}"
             }
+            print(quorum_entry)
             quorumlist.append(quorum_entry)
 
 # Close the MongoDB connection
@@ -582,19 +736,23 @@ def createquorum():
         json.dump(quorumlist, json_file, indent=4)
     # print(json_file_path)
     return quorumlist
+    
 
 @app.route("/api/getallquorum", methods=['GET'])
 def getallquorum():
     security(str(sys._getframe().f_code.co_name))
     user_input = request.args.get('app', '')
     field_to_port = {
-        'AM': 20000,
-        'ISK': 20001,
-        'V1': 20002,
-        'V2': 20003,
-        'V3': 20004,
-        'V4': 20005,
-        'V5': 20006,
+		'AM': 20000,
+		'ISK': 20001,
+		'V1': 20002,
+		'V2': 20003,
+		'V3': 20004,
+		'V4': 20005,
+		'V5': 20006,
+        'V6': 20007,
+        'V7': 20008,
+        'V8': 20009,
     }
     default_port = 2
 
@@ -635,6 +793,9 @@ def getalldt():
 		'V3': 20004,
 		'V4': 20005,
 		'V5': 20006,
+        'V6': 20007,
+        'V7': 20008,
+        'V8': 20009,
 	}
 	default_port = 2
 	port = field_to_port.get(user_input, default_port)
@@ -692,13 +853,17 @@ def fetch_all():
 
     # Define a dictionary to map field values to ports
     field_to_port = {
-        'AM': 20000,
-        'ISK':20001,
-        'V1': 20002,
-        'V2': 20003,
-        'V3': 20004,
-        'V4': 20005,
-        'V5': 20006,
+		'AM': 20000,
+		'ISK': 20001,
+		'V1': 20002,
+		'V2': 20003,
+		'V3': 20004,
+		'V4': 20005,
+		'V5': 20006,
+        'V6': 20007,
+        'V7': 20008,
+        'V8': 20009,
+
     }
 
     # Default port (if the user input is not recognized)
@@ -713,7 +878,7 @@ def fetch_all():
         responses = []
 
 
-    for user_input in ['AM', 'ISK', 'V1', 'V2', 'V3', 'V4', 'V5']:
+    for user_input in ['AM', 'ISK', 'V1', 'V2', 'V3', 'V4', 'V5','V6','V7','V8']:
         # Get the port based on user input; use the default if not found in the dictionary
         port = field_to_port.get(user_input, default_port)
 
@@ -810,7 +975,7 @@ def turn_on_nodes():
 def force_stop_nodes():
     try:
         # Define the ports you want to stop services on
-        ports = [20000, 20001, 20002, 20003, 20004, 20005, 20006]
+        ports = [20000, 20001, 20002, 20003, 20004, 20005, 20006, 20007, 20008, 20009]
 
         # Convert the ports to strings
         ports = [str(port) for port in ports]
@@ -828,7 +993,7 @@ def force_stop_nodes():
 def check_service():
     try:
         # Define the ports you want to stop services on
-        ports = [20000, 20001, 20002, 20003, 20004, 20005, 20006]
+        ports = [20000, 20001, 20002, 20003, 20004, 20005, 20006, 20007, 20008, 20009]
 
         # Convert the ports to strings
         ports = [str(port) for port in ports]
@@ -858,6 +1023,70 @@ def show_content():
     
     except Exception as e:
         return jsonify({'message': 'Failed to list files.', 'error': str(e)}), 500
+
+
+import subprocess
+
+@app.route('/api/generatetestrbt', methods=['GET'])
+def generate_test_rbt():
+    # Get the number of tokens from the user
+    num_tokens = request.args.get('numTokens', '')
+    rubix_dir = os.environ.get('env_rubix_dir')
+    field_to_port = {
+        'AM': 20000,
+        'ISK': 20001,
+        'V1': 20002,
+        'V2': 20003,
+        'V3': 20004,
+        'V4': 20005,
+        'V5': 20006,
+        'V6': 20007,
+        'V7': 20008,
+        'V8': 20009,
+    }
+
+    responses = []
+
+    # Iterate over all nodes
+    for node, port in field_to_port.items():
+        # Define the API endpoint URL
+        alldidurl = f'http://localhost:{port}/api/getalldid'
+
+        try:
+            response = requests.get(alldidurl)
+
+            # Check the response status code
+            if response.status_code == 200:
+                # Request was successful, get the DID
+                alldid = response.json()
+                parentDID = alldid['account_info'][0]['did']
+
+                command = f'{rubix_dir} generatetestrbt -did {parentDID} -numTokens {num_tokens} -port {port}'
+                process = subprocess.Popen(command.split(), stdout=subprocess.PIPE)
+                output, error = process.communicate()
+                print(output)
+                # Add the output to the responses
+                responses.append({
+                    'node': node,
+                    'did': parentDID,
+                    'output': output,
+                    'error': error,
+                })
+
+            else:
+                responses.append({
+                    'node': node,
+                    'error': 'Error getting DID: ' + response.text,
+                })
+
+        except requests.exceptions.RequestException as e:
+            responses.append({
+                'node': node,
+                'error': 'Request error: ' + str(e),
+            })
+
+    return jsonify(responses)
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5050, debug=True)
